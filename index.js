@@ -45,7 +45,7 @@ app.post("/api/authorization", (req, res) => {
     params: {
       grant_type: "authorization_code",
       code: code,
-      redirect_uri: "http://localhost:5000",
+      redirect_uri: "https://powerful-tundra-57223.herokuapp.com",
     },
   })
     .then((data) => {
