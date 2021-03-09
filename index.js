@@ -50,7 +50,8 @@ app.post("/api/authorization", (req, res) => {
   })
     .then((data) => {
       res.cookie("refresh_token", data.data.refresh_token, {
-        httpOnly: false,
+        httpOnly: true,
+        secure: true,
 
         // domain: ".heroku.com",
       });
