@@ -7,7 +7,7 @@ const uuid = require("uuid").v4;
 const axios = require("axios");
 const app = express();
 const fs = require("fs");
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.use(cookieParser());
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -308,7 +308,6 @@ app.post("/api/playlists/:playlist_id/track", (req, res) => {
     });
 });
 app.get("*", function (req, res) {
-
   res.sendFile(path.join(__dirname, "./build", "index.html"));
 });
 // const express = require("express");
