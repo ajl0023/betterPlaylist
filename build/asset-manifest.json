@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d7938897.chunk.css",
+    "main.js": "/static/js/main.2543dc6b.chunk.js",
+    "main.js.map": "/static/js/main.2543dc6b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.52e2e7e7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.52e2e7e7.js.map",
+    "static/js/2.315194b2.chunk.js": "/static/js/2.315194b2.chunk.js",
+    "static/js/2.315194b2.chunk.js.map": "/static/js/2.315194b2.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.d7938897.chunk.css.map": "/static/css/main.d7938897.chunk.css.map",
+    "static/js/2.315194b2.chunk.js.LICENSE.txt": "/static/js/2.315194b2.chunk.js.LICENSE.txt",
+    "static/media/track.module.scss": "/static/media/GothamLight.03e7ff60.ttf",
+    "static/media/Navbar.module.scss": "/static/media/GothamMedium.0a910c0b.ttf",
+    "static/media/check.091a5f52.svg": "/static/media/check.091a5f52.svg",
+    "static/media/checkIconPlaceH.7fc9c27f.svg": "/static/media/checkIconPlaceH.7fc9c27f.svg",
+    "static/media/logo.44a41c9f.svg": "/static/media/logo.44a41c9f.svg",
+    "static/media/music-note.48ec1c79.svg": "/static/media/music-note.48ec1c79.svg",
+    "static/media/profile.c0e81836.svg": "/static/media/profile.c0e81836.svg",
+    "static/media/search.d5dc7a02.svg": "/static/media/search.d5dc7a02.svg",
+    "static/media/trash.00f75894.svg": "/static/media/trash.00f75894.svg",
+    "static/media/your-top-songs-2019_LARGE-en.db7812ba.jpg": "/static/media/your-top-songs-2019_LARGE-en.db7812ba.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.52e2e7e7.js",
+    "static/js/2.315194b2.chunk.js",
+    "static/css/main.d7938897.chunk.css",
+    "static/js/main.2543dc6b.chunk.js"
+  ]
+}

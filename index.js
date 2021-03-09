@@ -15,7 +15,7 @@ const corsOptions = {
 };
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "../spotify-profile/build")));
+app.use(express.static(path.join(__dirname, "./build")));
 
 app.listen(5000, () => {
   console.log("online");
