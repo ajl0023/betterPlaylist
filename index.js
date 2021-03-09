@@ -7,7 +7,7 @@ const uuid = require("uuid").v4;
 const axios = require("axios");
 const app = express();
 const fs = require("fs");
-
+const PORT = process.env.PORT || 5000;
 app.use(cookieParser());
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -17,7 +17,7 @@ const corsOptions = {
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "./build")));
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log("online");
 });
 
