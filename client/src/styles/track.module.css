@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "light";
+  src: url(./fonts/GothamLight.ttf);
+}
+
+.track-container {
+  cursor: pointer;
+  display: -ms-grid;
+  display: grid;
+  text-decoration: none !important;
+  grid-template: "image info" "image info" / auto 1fr;
+  gap: 12px;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 4px;
+  align-items: center;
+  background-color: #181818;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.track-container:hover {
+  background: #282828;
+}
+
+.track-container .album-cover-container {
+  grid-area: image;
+  width: 200px;
+  height: 200px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.track-container .album-cover-container .album-cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.track-container .info-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  grid-area: info;
+  gap: 5px;
+  max-width: 250px;
+  width: 100%;
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.track-container .info-container .album-title {
+  color: white;
+  font-family: "light";
+}
+
+.track-container .info-container .track-title {
+  color: white;
+}
+/*# sourceMappingURL=track.module.css.map */

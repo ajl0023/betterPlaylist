@@ -1,0 +1,22 @@
+.input-container {
+  position: relative;
+}
+
+.input-container .input-searchbar {
+  outline: none;
+  width: 220px;
+  height: 25px;
+  padding-left: 30px;
+  border-radius: 18px;
+  border: transparent;
+}
+
+.input-container .input-content-container .search-icon {
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 18px;
+  -webkit-transform: translate(50%, -100%);
+          transform: translate(50%, -100%);
+}
+/*# sourceMappingURL=searchBar.module.css.map */

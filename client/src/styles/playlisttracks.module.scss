@@ -1,0 +1,145 @@
+@font-face {
+  font-family: "light";
+  src: url(./fonts/GothamLight.ttf);
+}
+@mixin oneline-text {
+  word-break: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  white-space: unset;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.inactive {
+  display: none;
+}
+.item-container {
+  display: grid;
+  position: relative;
+
+  grid-template-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(
+      120px,
+      1fr
+    );
+
+  gap: 16px;
+  margin-bottom: 16px;
+  &:hover {
+    .check-container {
+      display: flex !important;
+      align-items: center;
+      grid-area: subtitle;
+      .check-icon {
+        display: block !important;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+    .track-count {
+      display: none !important;
+    }
+  }
+  .check-count-container {
+    display: flex;
+    justify-content: center;
+    align-items: center !important;
+  }
+  .check-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .check-icon-place {
+      right: -25px;
+      position: absolute;
+      width: 40px;
+      fill: white;
+      object-fit: cover;
+      object-position: center center;
+    }
+    .check-icon {
+      right: -25px;
+      position: absolute;
+      min-width: 40px;
+      cursor: pointer;
+      object-fit: cover;
+      object-position: center center;
+      &:hover {
+        fill: #1db954 !important;
+      }
+    }
+  }
+  .track-count {
+    display: flex;
+    align-items: center;
+  }
+  .item-title-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-self: start;
+    -webkit-box-align: center;
+    .album-image-container {
+      width: 40px;
+      margin-right: 16px;
+      .album-image {
+        width: 40px;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+
+    .title-container {
+      display: grid;
+      grid-template:
+        "title title"
+        "artist artist" / auto 1fr;
+      align-items: center;
+
+      -webkit-box-align: center;
+      .track-title-container {
+        @include oneline-text;
+        grid-area: title;
+        .track-title {
+          color: white;
+        }
+      }
+
+      .track-artist {
+        color: #b3b3b3;
+
+        @include oneline-text;
+        grid-area: subtitle;
+
+        grid-column-start: artist;
+
+        .artist-name {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .track-album-container {
+    display: flex;
+    align-items: center;
+
+    .track-album {
+      @include oneline-text;
+    }
+  }
+
+  .track-playlist-container {
+    @include oneline-text;
+    color: white;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    .track-playlist {
+      @include oneline-text;
+    }
+  }
+}

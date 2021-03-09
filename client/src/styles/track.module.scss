@@ -1,0 +1,56 @@
+@font-face {
+  font-family: "light";
+  src: url(./fonts/GothamLight.ttf);
+}
+.track-container {
+  cursor: pointer;
+  display: grid;
+  text-decoration: none !important;
+  grid-template: "image info" "image info" / auto 1fr;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
+  border-radius: 4px;
+  align-items: center;
+  background-color: rgb(24, 24, 24);
+  transition: all 0.3s;
+  &:hover {
+    background: rgb(40, 40, 40);
+  }
+  .album-cover-container {
+    grid-area: image;
+    width: 200px;
+    height: 200px;
+    padding: 8px;
+
+    overflow: hidden;
+    .album-cover {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      border-radius: 4px;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+  .info-container {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    grid-area: info;
+    gap: 5px;
+    max-width: 250px;
+    width: 100%;
+    font-weight: 100;
+    font-size: 12px;
+    .album-title {
+      color: white;
+
+      font-family: "light";
+    }
+    .track-title {
+      color: white;
+    }
+  }
+}

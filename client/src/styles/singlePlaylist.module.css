@@ -1,0 +1,175 @@
+@font-face {
+  font-family: "light";
+  src: url(./fonts/GothamLight.ttf);
+}
+
+.item-wrapper {
+  color: white;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.wrapper {
+  height: 100%;
+  overflow: hidden;
+  padding: 0px 0px;
+}
+
+.wrapper .header-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: [image] 300px [playlistInfo] 1fr;
+      grid-template-columns: [image] 300px [playlistInfo] 1fr;
+  gap: 40px;
+}
+
+.wrapper .header-container .album-cover-container {
+  width: 100%;
+  height: 300px;
+  padding: 30px;
+  position: relative;
+}
+
+.wrapper .header-container .album-cover-container .album-cover {
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 0, 4px, 60px, black;
+          box-shadow: 0, 4px, 60px, black;
+  position: absolute;
+  width: 100%;
+  z-index: 5;
+  padding: 20px;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.wrapper .header-container .album-cover-container .album-mask {
+  z-index: 4;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.5)));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+}
+
+.wrapper .header-container .playlist-info-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  color: white;
+}
+
+.wrapper .header-container .playlist-info-container .playlist-title {
+  font-size: 40px;
+}
+
+.wrapper .header-container .playlist-info-container .playlist-creator {
+  font-weight: 700;
+  font-size: 11px;
+  font-family: light;
+  color: #a8a8a8;
+}
+
+.inactive {
+  display: none;
+}
+
+.tracks-container {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.tracks-container:hover .label-container .label-check-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tracks-container:hover .label-container .label-check-container .label-count {
+  font-size: 15px;
+  display: none !important;
+}
+
+.tracks-container:hover .label-container .label-check-container .check-box {
+  cursor: pointer;
+  display: block !important;
+  position: absolute;
+  fill: white;
+  top: 0;
+}
+
+.label-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
+      grid-template-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
+  margin-bottom: 16px;
+  width: 100%;
+  padding: 20px;
+  color: white;
+  margin-top: 16px;
+  border-bottom: 0.5px gray solid;
+}
+
+.label-container .label-item {
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+}
+
+.label-container .label-title {
+  color: white;
+  font-family: "light";
+  font-weight: 100;
+  overflow: hidden;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.label-container .label-artist {
+  font-family: "light";
+  font-weight: 100;
+  overflow: hidden;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.label-container .label-playlist {
+  font-family: "light";
+  font-weight: 100;
+  overflow: hidden;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.label-container .label-check-container {
+  width: 80px;
+}
+
+.label-container .label-check-container {
+  height: 25px;
+}
+
+.label-container .label-check-container .check-box {
+  display: none;
+}
+/*# sourceMappingURL=singlePlaylist.module.css.map */

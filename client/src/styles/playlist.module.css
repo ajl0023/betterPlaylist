@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "light";
+  src: url(./fonts/GothamLight.ttf);
+}
+
+.inactive {
+  display: none;
+}
+
+.playlist-container {
+  padding: 15px;
+  background-color: #181818;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.playlist-container .fallback-image-container {
+  background: #333;
+  color: white;
+}
+
+.playlist-container .playlist-image-container {
+  margin-bottom: 15px;
+}
+
+.playlist-container .playlist-image-container .playlist-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.playlist-container .description-container {
+  color: white;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.playlist-container .description-container .playlist-title {
+  margin-bottom: 8px;
+}
+
+.playlist-container .description-container .playlist-description {
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  direction: ltr;
+  font-weight: 200;
+  font-size: 12px;
+  color: #a8a8a8;
+}
+/*# sourceMappingURL=playlist.module.css.map */

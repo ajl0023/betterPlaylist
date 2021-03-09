@@ -1,0 +1,115 @@
+@font-face {
+  font-family: "main";
+  src: url(./fonts/GothamMedium.ttf);
+}
+@mixin modal-buttons {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    color: #1db954;
+  }
+  background: none;
+  color: white;
+  font-family: "main";
+}
+
+@mixin user-option-icon($deg, $deg2) {
+  background-color: white;
+  inline-size: 100%;
+  position: absolute;
+  display: block;
+  transition: all 300ms ease-in-out;
+  block-size: calc(20px / 10);
+  top: calc(36% + 2px);
+  background-color: transparent;
+
+  &:before {
+    top: 0;
+    transition: all 300ms ease-in-out;
+    block-size: calc(20px / 10);
+    background-color: white;
+    content: "";
+
+    display: block;
+    transform: rotate($deg);
+    position: absolute;
+    inline-size: 100%;
+  }
+  &:after {
+    top: 0;
+    transition: all 300ms ease-in-out;
+    block-size: calc(20px / 10);
+    background-color: white;
+    content: "";
+
+    transform: rotate($deg2);
+    display: block;
+    position: absolute;
+    inline-size: 100%;
+  }
+}
+.inactive {
+  display: none;
+}
+.container-mask {
+  position: fixed;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  height: 100vh;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+.container {
+  .modal-container {
+    position: fixed;
+    color: white;
+    background-color: black;
+
+    max-height: fit-content;
+    top: 50%;
+    left: 50%;
+    border-radius: 15px;
+    width: fit-content;
+
+    padding: 18px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+
+    margin: 0 auto;
+  }
+  .header-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    .cancel-icon-container {
+      position: relative;
+      display: block;
+      block-size: 18px;
+      inline-size: 18px;
+      cursor: pointer;
+      .main-trigger-icon-container {
+        @include user-option-icon(45deg, -45deg);
+      }
+    }
+  }
+
+  .button-container {
+    display: flex;
+    width: 100%;
+    margin-top: 40px;
+    gap: 20px;
+    justify-content: flex-end;
+    .cancel-button {
+      @include modal-buttons();
+    }
+    .delete-button {
+      @include modal-buttons();
+    }
+  }
+}

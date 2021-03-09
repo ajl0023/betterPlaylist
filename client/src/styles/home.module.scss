@@ -1,0 +1,174 @@
+@font-face {
+  font-family: "main";
+  src: url(./fonts/GothamMedium.ttf);
+}
+.inactive {
+  display: none;
+}
+
+.container {
+  color: white;
+
+  width: 100%;
+  padding: 30px 20px;
+  padding-top: 30px;
+  max-height: 100vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.dropdown-container {
+  display: none;
+}
+.user-dropdown-input {
+  display: none;
+  &:checked ~ label {
+    .dropdown-container {
+      display: flex;
+      bottom: 20;
+      right: 0;
+      position: relative;
+      justify-content: flex-end;
+      .arrow-up {
+        width: 0;
+        height: 0;
+        z-index: 5;
+        position: absolute;
+        bottom: 0;
+        right: 5px;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+
+        border-bottom: 6px solid white;
+      }
+      .dropdown-content-container {
+        background: white;
+        position: absolute;
+        border-radius: 4px;
+        .dropdown-button {
+          border: none;
+          display: flex;
+          outline: none;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.7vw;
+          padding: 6px 15px;
+          cursor: pointer;
+          &:hover {
+            color: #1db954;
+          }
+          font-weight: 700;
+          font-family: "main";
+          background: none;
+        }
+      }
+    }
+    .user-icon-container {
+    }
+  }
+}
+.user-icon-header-container {
+  display: flex;
+  width: 100%;
+  font-family: "main";
+  position: relative;
+  justify-content: flex-end;
+
+  .user-icon-container {
+    display: grid;
+    cursor: pointer;
+    gap: 15px;
+
+    background-color: rgba(0, 0, 0, 0.213);
+    padding: 5px 8px;
+    border-radius: 15px;
+    grid-template: "profilePicture name arrow";
+    &:hover {
+      background: rgb(40, 40, 40);
+    }
+    .user-image-container {
+      max-width: 45px;
+      display: flex;
+      align-items: center;
+      border-radius: 50%;
+      .user-image {
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center center;
+        width: 100%;
+        grid-area: profilePicture;
+      }
+    }
+    .user-displayName {
+      grid-area: name;
+      display: grid;
+      align-items: center;
+    }
+    .arrow-container {
+      display: flex;
+      align-items: center;
+      .user-arrow-trigger {
+        grid-area: arrow;
+
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+
+        border-top: 5px solid white;
+      }
+    }
+  }
+  .user-icon-box {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.user-info-container {
+  justify-content: center;
+  gap: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.profile-picture-container {
+  border-radius: 50%;
+  overflow: hidden;
+  height: 150px;
+  width: 150px;
+
+  .profile-picture {
+    display: block;
+    object-position: center center;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+@mixin track-container {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+}
+.track-divisor-container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  max-width: 1200px;
+  margin-top: 50px;
+  justify-content: space-between;
+  .top-tracks-container {
+    @include track-container;
+  }
+  .recent-tracks-container {
+    @include track-container;
+  }
+  .top-tracks-title {
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}

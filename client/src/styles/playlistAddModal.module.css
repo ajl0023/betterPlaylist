@@ -1,0 +1,220 @@
+@font-face {
+  font-family: "main";
+  src: url(./fonts/GothamMedium.ttf);
+}
+
+.inactive {
+  display: none;
+}
+
+.container-mask {
+  position: fixed;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  height: 100vh;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+.container .modal-container {
+  position: fixed;
+  color: white;
+  background-color: black;
+  max-height: 500px;
+  overflow-y: auto;
+  top: 50%;
+  left: 50%;
+  border-radius: 15px;
+  width: 500px;
+  padding: 18px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 10;
+  margin: 0 auto;
+}
+
+.container .header-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.container .header-container .cancel-icon-container {
+  position: relative;
+  display: block;
+  block-size: 18px;
+  inline-size: 18px;
+  cursor: pointer;
+}
+
+.container .header-container .cancel-icon-container .main-trigger-icon-container {
+  background-color: white;
+  inline-size: 100%;
+  position: absolute;
+  display: block;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  block-size: calc(20px / 10);
+  top: calc(36% + 2px);
+  background-color: transparent;
+}
+
+.container .header-container .cancel-icon-container .main-trigger-icon-container:before {
+  top: 0;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  block-size: calc(20px / 10);
+  background-color: white;
+  content: "";
+  display: block;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  position: absolute;
+  inline-size: 100%;
+}
+
+.container .header-container .cancel-icon-container .main-trigger-icon-container:after {
+  top: 0;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  block-size: calc(20px / 10);
+  background-color: white;
+  content: "";
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  display: block;
+  position: absolute;
+  inline-size: 100%;
+}
+
+.container .modal-title {
+  margin-bottom: 15px;
+}
+
+.container .playlist-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-top: 0.5px gray solid;
+  padding-top: 15px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 8px;
+}
+
+.container .playlist-container .playlist-item-container .playlist-item {
+  font-size: 14px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: [index] 16px [title] 4fr;
+      grid-template-columns: [index] 16px [title] 4fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 12px;
+}
+
+.container .playlist-container .playlist-item-container .playlist-item .check-index-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .playlist-container .playlist-item-container .playlist-item:hover .check-icon {
+  display: block !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.container .playlist-container .playlist-item-container .playlist-item:hover .playlist-count {
+  display: none;
+}
+
+.container .playlist-container .playlist-item-container .playlist-item .check-icon-place {
+  position: absolute;
+  width: 20px;
+  fill: white;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.container .playlist-container .playlist-item-container .playlist-item .check-icon {
+  fill: white;
+  width: 20px;
+  position: absolute;
+  cursor: pointer;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.container .playlist-container .playlist-item-container .playlist-item .check-icon:hover {
+  fill: #1db954 !important;
+}
+
+.container .button-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-top: 40px;
+  gap: 20px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.container .button-container .cancel-button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  color: white;
+  font-family: "main";
+}
+
+.container .button-container .cancel-button:hover {
+  color: #1db954;
+}
+
+.container .button-container .delete-button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  color: white;
+  font-family: "main";
+}
+
+.container .button-container .delete-button:hover {
+  color: #1db954;
+}
+/*# sourceMappingURL=playlistAddModal.module.css.map */

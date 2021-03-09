@@ -1,0 +1,56 @@
+@font-face {
+  font-family: "light";
+  src: url(./fonts/GothamLight.ttf);
+}
+
+.inactive {
+  display: none;
+}
+
+.playlist-container {
+  padding: 15px;
+  background-color: rgb(24, 24, 24);
+  display: flex;
+  justify-content: center;
+ 
+  text-decoration: none;
+  overflow: hidden;
+
+  .fallback-image-container {
+    background: #333;
+    color: white;
+  }
+  .playlist-image-container {
+
+    margin-bottom: 15px;
+
+    .playlist-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .description-container {
+    color: white;
+
+    flex-grow: 1;
+
+    .playlist-title {
+      margin-bottom: 8px;
+    }
+    .playlist-description {
+      white-space: normal;
+      -webkit-box-orient: vertical;
+
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+
+      text-overflow: ellipsis;
+      direction: ltr;
+      font-weight: 200;
+      font-size: 12px;
+      color: #a8a8a8;
+    }
+  }
+}

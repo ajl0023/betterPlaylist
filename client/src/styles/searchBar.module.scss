@@ -1,0 +1,20 @@
+.input-container {
+  position: relative;
+  .input-searchbar {
+    outline: none;
+    width: 220px;
+    height: 25px;
+    padding-left: 30px;
+    border-radius: 18px;
+    border: transparent;
+  }
+  .input-content-container {
+    .search-icon {
+      position: absolute;
+      right: 0;
+      left: 0;
+      width: 18px;
+      transform: translate(50%, -100%);
+    }
+  }
+}

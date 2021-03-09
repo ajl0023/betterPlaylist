@@ -1,0 +1,216 @@
+@font-face {
+  font-family: "light";
+  src: url(./fonts/GothamLight.ttf);
+}
+
+.inactive {
+  display: none;
+}
+
+.item-container {
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+  -ms-grid-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
+      grid-template-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.item-container:hover .check-container {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-area: subtitle;
+}
+
+.item-container:hover .check-container .check-icon {
+  display: block !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.item-container:hover .track-count {
+  display: none !important;
+}
+
+.item-container .check-count-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+}
+
+.item-container .check-container {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.item-container .check-container .check-icon-place {
+  right: -25px;
+  position: absolute;
+  width: 40px;
+  fill: white;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.item-container .check-container .check-icon {
+  right: -25px;
+  position: absolute;
+  min-width: 40px;
+  cursor: pointer;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.item-container .check-container .check-icon:hover {
+  fill: #1db954 !important;
+}
+
+.item-container .track-count {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.item-container .item-title-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  justify-self: start;
+  -webkit-box-align: center;
+}
+
+.item-container .item-title-container .album-image-container {
+  width: 40px;
+  margin-right: 16px;
+}
+
+.item-container .item-title-container .album-image-container .album-image {
+  width: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.item-container .item-title-container .title-container {
+  display: -ms-grid;
+  display: grid;
+  grid-template: "title title" "artist artist" / auto 1fr;
+  -ms-flex-align: center;
+      align-items: center;
+  -webkit-box-align: center;
+}
+
+.item-container .item-title-container .title-container .track-title-container {
+  word-break: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  white-space: unset;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  grid-area: title;
+}
+
+.item-container .item-title-container .title-container .track-title-container .track-title {
+  color: white;
+}
+
+.item-container .item-title-container .title-container .track-artist {
+  color: #b3b3b3;
+  word-break: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  white-space: unset;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  grid-area: subtitle;
+  -ms-grid-column: artist;
+      grid-column-start: artist;
+}
+
+.item-container .item-title-container .title-container .track-artist .artist-name {
+  font-size: 14px;
+}
+
+.item-container .track-album-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.item-container .track-album-container .track-album {
+  word-break: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  white-space: unset;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.item-container .track-playlist-container {
+  word-break: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  white-space: unset;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: white;
+  display: -ms-flexbox;
+  display: flex;
+  text-decoration: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.item-container .track-playlist-container .track-playlist {
+  word-break: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  white-space: unset;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+/*# sourceMappingURL=playlisttracks.module.css.map */
