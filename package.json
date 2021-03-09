@@ -2,7 +2,6 @@
   "name": "spotify-backend",
   "version": "1.0.0",
   "description": "",
-
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -15,6 +14,7 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "gh-pages": "^3.1.0",
     "nodemon": "^2.0.7",
     "uuid": "^8.3.2"
   }
