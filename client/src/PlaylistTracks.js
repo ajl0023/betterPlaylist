@@ -47,22 +47,35 @@ const PlaylistTrack = (props) => {
           {" "}
           <CheckIconPlaceH
             style={{
-              display: props.selected.find((set) => {
-                return props.playlistSet.playlist.id === set.playlistid;
-              })
-                ? "flex"
-                : "none",
+              display:
+                props.selected.find((set) => {
+                  return props.playlistSet.playlist.id === set.playlistid;
+                }) ||
+                (props.searchArr &&
+                  props.searchArr.length > 0 &&
+                  props.selected.some((set) => {
+                    if (set.origin === "search") {
+                      return set;
+                    }
+                  }))
+                  ? "flex"
+                  : "none",
             }}
             className={style["check-icon-place"]}
           />
           <CheckIcon
             onClick={(e) => {
-              handleCheckClick(
-                props.playlistSet.track.uid,
-                props.playlistSet.playlist.id,
-                props.playlistSet.track.uri,
-                props.getTracks
-              );
+              props.searchArr && props.searchArr.length > 0
+                ? props.handleCheckSearch(
+                    props.playlistSet.track.uid,
+                    props.playlistSet.playlist.id
+                  )
+                : handleCheckClick(
+                    props.playlistSet.track.uid,
+                    props.playlistSet.playlist.id,
+                    props.playlistSet.track.uri,
+                    props.getTracks
+                  );
             }}
             style={{
               display: props.selected.find((obj) => {
@@ -85,19 +98,28 @@ const PlaylistTrack = (props) => {
             }
           />
         </div>
-        <li
-          className={
-            style[
-              props.selected.find((set) => {
-                return props.playlistSet.playlist.id === set.playlistid;
-              })
-                ? "inactive"
-                : "track-count"
-            ]
-          }
-        >
-          {props.index + 1}
-        </li>
+        <div className={style["track-count-container"]}>
+          <span
+            className={
+              style[
+                props.selected.find((set) => {
+                  return props.playlistSet.playlist.id === set.playlistid;
+                }) ||
+                (props.searchArr &&
+                  props.searchArr.length > 0 &&
+                  props.selected.some((set) => {
+                    if (set.origin === "search") {
+                      return set;
+                    }
+                  }))
+                  ? "inactive"
+                  : "track-count"
+              ]
+            }
+          >
+            {props.index + 1}
+          </span>
+        </div>
       </div>
 
       <div className={style["item-title-container"]}>
@@ -105,9 +127,11 @@ const PlaylistTrack = (props) => {
           <img
             className={style["album-image"]}
             src={
-              props.imageSelection
-                ? props.playlistSet.track.album.images[0].url
-                : props.playlistSet.playlist.images[0].url
+              props.imageSelection && props.playlistSet
+                ? props.playlistSet.track.album.images[0] &&
+                  props.playlistSet.track.album.images[0].url
+                : props.playlistSet.playlist.images[0] &&
+                  props.playlistSet.playlist.images[0].url
             }
             alt=""
           />

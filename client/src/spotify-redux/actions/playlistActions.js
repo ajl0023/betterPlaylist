@@ -7,6 +7,8 @@ import {
   ADD_TRACK_SUCCESS,
   REQUEST_TRACKS,
   RECIEVE_TRACKS,
+  RECIEVE_PLAYLIST_TRACKS,
+  REQUEST_PLAYLIST_TRACKS,
 } from "../types/types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -17,25 +19,18 @@ import {
   getPlaylists,
   getPlayListTracks,
 } from "./calls";
-function requestPlaylists() {
-  return {
-    type: REQUEST_PLAYLISTS,
+const requestPlaylists = () => {
+  return (dispatch, getState) => {
+    dispatch({ type: REQUEST_PLAYLISTS });
+    dispatch({ type: REQUEST_PLAYLIST_TRACKS });
   };
-}
+};
 function deleteTrackRequest() {
   return {
     type: DELETE_TRACK_REQUEST,
   };
 }
-// export const addTracksToPlaylists = (playlists, tracks) => (
-//   dispatch,
-//   getState
-// ) => {
-//   console.log(playlists, tracks);
-//   dispatch({
-//     type: ADD_TRACK_REQUEST,
-//   });
-// };
+
 export const addTracksToPlaylists = (playlist, tracks) => (
   dispatch,
   getState
@@ -71,20 +66,29 @@ export const addTracksToPlaylists = (playlist, tracks) => (
   const trackUris = tracks.map((track) => {
     return track.uri;
   });
-
-  return new Promise((resolve, reject) => {
+  let tempPromise = [];
+  const promiseArr = new Promise((resolve, reject) => {
     playlistsToChange.forEach((playlist) => {
-      addTracksToPlaylistsCall(playlist, trackUris).then((data) => {
-        if (data.status === 200) {
-          resolve(data.status);
-          dispatch({
-            type: ADD_TRACK_SUCCESS,
-            trackObjs: obj,
-            playlists: playlistsToChange,
-            tracksToAdd: trackIds,
-          });
-        }
-      });
+      addTracksToPlaylistsCall(playlist, trackUris)
+        .then((data) => {
+          if (data.status === 200) {
+            resolve(200);
+          }
+        })
+        .then((res) => {});
+    });
+  });
+  return new Promise((resolve, reject) => {
+    promiseArr.then((status) => {
+      if (status === 200) {
+        dispatch({
+          type: ADD_TRACK_SUCCESS,
+          trackObjs: obj,
+          playlists: playlistsToChange,
+          tracksToAdd: trackIds,
+        });
+        resolve(status);
+      }
     });
   });
 };
@@ -92,7 +96,13 @@ export const deleteTrackFromPlaylists = (playlistTracks) => (
   dispatch,
   getState
 ) => {
-  //
+  let allTracks = getState().tracks.byIds;
+  let allPlaylists = getState().playlists.byIds;
+
+  let tracksArr = Object.keys(allTracks).map((id) => {
+    return allTracks[id];
+  });
+
   return new Promise((resolve, reject) => {
     const playlistTracksCopy = [...playlistTracks];
     dispatch(deleteTrackRequest());
@@ -116,7 +126,21 @@ export const deleteTrackFromPlaylists = (playlistTracks) => (
         arr[idCheck]["tracksToDelete"].push(playlistTracksCopy[i]);
       }
     }
+    let filteredTracks = tracksArr.filter((tracks) => {
+      let find = playlistTracks.find((set) => {
+        if (set.trackid === tracks.uid) {
+          return set;
+        }
+      });
+      if (!find) {
+        return tracks;
+      }
+    });
 
+    let filteredObj = {};
+    filteredTracks.forEach((tracks) => {
+      filteredObj[tracks.uid] = tracks;
+    });
     if (arr.length > 0) {
       arr.forEach((playlist) => {
         deleteFromPlaylist(playlist)
@@ -130,15 +154,18 @@ export const deleteTrackFromPlaylists = (playlistTracks) => (
     } else {
       resolve("Some tracks were not deleted.");
     }
+    dispatch({
+      type: DELETE_TRACK_SUCCESS,
+      tracksArr,
+      filteredTracks,
+      filteredObj,
+      items: [...playlistTracks],
+    });
   });
-  // return axios({
-  //   url: ``,
-  // });
+
 };
 export function selectAll() {
-  return (dispatch, getState) => {
-    
-  };
+  return (dispatch, getState) => {};
 }
 export function getTracksScroll(playlist) {
   return (dispatch, getState) => {
@@ -170,45 +197,66 @@ export function recievePlaylists() {
     dispatch(requestPlaylists());
 
     getPlaylists().then((data) => {
-      if (data) {
-        const playlistObj = {};
-        const playlists = data.data.playlists;
-        let trackArr = [];
-        let promiseArr = playlists.map((playlist) => {
-          return getPlayListTracks(playlist.id).then((data) => {
-            playlist["track_count"] = playlist.tracks.total;
-            playlist["tracks"] = data.data.map((track) => {
-              if (track.uid) {
-                trackArr.push(track);
-              }
+      let tracksArr = [];
+      let length = data.data.playlists.length;
+      let playlists = data.data.playlists;
 
-              return track.uid;
-            });
-            playlist["offset"] = playlist.tracks.length;
-            return {
-              [playlist.id]: playlist,
-            };
-          });
-        });
-
-        Promise.all(promiseArr).then((values) => {
-          const trackObj = {};
-          trackArr.forEach((track) => {
-            trackObj[track.uid] = track;
-          });
-          let obj = {};
-
-          values.forEach((playlist) => {
-            Object.assign(obj, playlist);
-          });
-          dispatch({
-            tracks: trackObj,
-            byIds: obj,
-            type: RECIEVE_PLAYLISTS,
-            allIds: Object.keys(obj),
-          });
-        });
+      let tracksObj = {};
+      let allTracksObj = {};
+      let playlistObj = {};
+      playlists.forEach((playlist) => {
+        playlist.tracks = [];
+        playlistObj[playlist.id] = playlist;
+      });
+      dispatch({
+        byIds: playlistObj,
+        type: RECIEVE_PLAYLISTS,
+        allIds: Object.keys(playlistObj),
+      });
+      for (let i = 0; i < length; i++) {
+        tracksArr.push(getPlayListTracks(playlists[i].id));
       }
+      Promise.all(tracksArr).then((trackData) => {
+        let playlistIds = [];
+
+        let length = trackData.length;
+        let toArr = {};
+        let trackIds = [];
+        for (let i = 0; i < length; i++) {
+          let itemLength = trackData[i].data.items.length;
+          playlistIds.push(trackData[i].data.playlistId);
+          for (let j = 0; j < itemLength; j++) {
+            let track = trackData[i].data.items[j];
+            trackIds.push(track.uid);
+            allTracksObj[track.uid] = track;
+            track["playlistid"] = trackData[i].data.playlistId;
+
+            tracksObj[track.uid] = track;
+
+            if (!toArr[trackData[i].data.playlistId]) {
+              toArr[trackData[i].data.playlistId] = [track.uid];
+            } else {
+              toArr[trackData[i].data.playlistId] = [
+                ...toArr[trackData[i].data.playlistId],
+                track.uid,
+              ];
+            }
+          }
+        }
+
+        dispatch({
+          allTracksObj,
+          trackIds: trackIds,
+          tracks: toArr,
+          playlists: playlistIds,
+          type: RECIEVE_PLAYLIST_TRACKS,
+          allIds: Object.keys(playlistObj),
+        });
+      });
+
+     
+
+   
     });
   };
 }

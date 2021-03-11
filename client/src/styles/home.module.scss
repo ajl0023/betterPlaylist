@@ -22,6 +22,11 @@
 .dropdown-container {
   display: none;
 }
+.user-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
 .user-dropdown-input {
   display: none;
   &:checked ~ label {
@@ -70,8 +75,6 @@
   }
 }
 .user-icon-header-container {
-  display: flex;
-  width: 100%;
   font-family: "main";
   position: relative;
   justify-content: flex-end;
@@ -155,6 +158,7 @@
 }
 .track-divisor-container {
   display: flex;
+
   width: 100%;
   gap: 20px;
   max-width: 1200px;
@@ -170,5 +174,49 @@
     margin-bottom: 20px;
     font-weight: 700;
     text-transform: uppercase;
+  }
+}
+.recently-played-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.top-tracks-title {
+  text-align: center;
+}
+@media only screen and (max-width: 742px) {
+  .show-more-container {
+    display: block !important;
+    padding-top: 15px;
+    text-align: center;
+    .showmore-input {
+      cursor: pointer;
+      display: none;
+    }
+    .showmore-label {
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+
+      border-top: 15px solid white;
+    }
+  }
+  .track-divisor-container {
+    flex-direction: column;
+    .top-tracks-container {
+      max-height: 50vh;
+      overflow-y: auto;
+    }
+    .recent-tracks-container {
+      max-height: 50vh;
+      overflow-y: auto;
+    }
+  }
+}
+@media only screen and (max-width: 524px) {
+  .user-info-container {
+    padding-top: 50px;
   }
 }

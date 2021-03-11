@@ -50,9 +50,55 @@ const SinglePlaylist = (props) => {
 
     props.findCurrentPlaylist(params.id);
   }, [currentPlayList]);
+  
+  const handleFetchScroll = (e) => {
+    let tracks = getTracks.map((item) => {
+      return {
+        trackid: item.track.uid,
+        playlistid: item.playlist.id,
+        index: item.track.index,
+        uri: item.track.uri,
+      };
+    });
+    let scrollPos = Math.round(e.target.scrollHeight - e.target.scrollTop);
+    let clientHeight = e.target.clientHeight;
+    if (
+      scrollPos === clientHeight &&
+      currentPlayList.offset < currentPlayList.track_count
+    ) {
+   
+      props.handleCheckAll(tracks, currentPlayList.id, true);
+      if (
+        currentPlayList &&
+        currentPlayList.offset < currentPlayList.track_count
+      ) {
+        dispatch(getTracksScroll(currentPlayList));
+      }
+    }
+  };
+
+  useEffect(() => {
+    let scrollContainer = document.getElementById("scroll-container");
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleFetchScroll);
+    }
+    return () => {
+      scrollContainer.removeEventListener("scroll", handleFetchScroll);
+    };
+  }, [playlist]);
+  if (
+    !currentPlayList ||
+    !currentPlayList.tracks.length > 0 ||
+    currentPlayList.length <= 0 ||
+    !currentPlayList.images[0] ||
+    !props.allTracks
+  ) {
+    return <div></div>;
+  }
   let getTracks;
 
   if (currentPlayList) {
+   
     getTracks = currentPlayList.tracks.reduce((arr, id) => {
       let obj = {};
 
@@ -76,49 +122,6 @@ const SinglePlaylist = (props) => {
         return track;
       }
     });
-  }
-  const handleFetchScroll = (e) => {
-    let tracks = getTracks.map((item) => {
-      return {
-        trackid: item.track.uid,
-        playlistid: item.playlist.id,
-        index: item.track.index,
-        uri: item.track.uri,
-      };
-    });
-    let scrollPos = Math.round(e.target.scrollHeight - e.target.scrollTop);
-    let clientHeight = e.target.clientHeight;
-    if (
-      scrollPos === clientHeight &&
-      currentPlayList.offset < currentPlayList.track_count
-    ) {
-      console.log("single");
-      props.handleCheckAll(tracks, currentPlayList.id, true);
-      if (
-        currentPlayList &&
-        currentPlayList.offset < currentPlayList.track_count
-      ) {
-        dispatch(getTracksScroll(currentPlayList));
-      }
-    }
-  };
-
-  useEffect(() => {
-    console.log(currentPlayList);
-    let scrollContainer = document.getElementById("scroll-container");
-    if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleFetchScroll);
-    }
-    return () => {
-      scrollContainer.removeEventListener("scroll", handleFetchScroll);
-    };
-  }, [playlist]);
-  if (
-    !currentPlayList ||
-    currentPlayList.length <= 0 ||
-    !currentPlayList.images[0]
-  ) {
-    return <div></div>;
   }
 
   let checkAllFiltered = getTracks.filter((track) => {
@@ -173,7 +176,7 @@ const SinglePlaylist = (props) => {
       <div className={style["tracks-container"]}>
         <div className={style["label-container"]}>
           <div className={style["label-check-container"]}>
-            <li
+            <p
               style={{
                 display: props.selectedAllIds.includes(currentPlayList.id)
                   ? "none"
@@ -182,7 +185,7 @@ const SinglePlaylist = (props) => {
               className={style["label-count"]}
             >
               #
-            </li>
+            </p>
 
             <CheckIcon
               style={{
@@ -193,9 +196,9 @@ const SinglePlaylist = (props) => {
               className={style["check-box"]}
             />
           </div>
-          <li className={style["label-title"]}>title</li>
-          <li className={style["label-artist"]}>album</li>
-          <li className={style["label-playlist"]}>playlist</li>{" "}
+          <div className={style["label-title"]}>title</div>
+          <div className={style["label-album"]}>album</div>
+          <div className={style["label-playlist"]}>playlist</div>{" "}
         </div>
         <div className={style["item-wrapper"]}>
           {getTracks.map((track, i) => {
@@ -221,3 +224,14 @@ const SinglePlaylist = (props) => {
 };
 
 export default SinglePlaylist;
+// import React from 'react';
+
+// const SinglePlaylist = () => {
+//   return (
+//     <div>
+//       sd
+//     </div>
+//   );
+// }
+
+// export default SinglePlaylist;

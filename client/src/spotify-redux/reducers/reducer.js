@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { Map } from "immutable";
 import {
   REQUEST_TOP_TRACKS,
   RECIEVE_TOP_TRACKS,
@@ -14,7 +15,9 @@ import {
   ADD_TRACK_REQUEST,
   ADD_TRACK_SUCCESS,
   RECIEVE_TRACKS,
+  RECIEVE_PLAYLIST_TRACKS,
   REQUEST_TRACKS,
+  DELETE_TRACK_SUCCESS,
 } from "../types/types";
 
 import {} from "../actions/trackActions";
@@ -25,6 +28,15 @@ function addTracksTrack(state, action) {
     ...action.trackObjs,
   };
   return stateCopy;
+}
+function deleteTrackFunc(state, action) {
+  console.log(action.filteredObj);
+  return {
+    ...state,
+    byIds: {
+      ...action.filteredObj,
+    },
+  };
 }
 function tracks(
   state = {
@@ -41,6 +53,8 @@ function tracks(
   action
 ) {
   switch (action.type) {
+    case DELETE_TRACK_SUCCESS:
+      return deleteTrackFunc(state, action);
     case RECIEVE_TRACKS:
       return Object.assign({}, state, {
         byIds: {
@@ -50,9 +64,13 @@ function tracks(
       });
     case ADD_TRACK_SUCCESS:
       return addTracksTrack(state, action);
-    case RECIEVE_PLAYLISTS:
+    case RECIEVE_PLAYLIST_TRACKS:
       return Object.assign({}, state, {
-        byIds: action.tracks,
+        allIds: [...action.trackIds],
+        byIds: {
+          ...state.byIds,
+          ...action.allTracksObj,
+        },
       });
     case REQUEST_TOP_TRACKS:
       return Object.assign({}, state, {
@@ -104,6 +122,41 @@ function addTracks(state, action) {
   }
   return obj;
 }
+function deleteTrackPlaylist(state, action) {
+  let obj = { ...state };
+  for (let item of action.items) {
+    obj.byIds[item.playlistid].tracks = obj.byIds[
+      item.playlistid
+    ].tracks.filter((id) => {
+      if (id !== item.trackid) {
+        return id;
+      }
+    });
+  }
+  return obj;
+}
+function recievePlaylistTracks(state, action) {
+  const stateCopy = Map(state);
+  const newState = stateCopy;
+  const tracksObj = action.tracks;
+  const playlistToChange = action.playlists;
+
+  let length = playlistToChange.length;
+  for (let key in tracksObj) {
+    state = {
+      ...state,
+      byIds: {
+        ...state.byIds,
+        [key]: {
+          ...state.byIds[key],
+          tracks: [...tracksObj[key]],
+        },
+      },
+    };
+  }
+  return state;
+  console.log(stateCopy.toObject());
+}
 function playlists(
   state = {
     byIds: {},
@@ -116,6 +169,8 @@ function playlists(
   action
 ) {
   switch (action.type) {
+    case DELETE_TRACK_SUCCESS:
+      return deleteTrackPlaylist(state, action);
     case REQUEST_TRACKS:
       return Object.assign({}, state, {
         isFetching: true,
@@ -143,6 +198,8 @@ function playlists(
       return {
         ...state,
       };
+    case RECIEVE_PLAYLIST_TRACKS:
+      return recievePlaylistTracks(state, action);
     case ADD_TRACK_SUCCESS:
       return addTracks(state, action);
     case REQUEST_PLAYLISTS:

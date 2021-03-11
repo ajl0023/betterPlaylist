@@ -12,16 +12,18 @@
   background-color: rgb(24, 24, 24);
   display: flex;
   justify-content: center;
- 
+
   text-decoration: none;
   overflow: hidden;
-
+  .playlist-content {
+    width: 100%;
+  }
   .fallback-image-container {
     background: #333;
     color: white;
+    width: 100%;
   }
   .playlist-image-container {
-
     margin-bottom: 15px;
 
     .playlist-image {

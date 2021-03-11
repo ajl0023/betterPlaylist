@@ -48,7 +48,7 @@ const Home = (props) => {
       }
     });
   };
-  
+
   useEffect(() => {
     dispatch(recieveTopTracks());
     dispatch(recieveRecentTracks());
@@ -59,44 +59,46 @@ const Home = (props) => {
   }
   return (
     <div className={style["container"]}>
-      <input
-        className={style["user-dropdown-input"]}
-        type="checkbox"
-        id="user-dropdown"
-      />
-      <label
-        htmlFor="user-dropdown"
-        className={style["user-icon-header-container"]}
-      >
-        <div className={style["user-icon-box"]}>
-          <div className={style["user-icon-container"]}>
-            <div className={style["user-image-container"]}>
-              <img
-                className={style["user-image"]}
-                src={currentUserInfo.images[0].url}
-                alt=""
-              />
+      <div className={style["user-container"]}>
+        <input
+          className={style["user-dropdown-input"]}
+          type="checkbox"
+          id="user-dropdown"
+        />
+        <label
+          htmlFor="user-dropdown"
+          className={style["user-icon-header-container"]}
+        >
+          <div className={style["user-icon-box"]}>
+            <div className={style["user-icon-container"]}>
+              <div className={style["user-image-container"]}>
+                <img
+                  className={style["user-image"]}
+                  src={currentUserInfo.images[0].url}
+                  alt=""
+                />
+              </div>
+              <p className={style["user-displayName"]}>
+                {currentUserInfo.display_name}
+              </p>
+              <div className={style["arrow-container"]}>
+                <span className={style["user-arrow-trigger"]}></span>{" "}
+              </div>
             </div>
-            <p className={style["user-displayName"]}>
-              {currentUserInfo.display_name}
-            </p>
-            <div className={style["arrow-container"]}>
-              <span className={style["user-arrow-trigger"]}></span>{" "}
+            <div className={style["dropdown-container"]}>
+              <span className={style["arrow-up"]}></span>
+              <div className={style["dropdown-content-container"]}>
+                <button
+                  onClick={handleLogout}
+                  className={style["dropdown-button"]}
+                >
+                  Log out
+                </button>
+              </div>
             </div>
           </div>
-          <div className={style["dropdown-container"]}>
-            <span className={style["arrow-up"]}></span>
-            <div className={style["dropdown-content-container"]}>
-              <button
-                onClick={handleLogout}
-                className={style["dropdown-button"]}
-              >
-                Log out
-              </button>
-            </div>
-          </div>
-        </div>
-      </label>
+        </label>
+      </div>
       <div className={style["content"]}>
         <div className={style["user-info-container"]}>
           <div className={style["profile-picture-container"]}>
@@ -111,23 +113,34 @@ const Home = (props) => {
         </div>
       </div>
       <div className={style["track-divisor-container"]}>
-        <div className={style["top-tracks-container"]}>
-          {" "}
+        <div>
           <p className={style["top-tracks-title"]}>your top tracks</p>
-          {topTracksArr.map((track) => {
-            return (
-              <Track key={track.uid} track={track} image={track.album.images} />
-            );
-          })}
+          <div className={style["top-tracks-container"]}>
+            {" "}
+            {topTracksArr.map((track) => {
+              return (
+                <Track
+                  key={track.uid}
+                  track={track}
+                  image={track.album.images}
+                />
+              );
+            })}
+          </div>
         </div>
-        <div className={style["recent-tracks-container"]}>
-          {" "}
-          <p className={style["top-tracks-title"]}>recently played</p>
-          {recentTracksArr.map((track) => {
-            return (
-              <Track key={track.uid} track={track} image={track.album.images} />
-            );
-          })}
+        <div>
+          <p className={style["recently-played-title"]}>recently played</p>
+          <div className={style["recent-tracks-container"]}>
+            {recentTracksArr.map((track) => {
+              return (
+                <Track
+                  key={track.uid}
+                  track={track}
+                  image={track.album.images}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

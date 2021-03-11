@@ -2,6 +2,17 @@
   font-family: "light";
   src: url(./fonts/GothamLight.ttf);
 }
+@mixin oneline-text {
+  word-break: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  white-space: unset;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 @mixin user-option-icon($deg, $deg2) {
   background-color: white;
   inline-size: 100%;
@@ -42,15 +53,15 @@
 }
 .label-container {
   display: grid;
-
-  grid-template-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(
+  grid-gap: 16px;
+  grid-template-columns: [index] 50px [title] 4fr [album] 2fr [last] minmax(
       120px,
       1fr
     );
-
+  height: 40px;
   margin-bottom: 16px;
   width: 100%;
-  padding: 20px;
+  padding-bottom: 20px;
   color: white;
   margin-top: 16px;
   border-bottom: 0.5px gray solid;
@@ -67,14 +78,14 @@
 
   .label-title {
     color: white;
-
+    display: flex;
     font-family: "light";
     font-weight: 100;
     overflow: hidden;
     text-transform: uppercase;
     text-align: left;
   }
-  .label-artist {
+  .label-album {
     font-family: "light";
     font-weight: 100;
     overflow: hidden;
@@ -89,20 +100,15 @@
     text-align: left;
   }
   .label-check-container {
-    width: 80px;
+    display: flex !important;
+
+    justify-content: center;
+    align-items: center;
   }
 }
-.label-container {
-  .label-check-container {
-    height: 25px;
-    .check-box {
-      display: none;
-    }
-  }
-}
+
 .item-wrapper {
   color: white;
-  padding: 20px;
 }
 
 .options-container {
@@ -148,12 +154,9 @@
         .add-icon-container {
           position: relative;
           display: block;
-          block-size: 18px;
-          inline-size: 18px;
+          
 
-          .main-trigger-icon-container {
-            @include user-option-icon(90deg, 0deg);
-          }
+         
         }
         * {
           fill: white;
@@ -170,16 +173,13 @@
 .wrapper {
   width: 100%;
   padding: 30px;
-
   max-height: 100%;
 }
 .container {
-  gap: 20px;
   grid-area: "body";
   width: 100%;
   max-height: 100vh;
   display: grid;
- 
 
   .item-container {
     grid-gap: 40px;
@@ -251,7 +251,6 @@
   z-index: 15;
   padding: 15px;
   background-color: black;
-  margin-bottom: 20px;
 }
 .title-options-container {
   color: white;
@@ -290,6 +289,11 @@
     }
   }
 }
+@media (hover: none) {
+  .track-count {
+    display: none !important;
+  }
+}
 .tracks-container {
   max-height: 100%;
   overflow: hidden;
@@ -312,5 +316,36 @@
         }
       }
     }
+  }
+}
+@media only screen and (max-width: 1041px) {
+  .header-container {
+    background-color: black;
+
+    padding-left: 50px;
+    .title-container {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+  .title-text {
+    display: none;
+  }
+}
+@media only screen and (max-width: 540px) {
+  .label-title {
+    @include oneline-text();
+  }
+  .label-artist {
+    @include oneline-text();
+  }
+  .label-playlist {
+    @include oneline-text();
+  }
+}
+@media only screen and (max-width: 658px) {
+  .label-playlist {
+    display: none !important;
   }
 }

@@ -16,6 +16,7 @@ import {
   useParams,
 } from "react-router-dom";
 import { ReactComponent as CheckIcon } from "./images/check.svg";
+import { ReactComponent as AddIcon } from "./images/add-icon.svg";
 
 import Playlist from "./Playlist";
 import {
@@ -81,6 +82,7 @@ const PlaylistWrapper = (props) => {
   const findCurrentPlaylist = (id) => {
     setCurrentPlaylist(id);
   };
+
   const handleCheckSelected = (trackid, playlistid, uri, allTracks, index) => {
     let selectedArr = [...selected];
     let selectedAllIdsCopy = [...selectedAllIds];
@@ -129,8 +131,6 @@ const PlaylistWrapper = (props) => {
   };
   useEffect(() => {
     setRefresh();
-
-    dispatch(recievePlaylists());
   }, []);
 
   useEffect(() => {
@@ -146,7 +146,7 @@ const PlaylistWrapper = (props) => {
     setShowDeletedModal(!showDeletedModal);
   };
   const openAddModal = () => {
-    setShowAddModal(!showAddModal);
+    setShowAddModal(true);
   };
   useEffect(() => {
     if (selected.length > 0) {
@@ -154,7 +154,6 @@ const PlaylistWrapper = (props) => {
     } else {
       setDropDown(false);
     }
-    console.log("updated");
   }, []);
 
   const handleChange = (e) => {
@@ -165,56 +164,52 @@ const PlaylistWrapper = (props) => {
     let arrToSearch;
     let text = e.target.value.trim();
     const whitespace = /\s/g;
+    let searchComp;
     text = text.replace(whitespace, "");
-
     const regex = new RegExp("^" + text, "gi");
+
     if (location.pathname !== "/playlists") {
+    
       arrToSearch = getPlaylistsArr.find((playlist) => {
         return playlist.id === currentPlaylist;
       });
-      arrToSearch.tracks.forEach((item, i) => {
-        if (item) {
-          item = getAllTracks[item];
-        }
-
-        if (
-          regex.test(item && item.name.replace(whitespace, "")) &&
-          text.length > 0
-        ) {
-          tempArr.push({
-            track: item,
-
+      searchComp = arrToSearch.tracks.reduce((arr, item) => {
+        let track = getAllTracks[item];
+        let name = track.name;
+        if (regex.test(name.trim()) && text.length > 0) {
+          arr.push({
+            track: track,
             playlist: arrToSearch,
             uid: uuidv4(),
           });
         }
-      });
+        return arr;
+      }, []);
     } else {
-      arrToSearch = getPlaylistsArr;
-
-      arrToSearch.forEach((playlist) => {
-        playlist.tracks.forEach((item, i) => {
-          if (item) {
-            item = getAllTracks[item];
-          }
-
-          if (
-            regex.test(item && item.name.replace(whitespace, "")) &&
-            text.length > 0
-          ) {
-            tempArr.push({
-              track: item,
-              playlist: playlist,
-              uid: uuidv4(),
-            });
-          }
-        });
-      });
+      let allTracks = getPlaylistsArr.reduce((arr, playlist) => {
+        let tracksArr = playlist.tracks;
+        tracksArr.reduce((arrNest, trackNest) => {
+          arr.push({
+            ...getAllTracks[trackNest],
+            playlist: playlist,
+          });
+        }, []);
+        return arr;
+      }, []);
+      searchComp = allTracks.reduce((arr, track) => {
+        let name = track.name;
+        if (regex.test(name.trim()) && text.length > 0) {
+          arr.push({
+            track: track,
+            playlist: track.playlist,
+            uid: uuidv4(),
+          });
+        }
+        return arr;
+      }, []);
     }
-
     setSearchText(e.target.value);
-    setSearchArr(tempArr);
-
+    setSearchArr(searchComp);
     setFilteredSearch(() => {
       let obj = {};
       for (let i = 0; i < tempArr.length; i++) {
@@ -225,11 +220,9 @@ const PlaylistWrapper = (props) => {
         }
       }
       let keys = Object.keys(obj);
-
       let toArray = keys.map((id) => {
         return getPlaylists[id];
       });
-
       return toArray;
     });
   };
@@ -260,6 +253,7 @@ const PlaylistWrapper = (props) => {
         setShowAddModal(false);
         setDropDown(false);
         setSelected([]);
+        setSelectedAllIds([]);
       }
     });
   };
@@ -286,6 +280,7 @@ const PlaylistWrapper = (props) => {
         filteredArr = copySelected.filter((item) => {
           return item.playlistid !== playlistId;
         });
+
         copyAll.splice(index, 1);
         setSelected((prev) => {
           return filteredArr;
@@ -297,32 +292,133 @@ const PlaylistWrapper = (props) => {
         });
         // filteredArr = [...selected];
       }
-      console.log(filteredArr, "topLevel");
 
       return copyAll;
     });
   };
+  const handleCheckSearch = (uid, playlistid) => {
+    let searchArrCopy = [...searchArr];
+    let selectedCopy = [...selected];
+    let selectedAllIdsCopy = [...selectedAllIds];
+    let findTrack = selectedCopy.find((item) => {
+      return item.trackid === uid;
+    });
+    let length = searchArrCopy.length;
+    if (selectedAllIds.includes("search")) {
+      let index = selectedAllIdsCopy.indexOf("search");
+      selectedAllIdsCopy.splice(index, 1);
 
-  const handleFetch = (e) => {
-    // let scrollPos = Math.round(e.target.scrollHeight - e.target.scrollTop);
-    // let clientHeight = e.target.clientHeight;
-    // setScrollPos(() => {
-    //   let obj = {};
-    //   obj["scrollPos"] = scrollPos;
-    //   obj["cliHeight"] = clientHeight;
-    //   return obj;
-    // });
+      setSelectedAllIds(selectedAllIdsCopy);
+    }
+    const indexFromPlaylist = getPlaylists[playlistid].tracks.indexOf(uid);
+
+    for (let i = 0; i < length; i++) {
+      if (searchArrCopy[i].track.uid === uid && !findTrack) {
+        selectedCopy.push({
+          trackid: searchArrCopy[i].track.uid,
+          playlistid: searchArrCopy[i].playlist.id,
+          uri: searchArrCopy[i].track.uri,
+          index: indexFromPlaylist,
+          origin: "search",
+        });
+        let obj = { ...searchArrCopy[i] };
+        searchArrCopy[i] = obj;
+
+        let checkAllFiltered = searchArrCopy.filter((track) => {
+          let findId = selectedCopy.find((item) => {
+            return item.trackid === track.track.uid;
+          });
+
+          if (!findId) {
+            return track;
+          }
+        });
+
+        if (
+          checkAllFiltered.length === 0 &&
+          !selectedAllIdsCopy.includes("search")
+        ) {
+          selectedAllIdsCopy.push("search");
+        }
+      } else if (searchArrCopy[i].track.uid === uid && findTrack) {
+        selectedCopy = selectedCopy.filter((item) => {
+          return item.trackid !== searchArrCopy[i].track.uid;
+        });
+      }
+      setSelectedAllIds(selectedAllIdsCopy);
+      setSelected(selectedCopy);
+      setSearchArr(searchArrCopy);
+    }
+  };
+
+  const handleCheckSearchAll = () => {
+    let searchArrCopy = [...searchArr];
+    let selectedCopy = [...selected];
+    let selectedAllIdsCopy = [...selectedAllIds];
+    let search = searchArrCopy.map((item) => {
+      let obj = {
+        trackid: item.track.uid,
+        playlistid: item.playlist.id,
+        uri: item.track.uri,
+        index: item.track.index,
+        selected: true,
+        checkId: "search",
+      };
+
+      return obj;
+    });
+
+    let index = selectedAllIdsCopy.indexOf("search");
+    if (index >= 0) {
+      selectedAllIdsCopy.splice(index, 1);
+      selectedCopy = selectedCopy.filter((set) => {
+        return set.checkId !== "search";
+      });
+    } else {
+      let checkAllFiltered = searchArrCopy
+        .filter((track) => {
+          let findId = selectedCopy.find((item) => {
+            return item.trackid === track.track.uid;
+          });
+
+          if (!findId) {
+            return track;
+          }
+        })
+        .map((item) => {
+          let obj = {
+            trackid: item.track.uid,
+            playlistid: item.playlist.id,
+            uri: item.track.uri,
+            index: item.track.index,
+            selected: true,
+            checkId: "search",
+          };
+
+          return obj;
+        });
+
+      selectedAllIdsCopy.push("search");
+      selectedCopy.push(...checkAllFiltered);
+    }
+    setSelectedAllIds(selectedAllIdsCopy);
+    setSelected(selectedCopy);
+    let length = searchArrCopy.length;
   };
   if (!getPlaylistsArr) {
     return <div></div>;
   }
+  let filteredSearchArr = searchArr.filter((track) => {
+    let findDeleted = deletedArr.find((obj) => {
+      return obj.trackid === track.track.uid;
+    });
 
+    if (!findDeleted) {
+      return track;
+    }
+  });
   return (
-    <div
-      id="scroll-container"
-      onScroll={handleFetch}
-      className={style["container-container"]}
-    >
+    <div id="scroll-container" className={style["container-container"]}>
       <div className={style["header-container"]}>
         <div
           className={
@@ -359,20 +455,18 @@ const PlaylistWrapper = (props) => {
                   className={style["trash-icon"]}
                 />
 
-                <div
+                <AddIcon
                   onClick={openAddModal}
                   className={style["add-icon-container"]}
-                >
-                  <span className={style["main-trigger-icon-container"]}>
-                    <i className={style["main-trigger-icon"]}></i>
-                  </span>
-                </div>
+                ></AddIcon>
               </div>
             </div>
           </div>
         </div>
         <div
-          className={style[dropdown ? "inactive" : "title-options-container"]}
+          className={
+            style[selected.length > 0 ? "inactive" : "title-options-container"]
+          }
         >
           <div
             className={
@@ -380,7 +474,15 @@ const PlaylistWrapper = (props) => {
             }
           >
             <p className={style["title-text"]}>Playlists</p>
-            <div className={style["input-container"]}>
+            <div
+              className={
+                style[
+                  Object.keys(getAllTracks).length > 0
+                    ? "input-container"
+                    : "inactive"
+                ]
+              }
+            >
               <input
                 onChange={handleChange}
                 value={searchText}
@@ -425,7 +527,7 @@ const PlaylistWrapper = (props) => {
               <div
                 className={
                   style[
-                    filteredSearch.length > 0 && searchText.length > 0
+                    searchArr.length > 0 && searchText.length > 0
                       ? "inactive"
                       : "item-container"
                   ]
@@ -439,7 +541,7 @@ const PlaylistWrapper = (props) => {
             <div
               className={
                 style[
-                  filteredSearch.length > 0 && searchText.length > 0
+                  searchArr.length > 0 && searchText.length > 0
                     ? "tracks-container"
                     : "inactive"
                 ]
@@ -449,16 +551,24 @@ const PlaylistWrapper = (props) => {
                 <div className={style["label-check-container"]}>
                   <CheckIcon
                     style={{
-                      fill: checkAll ? "#1db954" : "white",
-                      display: checkAll ? "block" : "none",
+                      fill: selectedAllIds.includes("search")
+                        ? "#1db954"
+                        : "white",
+                      display: selectedAllIds.includes("search")
+                        ? "block"
+                        : "none",
                     }}
-                    onClick={() => handleCheckAll(searchArr)}
+                    onClick={() => {
+                      handleCheckSearchAll();
+                    }}
                     className={style["check-box"]}
                   />
 
                   <li
                     style={{
-                      display: checkAll ? "none" : "block",
+                      display: selectedAllIds.includes("search")
+                        ? "none"
+                        : "block",
                     }}
                     className={style["label-count"]}
                   >
@@ -466,14 +576,16 @@ const PlaylistWrapper = (props) => {
                   </li>
                 </div>
                 <li className={style["label-title"]}>title</li>
-                <li className={style["label-artist"]}>album</li>
+                <li className={style["label-album"]}>album</li>
                 <li className={style["label-playlist"]}>playlist</li>{" "}
               </div>
               <div className={style["item-wrapper"]}>
-                {searchArr.map((track, i) => {
+                {filteredSearchArr.map((track, i) => {
                   return (
                     <PlaylistTrack
+                      searchArr={searchArr}
                       deletedArr={deletedArr}
+                      handleCheckSearch={handleCheckSearch}
                       key={track.track && track.track.uid + track.playlist.uid}
                       handleCheckSelected={handleCheckSelected}
                       playlistSet={track}

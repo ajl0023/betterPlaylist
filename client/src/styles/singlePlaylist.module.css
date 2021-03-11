@@ -35,10 +35,11 @@
   left: 0;
   -webkit-box-shadow: 0, 4px, 60px, black;
           box-shadow: 0, 4px, 60px, black;
-  position: absolute;
-  width: 100%;
+  width: 300px;
+  height: 300px;
   z-index: 5;
   padding: 20px;
+  position: absolute;
   display: block;
   -o-object-fit: cover;
      object-fit: cover;
@@ -115,14 +116,22 @@
   top: 0;
 }
 
+@media (hover: none) {
+  .tracks-container .track-count {
+    display: none !important;
+  }
+}
+
 .label-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
-      grid-template-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
+  grid-gap: 16px;
+  -ms-grid-columns: [index] 50px [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
+      grid-template-columns: [index] 50px [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
+  height: 40px;
   margin-bottom: 16px;
   width: 100%;
-  padding: 20px;
+  padding-bottom: 20px;
   color: white;
   margin-top: 16px;
   border-bottom: 0.5px gray solid;
@@ -138,6 +147,9 @@
 
 .label-container .label-title {
   color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   font-family: "light";
   font-weight: 100;
   overflow: hidden;
@@ -145,7 +157,7 @@
   text-align: left;
 }
 
-.label-container .label-artist {
+.label-container .label-album {
   font-family: "light";
   font-weight: 100;
   overflow: hidden;
@@ -162,14 +174,80 @@
 }
 
 .label-container .label-check-container {
-  width: 80px;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.label-container .label-check-container {
-  height: 25px;
+@media only screen and (max-width: 540px) {
+  .header-container {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .album-cover-container {
+    max-width: 300px !important;
+    width: 100%;
+  }
+  .album-cover {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .label-title {
+    word-break: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    white-space: unset;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .label-artist {
+    word-break: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    white-space: unset;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .label-playlist {
+    word-break: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    white-space: unset;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
-.label-container .label-check-container .check-box {
-  display: none;
+@media only screen and (max-width: 658px) {
+  .label-playlist {
+    display: none !important;
+  }
+  .label-container {
+    -ms-grid-columns: [index] minmax(20px, 50px) [title] 1fr [album] 1fr !important;
+        grid-template-columns: [index] minmax(20px, 50px) [title] 1fr [album] 1fr !important;
+  }
 }
 /*# sourceMappingURL=singlePlaylist.module.css.map */

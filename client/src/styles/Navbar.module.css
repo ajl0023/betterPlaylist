@@ -13,13 +13,16 @@
 }
 
 .container {
+  padding: 20px 120px 20px 40px;
   background-color: black;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  position: relative;
 }
 
 .container .content {
   left: 0;
   top: 0;
-  padding: 20px 120px 20px 40px;
   background-color: black;
 }
 
@@ -28,26 +31,176 @@
   width: 100%;
   display: block;
   margin-bottom: 15px;
+  fill: white;
+}
+
+.logo:hover {
+  fill: #1db954 !important;
 }
 
 .menu-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   gap: 15px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 0 auto;
+  -webkit-transform: translate(0%, 50%);
+          transform: translate(0%, 50%);
   color: white;
 }
 
 .menu-container .menu-item {
   color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+  margin-bottom: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-decoration: none !important;
 }
 
 .menu-container .menu-item:hover {
   color: #1db954;
+}
+
+.menu-container .menu-item:hover .playlist-icon {
+  fill: #1db954;
+}
+
+.burger-input {
+  display: none;
+}
+
+.playlist-icon {
+  fill: white;
+}
+
+@media only screen and (max-width: 1041px) {
+  .burger-label {
+    display: none;
+    block-size: 18px;
+    z-index: 16;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    cursor: pointer;
+    inline-size: 18px;
+    font-size: 14px;
+    margin-left: 10px;
+    line-height: 21px;
+    block-size: calc(20px + 10px);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    position: absolute;
+    top: 12px;
+    left: 8px;
+  }
+  .burger-label .main-trigger-icon-container {
+    position: relative;
+    display: block;
+    block-size: 18px;
+    inline-size: 100%;
+  }
+  .burger-label .main-trigger-icon-container .main-trigger-icon {
+    background-color: white;
+    inline-size: 100%;
+    position: absolute;
+    display: block;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    block-size: calc(20px / 10);
+    top: calc(36% + 2px);
+  }
+  .burger-label .main-trigger-icon-container .main-trigger-icon:before {
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    block-size: calc(20px / 10);
+    background-color: white;
+    content: "";
+    top: -5px;
+    display: block;
+    position: absolute;
+    inline-size: 100%;
+  }
+  .burger-label .main-trigger-icon-container .main-trigger-icon:after {
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    block-size: calc(20px / 10);
+    background-color: white;
+    content: "";
+    top: 5px;
+    display: block;
+    position: absolute;
+    inline-size: 100%;
+  }
+  .burger-label {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .container {
+    position: absolute;
+    left: -600px;
+    padding-top: 40px;
+    height: 100%;
+  }
+}
+
+.navbar-mask {
+  display: none !important;
+}
+
+.burger-input {
+  opacity: 1;
+  display: none;
+}
+
+.burger-input:checked ~ .burger-label {
+  z-index: 102;
+}
+
+.burger-input:checked ~ .burger-label .main-trigger-icon {
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  background-color: transparent;
+}
+
+.burger-input:checked ~ .burger-label .main-trigger-icon:before {
+  top: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.burger-input:checked ~ .burger-label .main-trigger-icon:after {
+  top: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.burger-input:checked ~ .navbar-mask {
+  z-index: 16;
+  display: block !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+}
+
+.burger-input:checked ~ .container {
+  left: 0px;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  z-index: 17;
 }
 /*# sourceMappingURL=Navbar.module.css.map */

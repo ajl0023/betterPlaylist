@@ -20,9 +20,14 @@
   overflow: hidden;
 }
 
+.playlist-container .playlist-content {
+  width: 100%;
+}
+
 .playlist-container .fallback-image-container {
   background: #333;
   color: white;
+  width: 100%;
 }
 
 .playlist-container .playlist-image-container {

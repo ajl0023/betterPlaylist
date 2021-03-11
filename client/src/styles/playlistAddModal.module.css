@@ -13,14 +13,14 @@
   background-color: rgba(0, 0, 0, 0.4);
   opacity: 1;
   height: 100vh;
-  z-index: 2;
+  z-index: 16;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
 }
 
-.container .modal-container {
+.container {
   position: fixed;
   color: white;
   background-color: black;
@@ -40,7 +40,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  z-index: 10;
+  z-index: 16;
   margin: 0 auto;
 }
 
@@ -177,7 +177,7 @@
 }
 
 .container .playlist-container .playlist-item-container .playlist-item .check-icon:hover {
-  fill: #1db954 !important;
+  fill: #1db954;
 }
 
 .container .button-container {
@@ -216,5 +216,26 @@
 
 .container .button-container .delete-button:hover {
   color: #1db954;
+}
+
+@media (hover: none) {
+  .check-icon {
+    display: block !important;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center center;
+       object-position: center center;
+  }
+  .playlist-count {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 658px) {
+  .container {
+    bottom: 0 !important;
+    height: 100vh;
+    width: 100vw !important;
+  }
 }
 /*# sourceMappingURL=playlistAddModal.module.css.map */

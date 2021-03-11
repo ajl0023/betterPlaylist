@@ -60,9 +60,6 @@ const addTracksToPlaylistsCall = (id, tracks) => {
     data: {
       tracks: tracks,
     },
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    },
   });
 };
 const getUserInfo = () => {
@@ -70,29 +67,18 @@ const getUserInfo = () => {
     url: "/api/user-info",
     method: "GET",
     withCredentials: true,
-    // headers: {
-    //   Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    // },
   });
 };
 const getRecentTracks = (cursor) => {
   return axios({
     url: `/api/recently-played?${cursor ? `before=${cursor.before}` : ""}`,
     method: "GET",
-
-    // headers: {
-    //   Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    // },
   });
 };
 const getTopTracks = () => {
   return axios({
     url: "/api/top-tracks",
     method: "GET",
-
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    },
   });
 };
 const getTrack = (trackId) => {
@@ -100,31 +86,19 @@ const getTrack = (trackId) => {
     url: `/api/track/${trackId.id}`,
     method: "GET",
     withCredentials: true,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    },
   });
 };
 const getPlaylists = () => {
   return axios({
     url: `/api/playlists`,
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    },
-    // withCredentials: true,
   });
 };
 const getPlayListTracks = (id, offset) => {
   return axios({
-    url: `/api/playlists/${id}?${
-      offset ? `offset=${offset}` : ""
-    }`,
+    url: `/api/playlists/${id}?${offset ? `offset=${offset}` : ""}`,
     method: "GET",
     withCredentials: true,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    },
   });
 };
 
@@ -137,9 +111,6 @@ const deleteFromPlaylist = (playlist) => {
       tracks: playlist.tracksToDelete,
     },
     withCredentials: true,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    },
   });
 };
 export {

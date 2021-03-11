@@ -21,7 +21,7 @@
   display: grid;
   position: relative;
 
-  grid-template-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(
+  grid-template-columns: [index] 50px [title] 4fr [album] 2fr [last] minmax(
       120px,
       1fr
     );
@@ -43,39 +43,68 @@
       display: none !important;
     }
   }
+  @media (hover: none) {
+    .check-container {
+      display: flex !important;
+      align-items: center;
+      grid-area: subtitle;
+      .check-icon {
+        display: block !important;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+    .track-count {
+      display: none !important;
+    }
+  }
   .check-count-container {
     display: flex;
-    justify-content: center;
-    align-items: center !important;
+    position: relative;
   }
   .check-container {
     height: 100%;
     display: flex;
     align-items: center;
-    position: relative;
+
     .check-icon-place {
-      right: -25px;
       position: absolute;
-      width: 40px;
       fill: white;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      min-width: 40px;
       object-fit: cover;
       object-position: center center;
     }
     .check-icon {
-      right: -25px;
       position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
       min-width: 40px;
       cursor: pointer;
       object-fit: cover;
       object-position: center center;
       &:hover {
-        fill: #1db954 !important;
+        fill: #1db954;
       }
     }
   }
-  .track-count {
+  .track-count-container {
+    height: 100%;
     display: flex;
     align-items: center;
+    .track-count {
+      position: absolute;
+      fill: white;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: fit-content;
+      object-fit: cover;
+      object-position: center center;
+    }
   }
   .item-title-container {
     position: relative;
@@ -141,5 +170,14 @@
     .track-playlist {
       @include oneline-text;
     }
+  }
+}
+@media only screen and (max-width: 658px) {
+  .track-playlist-container {
+    display: none !important;
+  }
+
+  .item-container {
+    grid-template-columns: [index] minmax(20px, 50px) [title] 1fr [album] 1fr;
   }
 }

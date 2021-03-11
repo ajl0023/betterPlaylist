@@ -11,8 +11,8 @@
   display: -ms-grid;
   display: grid;
   position: relative;
-  -ms-grid-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
-      grid-template-columns: [index] minmax(20px, 50px) [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
+  -ms-grid-columns: [index] 50px [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
+      grid-template-columns: [index] 50px [title] 4fr [album] 2fr [last] minmax(120px, 1fr);
   gap: 16px;
   margin-bottom: 16px;
 }
@@ -39,16 +39,33 @@
   display: none !important;
 }
 
+@media (hover: none) {
+  .item-container .check-container {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    grid-area: subtitle;
+  }
+  .item-container .check-container .check-icon {
+    display: block !important;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center center;
+       object-position: center center;
+  }
+  .item-container .track-count {
+    display: none !important;
+  }
+}
+
 .item-container .check-count-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center !important;
-      -ms-flex-align: center !important;
-          align-items: center !important;
+  position: relative;
 }
 
 .item-container .check-container {
@@ -59,14 +76,15 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: relative;
 }
 
 .item-container .check-container .check-icon-place {
-  right: -25px;
   position: absolute;
-  width: 40px;
   fill: white;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  min-width: 40px;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center center;
@@ -74,8 +92,10 @@
 }
 
 .item-container .check-container .check-icon {
-  right: -25px;
   position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   min-width: 40px;
   cursor: pointer;
   -o-object-fit: cover;
@@ -85,16 +105,32 @@
 }
 
 .item-container .check-container .check-icon:hover {
-  fill: #1db954 !important;
+  fill: #1db954;
 }
 
-.item-container .track-count {
+.item-container .track-count-container {
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.item-container .track-count-container .track-count {
+  position: absolute;
+  fill: white;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
 }
 
 .item-container .item-title-container {
@@ -212,5 +248,15 @@
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+@media only screen and (max-width: 658px) {
+  .track-playlist-container {
+    display: none !important;
+  }
+  .item-container {
+    -ms-grid-columns: [index] minmax(20px, 50px) [title] 1fr [album] 1fr;
+        grid-template-columns: [index] minmax(20px, 50px) [title] 1fr [album] 1fr;
+  }
 }
 /*# sourceMappingURL=playlisttracks.module.css.map */
