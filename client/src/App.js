@@ -64,7 +64,7 @@ function App() {
             dispatch(recievePlaylists());
           });
         } else {
-          window.location.href = `https://accounts.spotify.com/authorize?client_id=da42a01c50ef409f802caf63a98de4d4&response_type=code&redirect_uri=http://https://pacific-reef-15984.herokuapp.com&scope=${encodeURIComponent(
+          window.location.href = `https://accounts.spotify.com/authorize?client_id=da42a01c50ef409f802caf63a98de4d4&response_type=code&redirect_uri=https://pacific-reef-15984.herokuapp.com&scope=${encodeURIComponent(
             scopes
           )}&show_dialog=true`;
         }
