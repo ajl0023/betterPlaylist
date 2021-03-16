@@ -1,20 +1,5 @@
 import React from "react";
 import style from "./styles/track.module.scss";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route,
-  Link,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
-import {
-  getUserInfo,
-  authorization,
-  getRecentTracks,
-  getTopTracks,
-} from "./spotify-redux/actions/calls";
 const Track = (props) => {
   if (!props.image[0]) {
     return <div></div>;

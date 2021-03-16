@@ -1,26 +1,25 @@
+import { v4 as uuidv4 } from "uuid";
 import {
-  RECIEVE_PLAYLISTS,
-  REQUEST_PLAYLISTS,
-  DELETE_TRACK_REQUEST,
-  DELETE_TRACK_SUCCESS,
   ADD_TRACK_REQUEST,
   ADD_TRACK_SUCCESS,
-  REQUEST_TRACKS,
-  RECIEVE_TRACKS,
+  DELETE_TRACK_REQUEST,
+  DELETE_TRACK_SUCCESS,
+  RECIEVE_PLAYLISTS,
   RECIEVE_PLAYLIST_TRACKS,
+  RECIEVE_TRACKS,
+  REQUEST_PLAYLISTS,
   REQUEST_PLAYLIST_TRACKS,
+  REQUEST_TRACKS,
 } from "../types/types";
-import { v4 as uuidv4 } from "uuid";
-
-import axios from "axios";
 import {
   addTracksToPlaylistsCall,
   deleteFromPlaylist,
   getPlaylists,
   getPlayListTracks,
 } from "./calls";
+
 const requestPlaylists = () => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch({ type: REQUEST_PLAYLISTS });
     dispatch({ type: REQUEST_PLAYLIST_TRACKS });
   };
@@ -66,8 +65,7 @@ export const addTracksToPlaylists = (playlist, tracks) => (
   const trackUris = tracks.map((track) => {
     return track.uri;
   });
-  let tempPromise = [];
-  const promiseArr = new Promise((resolve, reject) => {
+  const promiseArr = new Promise((resolve) => {
     playlistsToChange.forEach((playlist) => {
       addTracksToPlaylistsCall(playlist, trackUris)
         .then((data) => {
@@ -75,10 +73,10 @@ export const addTracksToPlaylists = (playlist, tracks) => (
             resolve(200);
           }
         })
-        .then((res) => {});
+        .then(() => {});
     });
   });
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     promiseArr.then((status) => {
       if (status === 200) {
         dispatch({
@@ -97,13 +95,12 @@ export const deleteTrackFromPlaylists = (playlistTracks) => (
   getState
 ) => {
   let allTracks = getState().tracks.byIds;
-  let allPlaylists = getState().playlists.byIds;
 
   let tracksArr = Object.keys(allTracks).map((id) => {
     return allTracks[id];
   });
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const playlistTracksCopy = [...playlistTracks];
     dispatch(deleteTrackRequest());
     let length = playlistTracksCopy.length;
@@ -149,7 +146,7 @@ export const deleteTrackFromPlaylists = (playlistTracks) => (
               status: data.status,
             });
           })
-          .catch((err) => {});
+          .catch(() => {});
       });
     } else {
       resolve("Some tracks were not deleted.");
@@ -162,13 +159,12 @@ export const deleteTrackFromPlaylists = (playlistTracks) => (
       items: [...playlistTracks],
     });
   });
-
 };
 export function selectAll() {
-  return (dispatch, getState) => {};
+  return () => {};
 }
 export function getTracksScroll(playlist) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch({
       type: REQUEST_TRACKS,
     });
@@ -192,8 +188,6 @@ export function getTracksScroll(playlist) {
 }
 export function recievePlaylists() {
   return (dispatch, getState) => {
-    const getAllTracks = Object.keys(getState().tracks.byIds);
-
     dispatch(requestPlaylists());
 
     getPlaylists().then((data) => {
@@ -253,10 +247,6 @@ export function recievePlaylists() {
           allIds: Object.keys(playlistObj),
         });
       });
-
-     
-
-   
     });
   };
 }

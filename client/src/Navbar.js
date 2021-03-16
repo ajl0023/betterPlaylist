@@ -1,23 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
-import style from "./styles/Navbar.module.scss";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { ReactComponent as HomeIcon } from "./images/home-icon.svg";
 import { ReactComponent as Logo } from "./images/logo.svg";
 import { ReactComponent as PlaylistIcon } from "./images/playlist-icon.svg";
-import { ReactComponent as HomeIcon } from "./images/home-icon.svg";
-
-import { useSelector, useDispatch } from "react-redux";
-
-import profile from "./images/profile.svg";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route,
-  Link,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
 import { linkClick } from "./spotify-redux/actions/navbarActions";
-const Navbar = (props) => {
+import style from "./styles/Navbar.module.scss";
+
+const Navbar = () => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(linkClick());

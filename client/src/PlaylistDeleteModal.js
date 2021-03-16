@@ -1,7 +1,6 @@
+import React from "react";
+import { useDispatch } from "react-redux";
 import style from "./styles/playlistOptionsModal.module.scss";
-import React, { useEffect, useState, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteTrackFromPlaylists } from "./spotify-redux/actions/playlistActions";
 
 const PlaylistOptionsModal = (props) => {
   const dispatch = useDispatch();

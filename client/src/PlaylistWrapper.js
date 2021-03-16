@@ -1,62 +1,43 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { ReactComponent as MusicIcon } from "./images/music-note.svg";
-import { useSelector, useDispatch } from "react-redux";
-import style from "./styles/playlistWrapper.module.scss";
-import { ReactComponent as SearchIcon } from "./images/search.svg";
-import { ReactComponent as TrashIcon } from "./images/trash.svg";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
   Route,
-  Link,
-  useHistory,
-  useRouteMatch,
+  Switch,
   useLocation,
   useParams,
+  useRouteMatch,
 } from "react-router-dom";
-import { ReactComponent as CheckIcon } from "./images/check.svg";
-import { ReactComponent as AddIcon } from "./images/add-icon.svg";
-
-import Playlist from "./Playlist";
-import {
-  getUserInfo,
-  authorization,
-  getRecentTracks,
-  getTopTracks,
-  getPlaylist,
-  getPlayListTracks,
-  getTrack,
-} from "./spotify-redux/actions/calls";
-import SinglePlaylist from "./SinglePlaylist";
 import { v4 as uuidv4 } from "uuid";
-import PlaylistDeleteModal from "./PlaylistDeleteModal";
+import { ReactComponent as AddIcon } from "./images/add-icon.svg";
+import { ReactComponent as CheckIcon } from "./images/check.svg";
+import { ReactComponent as SearchIcon } from "./images/search.svg";
+import { ReactComponent as TrashIcon } from "./images/trash.svg";
+import Playlist from "./Playlist";
 import PlaylistAddModal from "./PlaylistAddModal";
-import {
-  deleteTrackFromPlaylists,
-  recievePlaylists,
-  addTracksToPlaylists,
-} from "./spotify-redux/actions/playlistActions";
+import PlaylistDeleteModal from "./PlaylistDeleteModal";
 import PlaylistTrack from "./PlaylistTracks";
+import SinglePlaylist from "./SinglePlaylist";
+import {
+  addTracksToPlaylists,
+  deleteTrackFromPlaylists,
+} from "./spotify-redux/actions/playlistActions";
+import style from "./styles/playlistWrapper.module.scss";
 
 const PlaylistWrapper = (props) => {
   const location = useLocation();
   const params = useParams();
   const [selectedAllIds, setSelectedAllIds] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [checkAll, setCheckAll] = useState(false);
+
   const [currentPlaylist, setCurrentPlaylist] = useState();
   const [searchArr, setSearchArr] = useState([]);
-  const [scrollPos, setScrollPos] = useState({
-    scrollPos: 0,
-    clientHeight: null,
-  });
+
   const [dropdown, setDropDown] = useState(false);
   const [showDeletedModal, setShowDeletedModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [selected, setSelected] = useState([]);
-  const [shouldRefresh, setRefresh] = useState(false);
-  const [filteredSearch, setFilteredSearch] = useState([]);
+  const [, setRefresh] = useState(false);
+  const [, setFilteredSearch] = useState([]);
   const [deletedArr, setDeletedArr] = useState([]);
   const dispatch = useDispatch();
   const closeDeletedModal = () => {
@@ -65,7 +46,7 @@ const PlaylistWrapper = (props) => {
   const closeAddModal = () => {
     setShowAddModal(false);
   };
-  let { path, url } = useRouteMatch();
+  let { path } = useRouteMatch();
 
   let getPlaylists = useSelector((state) => {
     return state.playlists.byIds;
@@ -137,7 +118,7 @@ const PlaylistWrapper = (props) => {
     setSearchText("");
   }, [searchBarText]);
 
-  const clearDropDown = (e) => {
+  const clearDropDown = () => {
     setDropDown(false);
     setSelectedAllIds([]);
     setSelected([]);
@@ -157,7 +138,6 @@ const PlaylistWrapper = (props) => {
   }, []);
 
   const handleChange = (e) => {
-    let id = params;
     let tempArr = [];
     setSearchText("");
     setSelected([]);
@@ -169,7 +149,6 @@ const PlaylistWrapper = (props) => {
     const regex = new RegExp("^" + text, "gi");
 
     if (location.pathname !== "/playlists") {
-    
       arrToSearch = getPlaylistsArr.find((playlist) => {
         return playlist.id === currentPlaylist;
       });
@@ -264,7 +243,6 @@ const PlaylistWrapper = (props) => {
 
       let copySelected = [...selected];
 
-      let length = copyAll.length;
       let index = copyAll.indexOf(playlistId);
       let filteredArr = [];
       if (!copyAll.includes(playlistId) && !scroll) {
@@ -273,7 +251,7 @@ const PlaylistWrapper = (props) => {
         });
         filteredArr.push(...tracks);
         copyAll.push(playlistId);
-        setSelected((prev) => {
+        setSelected(() => {
           return filteredArr;
         });
       } else if (copyAll.includes(playlistId) && !scroll) {
@@ -282,7 +260,7 @@ const PlaylistWrapper = (props) => {
         });
 
         copyAll.splice(index, 1);
-        setSelected((prev) => {
+        setSelected(() => {
           return filteredArr;
         });
       } else if (copyAll.includes(playlistId) && scroll) {
@@ -290,7 +268,6 @@ const PlaylistWrapper = (props) => {
         setSelected((prev) => {
           return prev;
         });
-        // filteredArr = [...selected];
       }
 
       return copyAll;
@@ -355,18 +332,6 @@ const PlaylistWrapper = (props) => {
     let searchArrCopy = [...searchArr];
     let selectedCopy = [...selected];
     let selectedAllIdsCopy = [...selectedAllIds];
-    let search = searchArrCopy.map((item) => {
-      let obj = {
-        trackid: item.track.uid,
-        playlistid: item.playlist.id,
-        uri: item.track.uri,
-        index: item.track.index,
-        selected: true,
-        checkId: "search",
-      };
-
-      return obj;
-    });
 
     let index = selectedAllIdsCopy.indexOf("search");
     if (index >= 0) {
@@ -403,7 +368,6 @@ const PlaylistWrapper = (props) => {
     }
     setSelectedAllIds(selectedAllIdsCopy);
     setSelected(selectedCopy);
-    let length = searchArrCopy.length;
   };
   if (!getPlaylistsArr) {
     return <div></div>;

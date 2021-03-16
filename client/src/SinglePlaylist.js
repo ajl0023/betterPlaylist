@@ -1,34 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react";
-import PlaylistTracks from "./PlaylistTracks";
-import { ReactComponent as CheckIconPlaceH } from "./images/checkIconPlaceH.svg";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getColor } from "./colorMatch";
 import { ReactComponent as CheckIcon } from "./images/check.svg";
-
+import PlaylistTracks from "./PlaylistTracks";
+import { getTracksScroll } from "./spotify-redux/actions/playlistActions";
 import style from "./styles/singlePlaylist.module.scss";
-import test from "./images/your-top-songs-2019_LARGE-en.jpg";
-import {
-  getTracksScroll,
-  recievePlaylists,
-} from "./spotify-redux/actions/playlistActions";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route,
-  Link,
-  useHistory,
-  useLocation,
-  useParams,
-} from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import { colorMatch, getColor } from "./colorMatch";
-import { useDispatch, useSelector } from "react-redux";
-import PlaylistTrack from "./PlaylistTracks";
-import { getTrack } from "./spotify-redux/actions/calls";
 
 const SinglePlaylist = (props) => {
   const [mainColor, setMainColor] = useState();
   const [playlist, setPlaylist] = useState();
-  const [checkAll, setCheckAll] = useState(false);
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -50,7 +31,7 @@ const SinglePlaylist = (props) => {
 
     props.findCurrentPlaylist(params.id);
   }, [currentPlayList]);
-  
+
   const handleFetchScroll = (e) => {
     let tracks = getTracks.map((item) => {
       return {
@@ -66,7 +47,6 @@ const SinglePlaylist = (props) => {
       scrollPos === clientHeight &&
       currentPlayList.offset < currentPlayList.track_count
     ) {
-   
       props.handleCheckAll(tracks, currentPlayList.id, true);
       if (
         currentPlayList &&
@@ -98,7 +78,6 @@ const SinglePlaylist = (props) => {
   let getTracks;
 
   if (currentPlayList) {
-   
     getTracks = currentPlayList.tracks.reduce((arr, id) => {
       let obj = {};
 
@@ -152,7 +131,6 @@ const SinglePlaylist = (props) => {
       <div className={style["header-container"]}>
         <div
           style={{
-            // backgroundColor: `${mainColor}`,
             background: mainColor ? mainColor.formattedMain : "transparent",
           }}
           className={style["album-cover-container"]}
@@ -224,14 +202,3 @@ const SinglePlaylist = (props) => {
 };
 
 export default SinglePlaylist;
-// import React from 'react';
-
-// const SinglePlaylist = () => {
-//   return (
-//     <div>
-//       sd
-//     </div>
-//   );
-// }
-
-// export default SinglePlaylist;

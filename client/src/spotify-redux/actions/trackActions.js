@@ -1,11 +1,9 @@
 import {
-  RECIEVE_TOP_TRACKS,
-  REQUEST_TOP_TRACKS,
   RECIEVE_RECENT_TRACKS,
+  RECIEVE_TOP_TRACKS,
   REQUEST_RECENT_TRACKS,
+  REQUEST_TOP_TRACKS,
 } from "../types/types";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 import { getRecentTracks, getTopTracks } from "./calls";
 
 function requestTopTracks() {

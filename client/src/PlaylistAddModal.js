@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addTracksToPlaylists } from "./spotify-redux/actions/playlistActions";
-import style from "./styles/playlistAddModal.module.scss";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { ReactComponent as CheckIcon } from "./images/check.svg";
 import { ReactComponent as CheckIconPlaceH } from "./images/checkIconPlaceH.svg";
+import style from "./styles/playlistAddModal.module.scss";
 
 const PlaylistAddModal = (props) => {
   const dispatch = useDispatch();

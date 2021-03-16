@@ -1,43 +1,22 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Switch, useHistory } from "react-router-dom";
 import Home from "./Home";
-import TrackInfo from "./TrackInfo";
-import axios from "axios";
-import PlaylistTracks from "./PlaylistTracks";
-import style from "./styles/wrapper.module.scss";
+import Navbar from "./Navbar";
+import PlaylistWrapper from "./PlaylistWrapper";
+import { recievePlaylists } from "./spotify-redux/actions/playlistActions";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route,
-  Link,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
-import {
-  getUserInfoAction,
   getAccessToken,
+  getUserInfoAction,
   loginCheck,
 } from "./spotify-redux/actions/userActions";
-import { getUserInfo, authorization } from "./spotify-redux/actions/calls";
-import Playlist from "./Playlist";
-import { useDispatch, useSelector } from "react-redux";
-import SinglePlaylist from "./SinglePlaylist";
-import PlaylistWrapper from "./PlaylistWrapper";
-import {
-  deleteTrackFromPlaylists,
-  recievePlaylists,
-  addTracksToPlaylists,
-} from "./spotify-redux/actions/playlistActions";
+import style from "./styles/wrapper.module.scss";
 function App() {
-  const [test, setTest] = useState(false);
-  const [user, setUser] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [user] = useState({});
+
   const history = useHistory();
   const dispatch = useDispatch();
-  const testFunc = () => {
-    setTest(!test);
-  };
+
   const currentUser = useSelector((state) => {
     return state.current_user;
   });
@@ -48,7 +27,7 @@ function App() {
     const token = url_object.search;
     let tokenSplit = token.split("=");
     let decodedToken = tokenSplit[1];
-   
+
     loginCheck()
       .then(() => {
         dispatch(getUserInfoAction());
@@ -56,9 +35,7 @@ function App() {
       })
       .catch(() => {
         if (decodedToken) {
-          
           dispatch(getAccessToken(decodedToken)).then(() => {
-          
             history.push("/");
             dispatch(getUserInfoAction());
             dispatch(recievePlaylists());

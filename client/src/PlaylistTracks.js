@@ -1,11 +1,8 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
-import style from "./styles/playlisttracks.module.scss";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as CheckIcon } from "./images/check.svg";
 import { ReactComponent as CheckIconPlaceH } from "./images/checkIconPlaceH.svg";
-import { v4 as uuidv4 } from "uuid";
+import style from "./styles/playlisttracks.module.scss";
 
-import { Link } from "react-router-dom";
 const PlaylistTrack = (props) => {
   const [test, setTest] = useState(false);
   let track = props.playlistSet;

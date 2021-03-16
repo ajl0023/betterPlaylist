@@ -1,22 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
-import axios from "axios";
-import Track from "./Track";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  recieveTopTracks,
   recieveRecentTracks,
+  recieveTopTracks,
 } from "./spotify-redux/actions/trackActions";
-import style from "./styles/home.module.scss";
 import { logout } from "./spotify-redux/actions/userActions";
-import {
-  getUserInfo,
-  authorization,
-  getRecentTracks,
-  getTopTracks,
-} from "./spotify-redux/actions/calls";
-import { useSelector, useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
+import style from "./styles/home.module.scss";
+import Track from "./Track";
 
-const Home = (props) => {
+const Home = () => {
   const currentUser = useSelector((state) => {
     return state.current_user;
   });
