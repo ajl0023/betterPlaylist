@@ -51,6 +51,8 @@ app.post("/api/authorization", (req, res) => {
       res.json(data.data);
     })
     .catch((err) => {
+      console.log(err);
+
       res.status(err.response.status).json({
         err,
       });
