@@ -154,9 +154,6 @@
         .add-icon-container {
           position: relative;
           display: block;
-          
-
-         
         }
         * {
           fill: white;
@@ -292,6 +289,12 @@
 @media (hover: none) {
   .track-count {
     display: none !important;
+  }
+  .label-count {
+    display: none !important;
+  }
+  .check-box {
+    display: block !important;
   }
 }
 .tracks-container {

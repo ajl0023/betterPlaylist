@@ -43,7 +43,7 @@ export const getAccessToken = (code) => (dispatch, getState) => {
         }
       })
       .catch((err) => {
-        localStorage.setItem("access_token", 123);
+        return err;
       });
   });
 };

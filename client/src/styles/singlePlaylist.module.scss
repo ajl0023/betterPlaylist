@@ -60,6 +60,7 @@
     .playlist-info-container {
       display: flex;
       justify-content: center;
+      align-items: center;
       flex-direction: column;
       gap: 10px;
 
@@ -161,6 +162,14 @@
 
     justify-content: center;
     align-items: center;
+    @media (hover: none) {
+      .label-count {
+        display: none !important;
+      }
+      .check-box {
+        display: block !important;
+      }
+    }
   }
 }
 
