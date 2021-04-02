@@ -20,5 +20,4 @@ const Track = (props) => {
     </a>
   );
 };
-
 export default Track;

@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ReactComponent as CheckIcon } from "./images/check.svg";
 import { ReactComponent as CheckIconPlaceH } from "./images/checkIconPlaceH.svg";
 import style from "./styles/playlisttracks.module.scss";
-
 const PlaylistTrack = (props) => {
-  const [test, setTest] = useState(false);
   let track = props.playlistSet;
-  let i = props.index;
-
   useEffect(() => {}, []);
-
   const handleCheckClick = (trackid, playlistid, uri) => {
     props.handleCheckSelected(
       trackid,
@@ -19,13 +14,12 @@ const PlaylistTrack = (props) => {
       props.index
     );
   };
-
   if (
     !props.playlistSet ||
     !props.playlistSet.track ||
     !props.playlistSet.track.album.images[0]
   ) {
-    return <div></div>;
+    return null;
   }
   return (
     <div
@@ -41,7 +35,6 @@ const PlaylistTrack = (props) => {
     >
       <div className={style["check-count-container"]}>
         <div htmlFor="test" className={style["check-container"]}>
-          {" "}
           <CheckIconPlaceH
             style={{
               display:
@@ -118,7 +111,6 @@ const PlaylistTrack = (props) => {
           </span>
         </div>
       </div>
-
       <div className={style["item-title-container"]}>
         <div className={style["album-image-container"]}>
           <img
@@ -151,7 +143,6 @@ const PlaylistTrack = (props) => {
           </span>
         </div>
       </div>
-
       <div className={style["track-album-container"]}>
         <p className={style["track-album"]}>{track.track.album.name}</p>
       </div>
@@ -164,5 +155,4 @@ const PlaylistTrack = (props) => {
     </div>
   );
 };
-
 export default PlaylistTrack;

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
 import {
   recieveRecentTracks,
   recieveTopTracks,
@@ -7,26 +8,39 @@ import {
 import { logout } from "./spotify-redux/actions/userActions";
 import style from "./styles/home.module.scss";
 import Track from "./Track";
-
+const getUser = (state) => {
+  return state.current_user;
+};
+const getTop = (state) => {
+  return state.tracks.top_tracks;
+};
+const getRecent = (state) => {
+  return state.tracks.recent_tracks;
+};
+const topTracksSelector = createSelector(getTop, (state) => {
+  return state;
+});
+const recentTracksSelector = createSelector(getRecent, (state) => {
+  return state;
+});
+const userSelectorMem = createSelector(getUser, (state) => {
+  return state;
+});
 const Home = () => {
-  const currentUser = useSelector((state) => {
-    return state.current_user;
-  });
+  const userSelector = useSelector(userSelectorMem);
+  const topTrackSel = useSelector(topTracksSelector);
+  const recentTracksSel = useSelector(recentTracksSelector);
+  const currentUser = userSelector;
   const currentUserInfo = currentUser.userInfo;
   const dispatch = useDispatch();
-
-  const getTopTracks = useSelector((state) => {
-    return state.tracks.top_tracks;
-  });
+  const getTopTracks = topTrackSel;
+  const getRecentTracks = recentTracksSel;
   let topTracksArr;
   if (getTopTracks) {
     topTracksArr = Object.keys(getTopTracks).map((id) => {
       return getTopTracks[id];
     });
   }
-  const getRecentTracks = useSelector((state) => {
-    return state.tracks.recent_tracks;
-  });
   let recentTracksArr;
   if (getRecentTracks) {
     recentTracksArr = Object.keys(getRecentTracks).map((id) => {
@@ -40,14 +54,12 @@ const Home = () => {
       }
     });
   };
-
   useEffect(() => {
     dispatch(recieveTopTracks());
     dispatch(recieveRecentTracks());
   }, [currentUser.access_token]);
-
   if (!getTopTracks || !getRecentTracks || !currentUserInfo) {
-    return <div></div>;
+    return null;
   }
   return (
     <div className={style["container"]}>
@@ -138,5 +150,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;

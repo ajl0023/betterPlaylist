@@ -6,57 +6,59 @@ import { ReactComponent as CheckIcon } from "./images/check.svg";
 import PlaylistTracks from "./PlaylistTracks";
 import { getTracksScroll } from "./spotify-redux/actions/playlistActions";
 import style from "./styles/singlePlaylist.module.scss";
-
 const SinglePlaylist = (props) => {
   const [mainColor, setMainColor] = useState();
   const [playlist, setPlaylist] = useState();
   const params = useParams();
   const dispatch = useDispatch();
-
   const currentPlayList = props.playlist[params.id];
-
   useEffect(() => {
     setPlaylist(currentPlayList);
     if (currentPlayList && currentPlayList.images[0]) {
       let myImage = new Image();
       myImage.src = currentPlayList.images[0].url;
       myImage.crossOrigin = "";
-
       myImage.onload = function () {
         let rgb = getColor(myImage);
         let formatted = rgb;
         setMainColor(formatted);
       };
     }
-
     props.findCurrentPlaylist(params.id);
   }, [currentPlayList]);
-
+  useEffect(() => {}, []);
   const handleFetchScroll = (e) => {
-    let tracks = getTracks.map((item) => {
-      return {
-        trackid: item.track.uid,
-        playlistid: item.playlist.id,
-        index: item.track.index,
-        uri: item.track.uri,
-      };
-    });
-    let scrollPos = Math.round(e.target.scrollHeight - e.target.scrollTop);
-    let clientHeight = e.target.clientHeight;
-    if (
-      scrollPos === clientHeight &&
-      currentPlayList.offset < currentPlayList.track_count
-    ) {
-      props.handleCheckAll(tracks, currentPlayList.id, true);
+    if (currentPlayList.page.next) {
+      let tracks = getTracks.map((item) => {
+        return {
+          trackid: item.track.uid,
+          playlistid: item.playlist.id,
+          index: item.track.index,
+          uri: item.track.uri,
+        };
+      });
+      const next = currentPlayList.page.next;
+      const url = new URL(next);
+      const query = new URLSearchParams(url.search);
+      const mainOffSet = query.get("offset");
+      let scrollPos = Math.round(e.target.scrollHeight - e.target.scrollTop);
+      let clientHeight = e.target.clientHeight;
       if (
-        currentPlayList &&
-        currentPlayList.offset < currentPlayList.track_count
+        scrollPos === clientHeight &&
+        currentPlayList.page.offset < currentPlayList.page.total &&
+        currentPlayList.page.next
       ) {
-        dispatch(getTracksScroll(currentPlayList));
+        props.handleCheckAll(tracks, currentPlayList.id, true);
+        if (
+          currentPlayList &&
+          currentPlayList.page.offset < currentPlayList.page.total &&
+          currentPlayList.page.next
+        ) {
+          dispatch(getTracksScroll(currentPlayList, mainOffSet));
+        }
       }
     }
   };
-
   useEffect(() => {
     let scrollContainer = document.getElementById("scroll-container");
     if (scrollContainer) {
@@ -73,36 +75,29 @@ const SinglePlaylist = (props) => {
     !currentPlayList.images[0] ||
     !props.allTracks
   ) {
-    return <div></div>;
+    return null;
   }
   let getTracks;
-
   if (currentPlayList) {
     getTracks = currentPlayList.tracks.reduce((arr, id) => {
       let obj = {};
-
       obj["playlist"] = currentPlayList;
       obj["track"] = props.allTracks[id];
       obj["uid"] = props.allTracks[id].uid;
-
       if (obj.track.name.length > 0) {
         arr.push(obj);
       }
-
       return arr;
     }, []);
-
     getTracks = getTracks.filter((track) => {
       let findDeleted = props.deletedArr.find((obj) => {
         return obj.trackid === track.track.uid;
       });
-
       if (!findDeleted) {
         return track;
       }
     });
   }
-
   let checkAllFiltered = getTracks.filter((track) => {
     let findId = props.selected.find((item) => {
       return item.trackid === track.track.uid;
@@ -143,7 +138,6 @@ const SinglePlaylist = (props) => {
           />{" "}
           <div className={style["album-mask"]}></div>
         </div>
-
         <div className={style["playlist-info-container"]}>
           <h3 className={style["playlist-title"]}>{currentPlayList.name}</h3>
           <p className={style["playlist-creator"]}>
@@ -164,7 +158,6 @@ const SinglePlaylist = (props) => {
             >
               #
             </p>
-
             <CheckIcon
               style={{
                 fill: checkAllFiltered.length === 0 ? "#1db954" : "white",
@@ -200,5 +193,4 @@ const SinglePlaylist = (props) => {
     </div>
   );
 };
-
 export default SinglePlaylist;

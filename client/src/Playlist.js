@@ -2,12 +2,9 @@ import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { ReactComponent as MusicIcon } from "./images/music-note.svg";
 import style from "./styles/playlist.module.scss";
-
 const Playlist = (props) => {
   const item = props.playlist;
-
   let { url } = useRouteMatch();
-
   if (!props.playlist) {
     return <div></div>;
   }
@@ -28,7 +25,6 @@ const Playlist = (props) => {
     >
       <div className={style["playlist-content"]}>
         <div className={style["playlist-image-container"]}>{imageUrl}</div>
-
         <div className={style["description-container"]}>
           <p className={style["playlist-title"]}>{item.name}</p>
           <p className={style["playlist-description"]}>
@@ -41,5 +37,4 @@ const Playlist = (props) => {
     </Link>
   );
 };
-
 export default Playlist;

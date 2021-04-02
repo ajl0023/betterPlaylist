@@ -1,21 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { ReactComponent as CheckIcon } from "./images/check.svg";
 import { ReactComponent as CheckIconPlaceH } from "./images/checkIconPlaceH.svg";
 import style from "./styles/playlistAddModal.module.scss";
-
 const PlaylistAddModal = (props) => {
-  const dispatch = useDispatch();
   const [selectedPlaylists, setSelectedPlaylists] = useState([]);
-
   let filteredPlaylists = props.playlist;
   const handlePlaylistSelect = (id) => {
     const selected = [...selectedPlaylists];
-
     let obj = {};
-
     obj["playlistid"] = id;
-
     const findId = selected.find((obj) => {
       return obj.playlistid === id;
     });
@@ -27,13 +20,11 @@ const PlaylistAddModal = (props) => {
       });
       selected.splice(index, 1);
     }
-
     setSelectedPlaylists(selected);
   };
   const handleAdd = () => {
     props.handleAdd(selectedPlaylists);
   };
-
   return (
     <div className={style[props.showModal ? "" : "inactive"]}>
       <div onClick={props.closeModal} className={style["container-mask"]}></div>
@@ -53,7 +44,10 @@ const PlaylistAddModal = (props) => {
           <div className={style["playlist-container"]}>
             {filteredPlaylists.map((playlist, i) => {
               return (
-                <div className={style["playlist-item-container"]}>
+                <div
+                  key={playlist.id}
+                  className={style["playlist-item-container"]}
+                >
                   <div className={style["playlist-item"]}>
                     <div className={style["check-index-container"]}>
                       <p
@@ -68,6 +62,7 @@ const PlaylistAddModal = (props) => {
                         {i + 1}
                       </p>
                       <CheckIconPlaceH
+                        key={playlist.id}
                         style={{
                           display:
                             selectedPlaylists.length > 0 ? "flex" : "none",
@@ -116,5 +111,4 @@ const PlaylistAddModal = (props) => {
     </div>
   );
 };
-
 export default PlaylistAddModal;

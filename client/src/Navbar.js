@@ -1,64 +1,50 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as HomeIcon } from "./images/home-icon.svg";
 import { ReactComponent as Logo } from "./images/logo.svg";
 import { ReactComponent as PlaylistIcon } from "./images/playlist-icon.svg";
-import { linkClick } from "./spotify-redux/actions/navbarActions";
 import style from "./styles/Navbar.module.scss";
-
 const Navbar = () => {
-  const dispatch = useDispatch();
-  const handleClick = () => {
-    dispatch(linkClick());
-  };
-
-  const handleResize = () => {
-    let trigger = document.getElementById("trigger");
-
-    if (trigger.checked) {
-      trigger.checked = false;
-    }
-  };
-  const handleCloseMask = () => {
-    let trigger = document.getElementById("trigger");
-
-    trigger.checked = false;
-  };
+  const [checkedState, setChecked] = useState(false);
   const handleClose = () => {
     let trigger = document.getElementById("trigger");
-
-    trigger.checked = false;
+    if (trigger.checked) {
+      setChecked(false);
+    }
   };
   useEffect(() => {
-    let navmask = document.getElementById("nav-mask");
-    let menubutton = document.getElementsByName("menu-item");
-    menubutton.forEach((ele) => {
-      ele.addEventListener("click", handleClose);
-    });
-    navmask.addEventListener("click", handleCloseMask);
-
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleClose);
     return () => {
-      menubutton.forEach((ele) => {
-        ele.removeEventListener("click", handleClick);
-      });
-      navmask.removeEventListener("click", handleCloseMask);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleClose);
     };
   }, []);
   return (
     <>
-      <input type="checkbox" id="trigger" className={style["burger-input"]} />
-      <label htmlFor="trigger" className={style["burger-label"]}>
+      <input
+        readOnly
+        checked={checkedState}
+        type="checkbox"
+        id="trigger"
+        className={style["burger-input"]}
+      />
+      <label
+        onClick={() => setChecked(!checkedState)}
+        htmlFor="trigger"
+        className={style["burger-label"]}
+      >
         <div className={style["main-trigger-icon-container"]}>
           <span className={style["main-trigger-icon"]}></span>
         </div>
       </label>
-      <div id="nav-mask" className={style["navbar-mask"]}></div>
+      <div
+        onClick={() => setChecked(false)}
+        id="nav-mask"
+        className={style["navbar-mask"]}
+      ></div>
       <div className={style.container}>
         <div className={style.content}>
           <Link
+            onClick={() => setChecked(false)}
             name="menu-item"
             className={style["menu-item"]}
             to={{ pathname: "/" }}
@@ -68,7 +54,7 @@ const Navbar = () => {
           <div className={style["menu-container"]}>
             <Link
               name="menu-item"
-              onClick={handleClick}
+              onClick={() => setChecked(false)}
               to={{
                 pathname: "/",
               }}
@@ -77,10 +63,9 @@ const Navbar = () => {
               <HomeIcon className={style["playlist-icon"]} />
               <p>Home</p>
             </Link>
-
             <Link
               name="menu-item"
-              onClick={handleClick}
+              onClick={() => setChecked(false)}
               to={{
                 pathname: "/playlists",
               }}
@@ -97,5 +82,4 @@ const Navbar = () => {
     </>
   );
 };
-
 export default Navbar;

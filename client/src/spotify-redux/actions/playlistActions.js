@@ -1,3 +1,4 @@
+import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import {
   ADD_TRACK_REQUEST,
@@ -10,14 +11,15 @@ import {
   REQUEST_PLAYLISTS,
   REQUEST_PLAYLIST_TRACKS,
   REQUEST_TRACKS,
+  GET_SINGLE_PLAYLIST,
 } from "../types/types";
 import {
   addTracksToPlaylistsCall,
   deleteFromPlaylist,
   getPlaylists,
   getPlayListTracks,
+  fetchSinglePlaylist,
 } from "./calls";
-
 const requestPlaylists = () => {
   return (dispatch) => {
     dispatch({ type: REQUEST_PLAYLISTS });
@@ -29,7 +31,6 @@ function deleteTrackRequest() {
     type: DELETE_TRACK_REQUEST,
   };
 }
-
 export const addTracksToPlaylists = (playlist, tracks) => (
   dispatch,
   getState
@@ -37,7 +38,6 @@ export const addTracksToPlaylists = (playlist, tracks) => (
   dispatch({ type: ADD_TRACK_REQUEST });
   let obj = {};
   const allTracks = { ...getState().tracks.byIds };
-
   const tracksToAdd = tracks.map((track) => {
     const foundTracks = { ...allTracks[track.trackid] };
     foundTracks.uid = uuidv4();
@@ -49,19 +49,16 @@ export const addTracksToPlaylists = (playlist, tracks) => (
   const trackIds = tracksToAdd.map((item) => {
     return item.uid;
   });
-
   const playlistsToChange = playlist.map((item) => {
     return item.playlistid;
   });
   let arr = [];
   let playlists;
-
   playlistsToChange.forEach((id) => {
     playlists = { ...getState().playlists.byIds[id] };
     playlists.tracks = [...playlists.tracks, ...tracksToAdd];
     arr.push(playlists);
   });
-
   const trackUris = tracks.map((track) => {
     return track.uri;
   });
@@ -95,24 +92,19 @@ export const deleteTrackFromPlaylists = (playlistTracks) => (
   getState
 ) => {
   let allTracks = getState().tracks.byIds;
-
   let tracksArr = Object.keys(allTracks).map((id) => {
     return allTracks[id];
   });
-
   return new Promise((resolve) => {
     const playlistTracksCopy = [...playlistTracks];
     dispatch(deleteTrackRequest());
     let length = playlistTracksCopy.length;
-
     let arr = [];
     let obj = {};
-
     for (let i = 0; i < length; i++) {
       let idCheck = arr.findIndex((playlist) => {
         return playlist.id === playlistTracksCopy[i].playlistid;
       });
-
       if (idCheck < 0) {
         obj["id"] = playlistTracksCopy[i].playlistid;
         obj["playlist"] = playlistTracksCopy[i].playlist;
@@ -133,7 +125,6 @@ export const deleteTrackFromPlaylists = (playlistTracks) => (
         return tracks;
       }
     });
-
     let filteredObj = {};
     filteredTracks.forEach((tracks) => {
       filteredObj[tracks.uid] = tracks;
@@ -160,26 +151,35 @@ export const deleteTrackFromPlaylists = (playlistTracks) => (
     });
   });
 };
-export function selectAll() {
-  return () => {};
+export function getSinglePlaylist(id) {
+  return (dispatch) => {
+    fetchSinglePlaylist(id)
+      .then((data) => {
+        if (data.status === 200) {
+          dispatch({ type: GET_SINGLE_PLAYLIST, data: data.data });
+        }
+      })
+      .catch((err) => {});
+  };
 }
-export function getTracksScroll(playlist) {
+export function getTracksScroll(playlist, mainOffSet) {
   return (dispatch) => {
     dispatch({
       type: REQUEST_TRACKS,
     });
-    return getPlayListTracks(playlist.id, playlist.offset).then((data) => {
+    return getPlayListTracks(playlist.id, mainOffSet).then((data) => {
       let tracks = {};
-      data.data.forEach((track) => {
+      data.data.items.forEach((track) => {
         tracks[track.uid] = track;
       });
       if (data.status === 200) {
         dispatch({
           type: RECIEVE_TRACKS,
-          trackIds: data.data.map((tracks) => {
+          trackIds: data.data.items.map((tracks) => {
             return tracks.uid;
           }),
           tracks,
+          page: data.data.page,
           playlist,
         });
       }
@@ -189,12 +189,10 @@ export function getTracksScroll(playlist) {
 export function recievePlaylists() {
   return (dispatch, getState) => {
     dispatch(requestPlaylists());
-
     getPlaylists().then((data) => {
       let tracksArr = [];
       let length = data.data.playlists.length;
       let playlists = data.data.playlists;
-
       let tracksObj = {};
       let allTracksObj = {};
       let playlistObj = {};
@@ -212,21 +210,20 @@ export function recievePlaylists() {
       }
       Promise.all(tracksArr).then((trackData) => {
         let playlistIds = [];
-
         let length = trackData.length;
         let toArr = {};
         let trackIds = [];
+        let pageInfo = {};
         for (let i = 0; i < length; i++) {
           let itemLength = trackData[i].data.items.length;
           playlistIds.push(trackData[i].data.playlistId);
+          pageInfo[trackData[i].data.playlistId] = trackData[i].data.page;
           for (let j = 0; j < itemLength; j++) {
             let track = trackData[i].data.items[j];
             trackIds.push(track.uid);
             allTracksObj[track.uid] = track;
             track["playlistid"] = trackData[i].data.playlistId;
-
             tracksObj[track.uid] = track;
-
             if (!toArr[trackData[i].data.playlistId]) {
               toArr[trackData[i].data.playlistId] = [track.uid];
             } else {
@@ -237,8 +234,8 @@ export function recievePlaylists() {
             }
           }
         }
-
         dispatch({
+          pageInfo,
           allTracksObj,
           trackIds: trackIds,
           tracks: toArr,

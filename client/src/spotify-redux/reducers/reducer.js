@@ -18,8 +18,8 @@ import {
   RECIEVE_PLAYLIST_TRACKS,
   REQUEST_TRACKS,
   DELETE_TRACK_SUCCESS,
+  GET_SINGLE_PLAYLIST,
 } from "../types/types";
-
 import {} from "../actions/trackActions";
 function addTracksTrack(state, action) {
   const stateCopy = { ...state };
@@ -30,7 +30,6 @@ function addTracksTrack(state, action) {
   return stateCopy;
 }
 function deleteTrackFunc(state, action) {
-  console.log(action.filteredObj);
   return {
     ...state,
     byIds: {
@@ -83,7 +82,6 @@ function tracks(
     case RECIEVE_TOP_TRACKS:
       return Object.assign({}, state, {
         top_tracks: action.top_tracks,
-
         isFetching: false,
         byIds: { ...state.byIds, ...action.byIds },
       });
@@ -100,25 +98,9 @@ function tracks(
 }
 function addTracks(state, action) {
   const { playlists, tracksToAdd } = action;
-
   let obj = { ...state };
-  const allPlaylists = state.byIds;
-
   for (let i of playlists) {
     obj.byIds[i].tracks = [...obj.byIds[i].tracks, ...tracksToAdd];
-    // return {
-    //   ...state,
-    //   byIds: {
-    //     ...state.byIds,
-    //     [i]: {
-    //       ...state.byIds[i],
-    //       tracks: {
-    //         ...state.byIds[i].tracks,
-    //         ...tracksToAdd,
-    //       },
-    //     },
-    //   },
-    // };
   }
   return obj;
 }
@@ -136,12 +118,8 @@ function deleteTrackPlaylist(state, action) {
   return obj;
 }
 function recievePlaylistTracks(state, action) {
-  const stateCopy = Map(state);
-  const newState = stateCopy;
   const tracksObj = action.tracks;
-  const playlistToChange = action.playlists;
-
-  let length = playlistToChange.length;
+  const pageInfo = action.pageInfo;
   for (let key in tracksObj) {
     state = {
       ...state,
@@ -150,12 +128,15 @@ function recievePlaylistTracks(state, action) {
         [key]: {
           ...state.byIds[key],
           tracks: [...tracksObj[key]],
+          page: {
+            ...state.byIds[key].page,
+            ...pageInfo[key],
+          },
         },
       },
     };
   }
   return state;
-  console.log(stateCopy.toObject());
 }
 function playlists(
   state = {
@@ -163,7 +144,6 @@ function playlists(
     allIds: [],
     isFetching: false,
     err: null,
-
     status: "idle",
   },
   action
@@ -176,10 +156,17 @@ function playlists(
         isFetching: true,
         status: "fetching",
       });
+    case GET_SINGLE_PLAYLIST:
+      return Object.assign({}, state, {
+        byIds: {
+          ...state.byIds,
+          [action.data.id]: { ...action.data },
+        },
+        allIds: [...state.allIds, action.data.id],
+      });
     case RECIEVE_TRACKS:
       return Object.assign({}, state, {
         status: "idle",
-
         byIds: {
           ...state.byIds,
           [action.playlist.id]: {
@@ -187,6 +174,9 @@ function playlists(
             offset:
               state.byIds[action.playlist.id].tracks.length +
               action.trackIds.length,
+            page: {
+              ...action.page,
+            },
             tracks: [
               ...state.byIds[action.playlist.id].tracks,
               ...action.trackIds,
@@ -271,5 +261,4 @@ const rootReducer = combineReducers({
   playlists,
   navbar,
 });
-
 export default rootReducer;

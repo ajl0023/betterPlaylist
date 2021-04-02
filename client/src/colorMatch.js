@@ -1,5 +1,4 @@
 import quantize from "quantize";
-
 export const getPixelArray = (data, pixelCount, qual) => {
   const pixels = data;
   const pixelArr = [];

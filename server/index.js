@@ -5,16 +5,10 @@ const uuid = require("uuid").v4;
 const axios = require("axios");
 const app = express();
 const PORT = process.env.PORT || 5000;
-
 app.use(cookieParser());
-
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname, "../client/build")));
-
-app.listen(PORT, () => {
-  console.log("online");
-});
+app.listen(PORT, () => {});
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
@@ -24,15 +18,12 @@ app.post("/api/logout", async (req, res) => {
 });
 app.post("/api/authorization", (req, res) => {
   let code = req.body.code;
-
   let client_cred =
     "da42a01c50ef409f802caf63a98de4d4:a238c69e5ab949e888857072b8795f5c";
   client_cred = Buffer.from(client_cred).toString("base64");
-
   axios({
     url: "https://accounts.spotify.com/api/token",
     method: "POST",
-
     headers: {
       Authorization: `Basic ${client_cred}`,
       "Content-Type": "application/x-www-form-urlencoded",
@@ -51,8 +42,6 @@ app.post("/api/authorization", (req, res) => {
       res.json(data.data);
     })
     .catch((err) => {
-      console.log(err);
-
       res.status(err.response.status).json({
         err,
       });
@@ -61,7 +50,6 @@ app.post("/api/authorization", (req, res) => {
 app.get("/api/user-info", (req, res) => {
   let authHeader = req.headers.authorization.split(" ");
   let authToken = authHeader[1];
-
   axios({
     url: "https://api.spotify.com/v1/me",
     method: "GET",
@@ -79,7 +67,6 @@ app.get("/api/user-info", (req, res) => {
 app.post("/api/playlist/search", (req, res) => {
   let authHeader = req.headers.authorization.split(" ");
   let authToken = authHeader[1];
-
   axios({
     url: "https://api.spotify.com/v1/search?query=",
     method: "GET",
@@ -98,7 +85,6 @@ app.post("/api/playlist/search", (req, res) => {
       });
     });
 });
-
 app.post("/api/refresh", (req, res) => {
   let client_cred =
     "da42a01c50ef409f802caf63a98de4d4:a238c69e5ab949e888857072b8795f5c";
@@ -106,7 +92,6 @@ app.post("/api/refresh", (req, res) => {
   axios({
     url: "https://accounts.spotify.com/api/token",
     method: "POST",
-
     headers: {
       Authorization: `Basic ${client_cred}`,
       "Content-Type": "application/x-www-form-urlencoded",
@@ -128,7 +113,6 @@ app.post("/api/refresh", (req, res) => {
 app.get("/api/top-tracks", (req, res) => {
   let authHeader = req.headers.authorization.split(" ");
   let authToken = authHeader[1];
-
   axios({
     url: "https://api.spotify.com/v1/me/top/tracks?limit=50",
     method: "GET",
@@ -157,7 +141,6 @@ app.get("/api/recently-played", (req, res) => {
   let authHeader = req.headers.authorization.split(" ");
   let authToken = authHeader[1];
   let before = req.query.before;
-
   axios({
     url: `https://api.spotify.com/v1/me/player/recently-played?limit=50${
       before ? `&before=${before}` : ""
@@ -184,7 +167,6 @@ app.get("/api/recently-played", (req, res) => {
       }
     });
 });
-
 app.get("/api/track/:id", (req, res) => {
   let authHeader = req.headers.authorization.split(" ");
   let authToken = authHeader[1];
@@ -216,7 +198,6 @@ app.get("/api/track/:id", (req, res) => {
 app.get("/api/playlists", (req, res) => {
   let authHeader = req.headers.authorization.split(" ");
   let authToken = authHeader[1];
-
   axios({
     url: `https://api.spotify.com/v1/me/playlists`,
     method: "GET",
@@ -243,12 +224,21 @@ app.get("/api/playlists", (req, res) => {
       }
     });
 });
+app.get("/api/single/playlists/:playlist_id", (req, res) => {
+  let authHeader = req.headers.authorization.split(" ");
+  let authToken = authHeader[1];
+  axios({
+    url: `https://api.spotify.com/v1/playlists/${req.params.playlist_id}`,
+    method: "GET",
+    headers: { Authorization: `Bearer ${authToken}` },
+  }).then((data) => {
+    res.json(data.data);
+  });
+});
 app.get("/api/playlists/:playlist_id", (req, res) => {
   let authHeader = req.headers.authorization.split(" ");
-
   let authToken = authHeader[1];
   let queryOffset = req.query.offset;
-
   axios({
     url: `https://api.spotify.com/v1/playlists/${
       req.params.playlist_id
@@ -258,7 +248,6 @@ app.get("/api/playlists/:playlist_id", (req, res) => {
   })
     .then((data) => {
       let tracks = data.data.items;
-
       let flattened = tracks
         .map((track, i) => {
           track.track["uid"] = uuid();
@@ -272,6 +261,13 @@ app.get("/api/playlists/:playlist_id", (req, res) => {
         });
       res.json({
         items: flattened,
+        page: {
+          limit: data.data.limit,
+          next: data.data.next,
+          offset: data.data.offset,
+          previous: data.data.previous,
+          total: data.data.total,
+        },
         playlistId: req.params.playlist_id,
       });
     })
@@ -290,7 +286,6 @@ app.get("/api/playlists/:playlist_id", (req, res) => {
 app.delete("/api/playlists/:playlist_id/track", (req, res) => {
   let authHeader = req.headers.authorization.split(" ");
   let authToken = authHeader[1];
-
   let tracks = req.body.tracks.map((track) => {
     return { uri: track.uri, positions: [track.index] };
   });
@@ -325,7 +320,6 @@ app.post("/api/playlists/:playlist_id/track", (req, res) => {
   let authToken = authHeader[1];
   let playlistId = req.params.playlist_id;
   let tracks = req.body.tracks;
-
   axios({
     url: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
     method: "POST",
