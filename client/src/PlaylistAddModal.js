@@ -111,4 +111,6 @@ const PlaylistAddModal = (props) => {
     </div>
   );
 };
-export default PlaylistAddModal;
+export default React.memo(PlaylistAddModal, (prev, next) => {
+  return prev.showModal === next.showModal;
+});

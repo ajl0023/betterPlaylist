@@ -121,29 +121,33 @@ const Home = () => {
           <p className={style["top-tracks-title"]}>your top tracks</p>
           <div className={style["top-tracks-container"]}>
             {" "}
-            {topTracksArr.map((track) => {
-              return (
-                <Track
-                  key={track.uid}
-                  track={track}
-                  image={track.album.images}
-                />
-              );
-            })}
+            {recentTracksArr.length > 0 && topTracksArr.length > 0
+              ? topTracksArr.map((track) => {
+                  return (
+                    <Track
+                      key={track.uid}
+                      track={track}
+                      image={track.album.images}
+                    />
+                  );
+                })
+              : null}
           </div>
         </div>
         <div>
           <p className={style["recently-played-title"]}>recently played</p>
           <div className={style["recent-tracks-container"]}>
-            {recentTracksArr.map((track) => {
-              return (
-                <Track
-                  key={track.uid}
-                  track={track}
-                  image={track.album.images}
-                />
-              );
-            })}
+            {recentTracksArr.length > 0 && topTracksArr.length > 0
+              ? recentTracksArr.map((track) => {
+                  return (
+                    <Track
+                      key={track.uid}
+                      track={track}
+                      image={track.album.images}
+                    />
+                  );
+                })
+              : null}
           </div>
         </div>
       </div>

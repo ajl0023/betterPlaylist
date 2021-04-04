@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Route,
-  Switch,
-  useLocation,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { Route, Switch, useLocation, useRouteMatch } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as AddIcon } from "./images/add-icon.svg";
 import { ReactComponent as CheckIcon } from "./images/check.svg";
@@ -23,9 +17,18 @@ import {
   recievePlaylists,
 } from "./spotify-redux/actions/playlistActions";
 import style from "./styles/playlistWrapper.module.scss";
+export function useFunction(callback) {
+  const ref = useRef();
+  ref.current = callback;
+  return useCallback(function () {
+    const callback = ref.current;
+    if (typeof callback === "function") {
+      return callback.apply(this, arguments);
+    }
+  }, []);
+}
 const PlaylistWrapper = (props) => {
   const location = useLocation();
-  const params = useParams();
   const [selectedAllIds, setSelectedAllIds] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [currentPlaylist, setCurrentPlaylist] = useState();
@@ -35,14 +38,12 @@ const PlaylistWrapper = (props) => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [selected, setSelected] = useState([]);
   const [, setRefresh] = useState(false);
+  const [testArr, setTestArr] = useState([]);
   const [, setFilteredSearch] = useState([]);
   const [deletedArr, setDeletedArr] = useState([]);
   const dispatch = useDispatch();
   const closeDeletedModal = () => {
     setShowDeletedModal(false);
-  };
-  const closeAddModal = () => {
-    setShowAddModal(false);
   };
   let { path } = useRouteMatch();
   let getPlaylists = useSelector((state) => {
@@ -61,21 +62,37 @@ const PlaylistWrapper = (props) => {
     setCurrentPlaylist(id);
   };
   const handleCheckSelected = (trackid, playlistid, uri, allTracks, index) => {
-    let selectedArr = [...selected];
-    let selectedAllIdsCopy = [...selectedAllIds];
-    let obj = {};
-    obj["trackid"] = trackid;
-    obj["playlistid"] = playlistid;
-    obj["uri"] = uri;
-    obj["index"] = index;
-    const findId = selectedArr.find((obj) => {
-      return obj.trackid === trackid;
-    });
-    if (!findId) {
-      selectedArr.push(obj);
-      let getTracks = allTracks;
-      let checkAllFiltered = getTracks.filter((track) => {
-        let findId = selectedArr.find((item) => {
+    setSelected((prev) => {
+      let searchArrCopy = [...searchArr];
+      let selectedArr = [...prev];
+      let selectedAllIdsCopy = [...selectedAllIds];
+      let obj = {};
+      obj["trackid"] = trackid;
+      obj["playlistid"] = playlistid;
+      obj["uri"] = uri;
+      obj["index"] = index;
+      const findId = selectedArr.find((obj) => {
+        return obj.trackid === trackid;
+      });
+      const prevCopy = [...prev];
+      if (!findId) {
+        prevCopy.push(obj);
+        let getTracks = allTracks;
+      } else {
+        let index = prevCopy.findIndex((obj) => {
+          return obj.trackid === trackid;
+        });
+        if (selectedAllIdsCopy.includes(playlistid)) {
+          let playlistIndex = selectedAllIdsCopy.indexOf(playlistid);
+          selectedAllIdsCopy.splice(playlistIndex, 1);
+        } else if (selectedAllIdsCopy.includes("search")) {
+          let playlistIndex = selectedAllIdsCopy.indexOf("search");
+          selectedAllIdsCopy.splice(playlistIndex, 1);
+        }
+        prevCopy.splice(index, 1);
+      }
+      let checkAllFiltered = searchArrCopy.filter((track) => {
+        let findId = prevCopy.find((item) => {
           return item.trackid === track.track.uid;
         });
         if (!findId) {
@@ -83,25 +100,11 @@ const PlaylistWrapper = (props) => {
         }
       });
       if (checkAllFiltered.length === 0) {
-        selectedAllIdsCopy.push(playlistid);
+        selectedAllIdsCopy.push("search");
       }
-    } else {
-      let index = selectedArr.findIndex((obj) => {
-        return obj.trackid === trackid;
-      });
-      if (selectedAllIdsCopy.includes(playlistid)) {
-        let playlistIndex = selectedAllIdsCopy.indexOf(playlistid);
-        selectedAllIdsCopy.splice(playlistIndex, 1);
-      }
-      selectedArr.splice(index, 1);
-    }
-    setSelectedAllIds(selectedAllIdsCopy);
-    setSelected(selectedArr);
-    if (selectedArr.length > 0) {
-      setDropDown(true);
-    } else {
-      setDropDown(false);
-    }
+      setSelectedAllIds(selectedAllIdsCopy);
+      return prevCopy;
+    });
   };
   useEffect(() => {
     dispatch(recievePlaylists());
@@ -213,26 +216,39 @@ const PlaylistWrapper = (props) => {
       }
     });
   };
-  const handleAdd = (playlists) => {
-    dispatch(addTracksToPlaylists(playlists, selected)).then((status) => {
-      if (status === 200) {
-        setShowAddModal(false);
-        setDropDown(false);
-        setSelected([]);
-        setSelectedAllIds([]);
-      }
-    });
-  };
+  const handleAdd = useCallback(
+    (playlists) => {
+      dispatch(addTracksToPlaylists(playlists, selected)).then((status) => {
+        if (status === 200) {
+          setShowAddModal(false);
+          setDropDown(false);
+          setSelected([]);
+          setSelectedAllIds([]);
+        }
+      });
+    },
+    [selected]
+  );
+  const closeAddModal = useCallback(() => {
+    setShowAddModal(false);
+  }, [selected]);
   const handleCheckAll = (tracks, playlistId, scroll) => {
+    tracks =
+      playlistId === "search"
+        ? (tracks = tracks.map((track) => {
+            return {
+              trackid: track.track.uid,
+              playlistid: track.playlist.id,
+              uri: track.track.uri,
+            };
+          }))
+        : tracks;
     setSelectedAllIds((prev) => {
       let copyAll = [...prev];
       let copySelected = [...selected];
       let index = copyAll.indexOf(playlistId);
       let filteredArr = [];
       if (!copyAll.includes(playlistId) && !scroll) {
-        filteredArr = copySelected.filter((item) => {
-          return item.playlistid !== playlistId;
-        });
         filteredArr.push(...tracks);
         copyAll.push(playlistId);
         setSelected(() => {
@@ -244,7 +260,7 @@ const PlaylistWrapper = (props) => {
         });
         copyAll.splice(index, 1);
         setSelected(() => {
-          return filteredArr;
+          return [];
         });
       } else if (copyAll.includes(playlistId) && scroll) {
         copyAll.splice(index, 1);
@@ -254,92 +270,6 @@ const PlaylistWrapper = (props) => {
       }
       return copyAll;
     });
-  };
-  const handleCheckSearch = (uid, playlistid) => {
-    let searchArrCopy = [...searchArr];
-    let selectedCopy = [...selected];
-    let selectedAllIdsCopy = [...selectedAllIds];
-    let findTrack = selectedCopy.find((item) => {
-      return item.trackid === uid;
-    });
-    let length = searchArrCopy.length;
-    if (selectedAllIds.includes("search")) {
-      let index = selectedAllIdsCopy.indexOf("search");
-      selectedAllIdsCopy.splice(index, 1);
-      setSelectedAllIds(selectedAllIdsCopy);
-    }
-    const indexFromPlaylist = getPlaylists[playlistid].tracks.indexOf(uid);
-    for (let i = 0; i < length; i++) {
-      if (searchArrCopy[i].track.uid === uid && !findTrack) {
-        selectedCopy.push({
-          trackid: searchArrCopy[i].track.uid,
-          playlistid: searchArrCopy[i].playlist.id,
-          uri: searchArrCopy[i].track.uri,
-          index: indexFromPlaylist,
-          origin: "search",
-        });
-        let obj = { ...searchArrCopy[i] };
-        searchArrCopy[i] = obj;
-        let checkAllFiltered = searchArrCopy.filter((track) => {
-          let findId = selectedCopy.find((item) => {
-            return item.trackid === track.track.uid;
-          });
-          if (!findId) {
-            return track;
-          }
-        });
-        if (
-          checkAllFiltered.length === 0 &&
-          !selectedAllIdsCopy.includes("search")
-        ) {
-          selectedAllIdsCopy.push("search");
-        }
-      } else if (searchArrCopy[i].track.uid === uid && findTrack) {
-        selectedCopy = selectedCopy.filter((item) => {
-          return item.trackid !== searchArrCopy[i].track.uid;
-        });
-      }
-      setSelectedAllIds(selectedAllIdsCopy);
-      setSelected(selectedCopy);
-      setSearchArr(searchArrCopy);
-    }
-  };
-  const handleCheckSearchAll = () => {
-    let searchArrCopy = [...searchArr];
-    let selectedCopy = [...selected];
-    let selectedAllIdsCopy = [...selectedAllIds];
-    let index = selectedAllIdsCopy.indexOf("search");
-    if (index >= 0) {
-      selectedAllIdsCopy.splice(index, 1);
-      selectedCopy = selectedCopy.filter((set) => {
-        return set.checkId !== "search";
-      });
-    } else {
-      let checkAllFiltered = searchArrCopy
-        .filter((track) => {
-          let findId = selectedCopy.find((item) => {
-            return item.trackid === track.track.uid;
-          });
-          if (!findId) {
-            return track;
-          }
-        })
-        .map((item) => {
-          let obj = {
-            trackid: item.track.uid,
-            playlistid: item.playlist.id,
-            uri: item.track.uri,
-            index: item.track.index,
-            selected: true,
-            checkId: "search",
-          };
-          return obj;
-        });
-      selectedAllIdsCopy.push("search");
-      selectedCopy.push(...checkAllFiltered);
-    }
-    setSelectedAllIds(selectedAllIdsCopy);
-    setSelected(selectedCopy);
   };
   if (!getPlaylistsArr) {
     return null;
@@ -352,6 +282,12 @@ const PlaylistWrapper = (props) => {
       return track;
     }
   });
+  const isSelected = (trackId) => {
+    const findId = selected.some((set) => {
+      return set.trackid === trackId;
+    });
+    return findId;
+  };
   return (
     <div id="scroll-container" className={style["container-container"]}>
       <div className={style["header-container"]}>
@@ -491,7 +427,7 @@ const PlaylistWrapper = (props) => {
                         : "none",
                     }}
                     onClick={() => {
-                      handleCheckSearchAll();
+                      handleCheckAll(searchArr, "search", false);
                     }}
                     className={style["check-box"]}
                   />
@@ -514,9 +450,10 @@ const PlaylistWrapper = (props) => {
                 {filteredSearchArr.map((track, i) => {
                   return (
                     <PlaylistTrack
+                      checkAll={selected.length > 0}
+                      isSelected={isSelected(track.track.uid)}
                       searchArr={searchArr}
                       deletedArr={deletedArr}
-                      handleCheckSearch={handleCheckSearch}
                       key={track.track && track.track.uid + track.playlist.uid}
                       handleCheckSelected={handleCheckSelected}
                       playlistSet={track}
@@ -532,6 +469,7 @@ const PlaylistWrapper = (props) => {
         <Switch>
           <Route path={`${path}/:id`}>
             <SinglePlaylist
+              testArr={testArr}
               selectedAllIds={selectedAllIds}
               handleCheckAll={handleCheckAll}
               deletedArr={deletedArr}

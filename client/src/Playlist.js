@@ -37,4 +37,4 @@ const Playlist = (props) => {
     </Link>
   );
 };
-export default Playlist;
+export default React.memo(Playlist);

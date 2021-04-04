@@ -2,7 +2,7 @@ import React from "react";
 import style from "./styles/track.module.scss";
 const Track = (props) => {
   if (!props.image[0]) {
-    return <div></div>;
+    return null;
   }
   const handleRoute = () => {
     window.open(props.track.external_urls.spotify, "_blank");

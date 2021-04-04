@@ -1,8 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import style from "./styles/playlistOptionsModal.module.scss";
 const PlaylistOptionsModal = (props) => {
-  const dispatch = useDispatch();
   const handleDelete = () => {
     props.handleDelete();
   };
@@ -36,4 +34,10 @@ const PlaylistOptionsModal = (props) => {
     </div>
   );
 };
-export default PlaylistOptionsModal;
+export default React.memo(PlaylistOptionsModal, (prev, next) => {
+  if (prev.showModal === next.showModal) {
+    return true;
+  } else if (prev.checkAll !== next.checkAll) {
+    return true;
+  }
+});

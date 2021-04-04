@@ -1,16 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ReactComponent as CheckIcon } from "./images/check.svg";
 import { ReactComponent as CheckIconPlaceH } from "./images/checkIconPlaceH.svg";
+import { useFunction } from "./PlaylistWrapper";
 import style from "./styles/playlisttracks.module.scss";
 const PlaylistTrack = (props) => {
+  const [checkUI, setUI] = useState(false);
   let track = props.playlistSet;
-  useEffect(() => {}, []);
   const handleCheckClick = (trackid, playlistid, uri) => {
     props.handleCheckSelected(
       trackid,
       playlistid,
       uri,
-      props.getTracks,
+      props.changed,
       props.index
     );
   };
@@ -32,40 +33,24 @@ const PlaylistTrack = (props) => {
             : "item-container"
         ]
       }
+      className={style["item-container"]}
     >
       <div className={style["check-count-container"]}>
         <div htmlFor="test" className={style["check-container"]}>
           <CheckIconPlaceH
             style={{
-              display:
-                props.selected.find((set) => {
-                  return props.playlistSet.playlist.id === set.playlistid;
-                }) ||
-                (props.searchArr &&
-                  props.searchArr.length > 0 &&
-                  props.selected.some((set) => {
-                    if (set.origin === "search") {
-                      return set;
-                    }
-                  }))
-                  ? "flex"
-                  : "none",
+              display: props.checkAll ? "flex" : "none",
             }}
             className={style["check-icon-place"]}
           />
           <CheckIcon
             onClick={(e) => {
-              props.searchArr && props.searchArr.length > 0
-                ? props.handleCheckSearch(
-                    props.playlistSet.track.uid,
-                    props.playlistSet.playlist.id
-                  )
-                : handleCheckClick(
-                    props.playlistSet.track.uid,
-                    props.playlistSet.playlist.id,
-                    props.playlistSet.track.uri,
-                    props.getTracks
-                  );
+              handleCheckClick(
+                props.playlistSet.track.uid,
+                props.playlistSet.playlist.id,
+                props.playlistSet.track.uri,
+                props.getTracks
+              );
             }}
             style={{
               display: props.selected.find((obj) => {
@@ -73,11 +58,7 @@ const PlaylistTrack = (props) => {
               })
                 ? "flex"
                 : "none",
-              fill: props.selected.find((obj) => {
-                return obj.trackid === props.playlistSet.track.uid;
-              })
-                ? "#1db954"
-                : "white",
+              fill: props.isSelected ? "#1db954" : "white",
             }}
             className={
               style[
@@ -89,24 +70,7 @@ const PlaylistTrack = (props) => {
           />
         </div>
         <div className={style["track-count-container"]}>
-          <span
-            className={
-              style[
-                props.selected.find((set) => {
-                  return props.playlistSet.playlist.id === set.playlistid;
-                }) ||
-                (props.searchArr &&
-                  props.searchArr.length > 0 &&
-                  props.selected.some((set) => {
-                    if (set.origin === "search") {
-                      return set;
-                    }
-                  }))
-                  ? "inactive"
-                  : "track-count"
-              ]
-            }
-          >
+          <span className={style[props.checkAll ? "inactive" : "track-count"]}>
             {props.index + 1}
           </span>
         </div>
@@ -155,4 +119,8 @@ const PlaylistTrack = (props) => {
     </div>
   );
 };
-export default PlaylistTrack;
+export default React.memo(PlaylistTrack, (prev, next) => {
+  if (prev.isSelected === next.isSelected) {
+    return true;
+  }
+});

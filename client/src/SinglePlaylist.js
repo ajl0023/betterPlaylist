@@ -1,4 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  useRef,
+  useMemo,
+} from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getColor } from "./colorMatch";
@@ -11,6 +17,9 @@ const SinglePlaylist = (props) => {
   const [playlist, setPlaylist] = useState();
   const params = useParams();
   const dispatch = useDispatch();
+  const getTracksRef = useRef();
+  const testRef = useRef();
+  testRef.current = 3;
   const currentPlayList = props.playlist[params.id];
   useEffect(() => {
     setPlaylist(currentPlayList);
@@ -26,7 +35,6 @@ const SinglePlaylist = (props) => {
     }
     props.findCurrentPlaylist(params.id);
   }, [currentPlayList]);
-  useEffect(() => {}, []);
   const handleFetchScroll = (e) => {
     if (currentPlayList.page.next) {
       let tracks = getTracks.map((item) => {
@@ -59,6 +67,17 @@ const SinglePlaylist = (props) => {
       }
     }
   };
+  const handleCheckAll = useCallback(() => {
+    let tracks = getTracks.map((item) => {
+      return {
+        trackid: item.track.uid,
+        playlistid: item.playlist.id,
+        index: item.track.index,
+        uri: item.track.uri,
+      };
+    });
+    props.handleCheckAll(tracks, currentPlayList.id);
+  }, [currentPlayList]);
   useEffect(() => {
     let scrollContainer = document.getElementById("scroll-container");
     if (scrollContainer) {
@@ -68,16 +87,7 @@ const SinglePlaylist = (props) => {
       scrollContainer.removeEventListener("scroll", handleFetchScroll);
     };
   }, [playlist]);
-  if (
-    !currentPlayList ||
-    !currentPlayList.tracks.length > 0 ||
-    currentPlayList.length <= 0 ||
-    !currentPlayList.images[0] ||
-    !props.allTracks
-  ) {
-    return null;
-  }
-  let getTracks;
+  let getTracks = [];
   if (currentPlayList) {
     getTracks = currentPlayList.tracks.reduce((arr, id) => {
       let obj = {};
@@ -89,7 +99,9 @@ const SinglePlaylist = (props) => {
       }
       return arr;
     }, []);
-    getTracks = getTracks.filter((track) => {
+  }
+  const tracksMem = useMemo(() => {
+    getTracks.filter((track) => {
       let findDeleted = props.deletedArr.find((obj) => {
         return obj.trackid === track.track.uid;
       });
@@ -97,6 +109,16 @@ const SinglePlaylist = (props) => {
         return track;
       }
     });
+    return getTracks;
+  }, [getTracks.length]);
+  if (
+    !currentPlayList ||
+    !currentPlayList.tracks.length > 0 ||
+    currentPlayList.length <= 0 ||
+    !currentPlayList.images[0] ||
+    !props.allTracks
+  ) {
+    return null;
   }
   let checkAllFiltered = getTracks.filter((track) => {
     let findId = props.selected.find((item) => {
@@ -106,16 +128,11 @@ const SinglePlaylist = (props) => {
       return track;
     }
   });
-  const handleCheckAll = () => {
-    let tracks = getTracks.map((item) => {
-      return {
-        trackid: item.track.uid,
-        playlistid: item.playlist.id,
-        index: item.track.index,
-        uri: item.track.uri,
-      };
+  const isSelected = (trackId) => {
+    const findId = props.selected.some((set) => {
+      return set.trackid === trackId;
     });
-    props.handleCheckAll(tracks, currentPlayList.id);
+    return findId;
   };
   return (
     <div
@@ -150,9 +167,7 @@ const SinglePlaylist = (props) => {
           <div className={style["label-check-container"]}>
             <p
               style={{
-                display: props.selectedAllIds.includes(currentPlayList.id)
-                  ? "none"
-                  : "block",
+                display: checkAllFiltered.length === 0 ? "none" : "block",
               }}
               className={style["label-count"]}
             >
@@ -172,13 +187,18 @@ const SinglePlaylist = (props) => {
           <div className={style["label-playlist"]}>playlist</div>{" "}
         </div>
         <div className={style["item-wrapper"]}>
-          {getTracks.map((track, i) => {
+          {tracksMem.map((track, i) => {
             if (track.track.name.length > 0) {
               return (
                 <PlaylistTracks
+                  testArr={props.testArr}
+                  testRef={testRef}
+                  changed={tracksMem}
                   key={track.uid}
                   index={i}
-                  getTracks={getTracks}
+                  checkAll={props.selected.length > 0}
+                  isSelected={isSelected(track.uid)}
+                  getTracks={getTracksRef}
                   deletedArr={props.deletedArr}
                   selected={props.selected}
                   handleCheckSelected={props.handleCheckSelected}
