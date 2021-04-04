@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useReducer } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as HomeIcon } from "./images/home-icon.svg";
 import { ReactComponent as Logo } from "./images/logo.svg";
+import { generateUUID } from "./App";
 import { ReactComponent as PlaylistIcon } from "./images/playlist-icon.svg";
 import style from "./styles/Navbar.module.scss";
-const Navbar = () => {
+const Navbar = (props) => {
   const [checkedState, setChecked] = useState(false);
-  const handleClose = () => {
+  const handleClose = (check, type) => {
     let trigger = document.getElementById("trigger");
     if (trigger.checked) {
       setChecked(false);
+    } else if (type === "playlist") {
+      generateUUID();
     }
   };
   useEffect(() => {
@@ -65,7 +68,11 @@ const Navbar = () => {
             </Link>
             <Link
               name="menu-item"
-              onClick={() => setChecked(false)}
+              onClick={() => {
+                props.reRecreateComp();
+                generateUUID();
+                setChecked(false, "playlist");
+              }}
               to={{
                 pathname: "/playlists",
               }}

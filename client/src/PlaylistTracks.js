@@ -34,7 +34,7 @@ const PlaylistTrack = (props) => {
       className={style["item-container"]}
     >
       <div className={style["check-count-container"]}>
-        <div htmlFor="test" className={style["check-container"]}>
+        <div className={style["check-container"]}>
           <CheckIconPlaceH
             style={{
               display: props.checkAll ? "flex" : "none",

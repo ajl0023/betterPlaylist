@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, useHistory } from "react-router-dom";
 import Home from "./Home";
@@ -10,12 +10,19 @@ import {
   loginCheck,
 } from "./spotify-redux/actions/userActions";
 import style from "./styles/wrapper.module.scss";
+let uuid;
+export const generateUUID = () => {};
+generateUUID();
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => {
     return state.current_user;
   });
+  const [recreate, setRecreate] = useState(false);
+  const reRecreateComp = () => {
+    setRecreate(!recreate);
+  };
   useEffect(() => {
     const scopes = `user-read-private user-read-email playlist-read-private playlist-modify-private user-top-read user-read-recently-played playlist-modify-public`;
     const url_object = new URL(window.location);
@@ -33,9 +40,9 @@ function App() {
             dispatch(getUserInfoAction());
           });
         } else {
-          window.location.href = `https://accounts.spotify.com/authorize?client_id=da42a01c50ef409f802caf63a98de4d4&response_type=code&redirect_uri=https://pacific-reef-15984.herokuapp.com/&scope=${encodeURIComponent(
-            scopes
-          )}&show_dialog=true`;
+          window.location.href = `https://accounts.spotify.com/authorize?client_id=da42a01c50ef409f802caf63a98de4d4&response_type=code&redirect_uri=${
+            window.location.origin
+          }&scope=${encodeURIComponent(scopes)}&show_dialog=true`;
         }
       });
   }, []);
@@ -44,13 +51,16 @@ function App() {
   }
   return (
     <div className={style.container}>
-      <Navbar />
+      <Navbar reRecreateComp={reRecreateComp} />
       <Switch>
         <Route exact path="/">
           <Home></Home>
         </Route>{" "}
         <Route path="/playlists">
-          <PlaylistWrapper current_user={currentUser}></PlaylistWrapper>
+          <PlaylistWrapper
+            recreate={recreate}
+            current_user={currentUser}
+          ></PlaylistWrapper>
         </Route>
       </Switch>
     </div>

@@ -18,8 +18,6 @@ const SinglePlaylist = (props) => {
   const params = useParams();
   const dispatch = useDispatch();
   const getTracksRef = useRef();
-  const testRef = useRef();
-  testRef.current = 3;
   const currentPlayList = props.playlist[params.id];
   useEffect(() => {
     setPlaylist(currentPlayList);
@@ -191,8 +189,6 @@ const SinglePlaylist = (props) => {
             if (track.track.name.length > 0) {
               return (
                 <PlaylistTracks
-                  testArr={props.testArr}
-                  testRef={testRef}
                   changed={tracksMem}
                   key={track.uid}
                   index={i}

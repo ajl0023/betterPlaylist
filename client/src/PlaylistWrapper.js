@@ -17,16 +17,6 @@ import {
   recievePlaylists,
 } from "./spotify-redux/actions/playlistActions";
 import style from "./styles/playlistWrapper.module.scss";
-export function useFunction(callback) {
-  const ref = useRef();
-  ref.current = callback;
-  return useCallback(function () {
-    const callback = ref.current;
-    if (typeof callback === "function") {
-      return callback.apply(this, arguments);
-    }
-  }, []);
-}
 const PlaylistWrapper = (props) => {
   const location = useLocation();
   const [selectedAllIds, setSelectedAllIds] = useState([]);
@@ -38,7 +28,6 @@ const PlaylistWrapper = (props) => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [selected, setSelected] = useState([]);
   const [, setRefresh] = useState(false);
-  const [testArr, setTestArr] = useState([]);
   const [, setFilteredSearch] = useState([]);
   const [deletedArr, setDeletedArr] = useState([]);
   const dispatch = useDispatch();
@@ -106,6 +95,9 @@ const PlaylistWrapper = (props) => {
       return prevCopy;
     });
   };
+  useEffect(() => {
+    setSearchText("");
+  }, [props.recreate]);
   useEffect(() => {
     dispatch(recievePlaylists());
     setRefresh();
@@ -469,7 +461,6 @@ const PlaylistWrapper = (props) => {
         <Switch>
           <Route path={`${path}/:id`}>
             <SinglePlaylist
-              testArr={testArr}
               selectedAllIds={selectedAllIds}
               handleCheckAll={handleCheckAll}
               deletedArr={deletedArr}
