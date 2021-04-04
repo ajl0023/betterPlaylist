@@ -23,6 +23,7 @@ function App() {
   const reRecreateComp = () => {
     setRecreate(!recreate);
   };
+  console.log(window.location);
   useEffect(() => {
     const scopes = `user-read-private user-read-email playlist-read-private playlist-modify-private user-top-read user-read-recently-played playlist-modify-public`;
     const url_object = new URL(window.location);
@@ -41,7 +42,9 @@ function App() {
           });
         } else {
           window.location.href = `https://accounts.spotify.com/authorize?client_id=da42a01c50ef409f802caf63a98de4d4&response_type=code&redirect_uri=${
-            window.location.origin
+            window.location.port === "3000"
+              ? window.location.origin
+              : "https://pacific-reef-15984.herokuapp.com"
           }&scope=${encodeURIComponent(scopes)}&show_dialog=true`;
         }
       });
