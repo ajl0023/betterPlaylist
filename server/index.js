@@ -31,9 +31,10 @@ app.post("/api/authorization", (req, res) => {
     params: {
       grant_type: "authorization_code",
       code: code,
-      redirect_uri: process.env.PORT
-        ? "https://pacific-reef-15984.herokuapp.com"
-        : "http://localhost:3000",
+      redirect_uri:
+        req.headers["x-forwarded-host"] === "localhost:3000"
+          ? "http://localhost:3000"
+          : "https://pacific-reef-15984.herokuapp.com",
     },
   })
     .then((data) => {
