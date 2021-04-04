@@ -32,6 +32,18 @@ axios.interceptors.response.use(
 axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
   "access_token"
 )}`;
+
+const timedRefresh = () => {
+  return axios({
+    url: "/api/refresh",
+    method: "POST",
+    withCredentials: true,
+  }).then((data) => {
+    if (data.data) {
+      localStorage.setItem("access_token", data.data.access_token);
+    }
+  });
+};
 const logoutApi = () => {
   return axios({
     url: "/api/logout",
@@ -105,6 +117,7 @@ const getPlayListTracks = (id, offset) => {
     withCredentials: true,
   });
 };
+
 const deleteFromPlaylist = (playlist) => {
   return axios({
     url: `/api/playlists/${playlist.id}/track`,
@@ -117,6 +130,7 @@ const deleteFromPlaylist = (playlist) => {
   });
 };
 export {
+  timedRefresh,
   fetchSinglePlaylist,
   deleteFromPlaylist,
   getUserInfo,

@@ -4,7 +4,7 @@ import {
   USER_INFO_REQUEST,
   USER_INFO_SUCCESS,
 } from "../types/types";
-import { authorization, getUserInfo, logoutApi } from "./calls";
+import { authorization, getUserInfo, logoutApi, timedRefresh } from "./calls";
 
 export function loginCheck() {
   return new Promise(function (resolve, reject) {
@@ -40,6 +40,11 @@ export const getAccessToken = (code) => (dispatch, getState) => {
           });
           localStorage.setItem("access_token", data.data.access_token);
           resolve("");
+          //refresh access token every 30 minutes
+          // 1.8 * Math.pow(10, 6);
+          refreshTime();
+
+          // getAccessToken(code);
         }
       })
       .catch((err) => {
@@ -59,3 +64,11 @@ export function getUserInfoAction() {
     });
   };
 }
+// 
+const refreshTime = () => {
+  setTimeout(() => {
+    timedRefresh().then(() => {
+      refreshTime();
+    });
+  }, 1.8 * Math.pow(10, 6));
+};
