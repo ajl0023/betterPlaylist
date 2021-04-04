@@ -1,10 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import { ReactComponent as CheckIcon } from "./images/check.svg";
 import { ReactComponent as CheckIconPlaceH } from "./images/checkIconPlaceH.svg";
-import { useFunction } from "./PlaylistWrapper";
 import style from "./styles/playlisttracks.module.scss";
 const PlaylistTrack = (props) => {
-  const [checkUI, setUI] = useState(false);
   let track = props.playlistSet;
   const handleCheckClick = (trackid, playlistid, uri) => {
     props.handleCheckSelected(
@@ -120,6 +118,9 @@ const PlaylistTrack = (props) => {
   );
 };
 export default React.memo(PlaylistTrack, (prev, next) => {
+  if (prev.checkAll !== next.checkAll) {
+    return false;
+  }
   if (prev.isSelected === next.isSelected) {
     return true;
   }
