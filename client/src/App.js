@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, useHistory } from "react-router-dom";
 import Home from "./Home";
@@ -10,7 +10,6 @@ import {
   loginCheck,
 } from "./spotify-redux/actions/userActions";
 import style from "./styles/wrapper.module.scss";
-let uuid;
 export const generateUUID = () => {};
 generateUUID();
 function App() {
@@ -23,7 +22,6 @@ function App() {
   const reRecreateComp = () => {
     setRecreate(!recreate);
   };
-
   useEffect(() => {
     const scopes = `user-read-private user-read-email playlist-read-private playlist-modify-private user-top-read user-read-recently-played playlist-modify-public`;
     const url_object = new URL(window.location);
@@ -35,11 +33,15 @@ function App() {
         dispatch(getUserInfoAction());
       })
       .catch(() => {
-        if (decodedToken) {
-          dispatch(getAccessToken(decodedToken)).then(() => {
-            history.push("/");
-            dispatch(getUserInfoAction());
-          });
+        if (decodedToken && decodedToken !== "access_denied") {
+          dispatch(getAccessToken(decodedToken))
+            .then((access_token) => {
+              if (access_token) {
+                history.push("/");
+                dispatch(getUserInfoAction(access_token));
+              }
+            })
+            .catch(() => {});
         } else {
           window.location.href = `https://accounts.spotify.com/authorize?client_id=da42a01c50ef409f802caf63a98de4d4&response_type=code&redirect_uri=${
             window.location.origin === "http://localhost:3000"
@@ -58,13 +60,19 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home></Home>
-        </Route>{" "}
-        <Route path="/playlists">
-          <PlaylistWrapper
-            recreate={recreate}
-            current_user={currentUser}
-          ></PlaylistWrapper>
         </Route>
+        <Route
+          path="/playlists"
+          render={(props) => {
+            return (
+              <PlaylistWrapper
+                {...props}
+                recreate={recreate}
+                current_user={currentUser}
+              ></PlaylistWrapper>
+            );
+          }}
+        ></Route>
       </Switch>
     </div>
   );

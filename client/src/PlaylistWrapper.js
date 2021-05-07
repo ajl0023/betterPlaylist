@@ -1,23 +1,41 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, useLocation, useRouteMatch } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import { createSelector } from "reselect";
 import { ReactComponent as AddIcon } from "./images/add-icon.svg";
-import { ReactComponent as CheckIcon } from "./images/check.svg";
 import { ReactComponent as SearchIcon } from "./images/search.svg";
 import { ReactComponent as TrashIcon } from "./images/trash.svg";
 import Playlist from "./Playlist";
 import PlaylistAddModal from "./PlaylistAddModal";
 import PlaylistDeleteModal from "./PlaylistDeleteModal";
-import PlaylistTrack from "./PlaylistTracks";
+import SearchContainer from "./SearchContainer";
 import SinglePlaylist from "./SinglePlaylist";
 import {
   addTracksToPlaylists,
   deleteTrackFromPlaylists,
+  getMoreTracksPlaylist,
+  getTracksScroll,
   recievePlaylists,
+  searchPlaylists,
 } from "./spotify-redux/actions/playlistActions";
+import { CLEAR_SEARCH_RESULTS } from "./spotify-redux/types/types";
 import style from "./styles/playlistWrapper.module.scss";
-const PlaylistWrapper = (props) => {
+const searchResults = (state) => {
+  return state.search.results.length > 0;
+};
+const hasNext = (state) => {
+  return state.search.prevResults && state.search.prevResults.length > 0;
+};
+const searchResultsSelector = createSelector(
+  searchResults,
+  hasNext,
+  (searchResults, hasNext) => {
+    return { searchResults, hasNext };
+  }
+);
+export const PlaylistWrapper = (props) => {
+  const scrollContainerRef = useRef();
+  const searchActive = useSelector(searchResultsSelector);
   const location = useLocation();
   const [selectedAllIds, setSelectedAllIds] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -28,7 +46,7 @@ const PlaylistWrapper = (props) => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [selected, setSelected] = useState([]);
   const [, setRefresh] = useState(false);
-  const [, setFilteredSearch] = useState([]);
+  const [,] = useState([]);
   const [deletedArr, setDeletedArr] = useState([]);
   const dispatch = useDispatch();
   const closeDeletedModal = () => {
@@ -50,9 +68,11 @@ const PlaylistWrapper = (props) => {
   const findCurrentPlaylist = (id) => {
     setCurrentPlaylist(id);
   };
+  const searchResults = useSelector((state) => {
+    return state.search.results;
+  });
   const handleCheckSelected = (trackid, playlistid, uri, allTracks, index) => {
     setSelected((prev) => {
-      let searchArrCopy = [...searchArr];
       let selectedArr = [...prev];
       let selectedAllIdsCopy = [...selectedAllIds];
       let obj = {};
@@ -66,7 +86,6 @@ const PlaylistWrapper = (props) => {
       const prevCopy = [...prev];
       if (!findId) {
         prevCopy.push(obj);
-        let getTracks = allTracks;
       } else {
         let index = prevCopy.findIndex((obj) => {
           return obj.trackid === trackid;
@@ -80,15 +99,15 @@ const PlaylistWrapper = (props) => {
         }
         prevCopy.splice(index, 1);
       }
-      let checkAllFiltered = searchArrCopy.filter((track) => {
+      let checkAllFiltered = searchResults.filter((track) => {
         let findId = prevCopy.find((item) => {
-          return item.trackid === track.track.uid;
+          return item.trackid === track._id;
         });
         if (!findId) {
           return track;
         }
       });
-      if (checkAllFiltered.length === 0) {
+      if (checkAllFiltered.length === 0 && searchActive.searchResults) {
         selectedAllIdsCopy.push("search");
       }
       setSelectedAllIds(selectedAllIdsCopy);
@@ -123,72 +142,30 @@ const PlaylistWrapper = (props) => {
       setDropDown(false);
     }
   }, []);
+  const lastPosition = useRef(true);
   const handleChange = (e) => {
-    let tempArr = [];
     setSearchText("");
     setSelected([]);
-    let arrToSearch;
     let text = e.target.value.trim();
     const whitespace = /\s/g;
-    let searchComp;
     text = text.replace(whitespace, "");
-    const regex = new RegExp("^" + text, "gi");
-    if (location.pathname !== "/playlists") {
-      arrToSearch = getPlaylistsArr.find((playlist) => {
-        return playlist.id === currentPlaylist;
-      });
-      searchComp = arrToSearch.tracks.reduce((arr, item) => {
-        let track = getAllTracks[item];
-        let name = track.name;
-        if (regex.test(name.trim()) && text.length > 0) {
-          arr.push({
-            track: track,
-            playlist: arrToSearch,
-            uid: uuidv4(),
-          });
-        }
-        return arr;
-      }, []);
-    } else {
-      let allTracks = getPlaylistsArr.reduce((arr, playlist) => {
-        let tracksArr = playlist.tracks;
-        tracksArr.reduce((arrNest, trackNest) => {
-          arr.push({
-            ...getAllTracks[trackNest],
-            playlist: playlist,
-          });
-        }, []);
-        return arr;
-      }, []);
-      searchComp = allTracks.reduce((arr, track) => {
-        let name = track.name;
-        if (regex.test(name.trim()) && text.length > 0) {
-          arr.push({
-            track: track,
-            playlist: track.playlist,
-            uid: uuidv4(),
-          });
-        }
-        return arr;
-      }, []);
+    setSearchText(text);
+    if (text.length > 0) {
+      dispatch(
+        searchPlaylists(
+          text,
+          location.pathname === "/playlists",
+          currentPlaylist
+        )
+      )
+        .then((status) => {
+          if (status === 200) {
+            scrollContainerRef.current.scrollTo(0, 0);
+          }
+        })
+        .catch(() => {});
     }
-    setSearchText(e.target.value);
-    setSearchArr(searchComp);
-    setFilteredSearch(() => {
-      let obj = {};
-      for (let i = 0; i < tempArr.length; i++) {
-        if (obj[tempArr[i].playlist.id]) {
-          obj[tempArr[i].playlist.id].push(tempArr[i].track);
-        } else {
-          obj[tempArr[i].playlist.id] = [tempArr[i].track];
-        }
-      }
-      let keys = Object.keys(obj);
-      let toArray = keys.map((id) => {
-        return getPlaylists[id];
-      });
-      return toArray;
-    });
+    dispatch({ type: CLEAR_SEARCH_RESULTS, results: [] });
   };
   const handleDelete = () => {
     const copy = [...deletedArr];
@@ -199,25 +176,37 @@ const PlaylistWrapper = (props) => {
       }
     });
     let deleted = copy.concat(filteredselected);
-    dispatch(deleteTrackFromPlaylists(filteredselected)).then((status) => {
-      if (status.status === 200 || typeof status === "string") {
-        setDeletedArr(deleted);
-        setShowDeletedModal(false);
-        setDropDown(false);
-        setSelected([]);
-      }
-    });
+    dispatch(
+      deleteTrackFromPlaylists(filteredselected, searchActive.searchResults)
+    )
+      .then((status) => {
+        if ((status && status.status === 200) || typeof status === "string") {
+          setDeletedArr(deleted);
+          setShowDeletedModal(false);
+          setDropDown(false);
+          setSelected([]);
+          setSearchText("");
+          dispatch({ type: CLEAR_SEARCH_RESULTS });
+        }
+      })
+      .catch(() => {
+        alert("Data out of sync, click update to sync data with Spotify");
+      });
   };
   const handleAdd = useCallback(
     (playlists) => {
-      dispatch(addTracksToPlaylists(playlists, selected)).then((status) => {
-        if (status === 200) {
-          setShowAddModal(false);
-          setDropDown(false);
-          setSelected([]);
-          setSelectedAllIds([]);
-        }
-      });
+      dispatch(addTracksToPlaylists(playlists, selected))
+        .then((status) => {
+          if (status === 200) {
+            setShowAddModal(false);
+            setDropDown(false);
+            setSelected([]);
+            setSelectedAllIds([]);
+          }
+        })
+        .catch(() => {
+          alert("Data out of sync, click update to sync data with Spotify");
+        });
     },
     [selected]
   );
@@ -229,8 +218,8 @@ const PlaylistWrapper = (props) => {
       playlistId === "search"
         ? (tracks = tracks.map((track) => {
             return {
-              trackid: track.track.uid,
-              playlistid: track.playlist.id,
+              trackid: track._id,
+              playlistid: track.playlistid,
               uri: track.track.uri,
             };
           }))
@@ -263,25 +252,51 @@ const PlaylistWrapper = (props) => {
       return copyAll;
     });
   };
+  const checkScroll = useRef(true);
   if (!getPlaylistsArr) {
     return null;
   }
-  let filteredSearchArr = searchArr.filter((track) => {
-    let findDeleted = deletedArr.find((obj) => {
-      return obj.trackid === track.track.uid;
-    });
-    if (!findDeleted) {
-      return track;
-    }
-  });
   const isSelected = (trackId) => {
     const findId = selected.some((set) => {
       return set.trackid === trackId;
     });
     return findId;
   };
+  const handleFetchScroll = (e) => {
+    let scrollPos = Math.round(e.target.scrollHeight - e.target.scrollTop);
+    let clientHeight = e.target.clientHeight;
+    if (
+      scrollPos - 100 <= clientHeight &&
+      scrollPos + 20 >= clientHeight &&
+      lastPosition.current < e.target.scrollTop &&
+      checkScroll.current &&
+      searchActive.searchResults &&
+      searchActive.hasNext === true
+    ) {
+      checkScroll.current = false;
+      dispatch(
+        searchPlaylists(
+          searchText,
+          location.pathname === "/playlists",
+          currentPlaylist,
+          true
+        )
+      )
+        .then(() => {
+          checkScroll.current = true;
+        })
+        .catch(() => {});
+    }
+    lastPosition.current = e.target.scrollTop;
+  };
   return (
-    <div id="scroll-container" className={style["container-container"]}>
+    <div
+      ref={scrollContainerRef}
+      onScroll={handleFetchScroll}
+      id="scroll-container"
+      data-testid="scroll-container"
+      className={style["container-container"]}
+    >
       <div className={style["header-container"]}>
         <div
           className={
@@ -313,6 +328,7 @@ const PlaylistWrapper = (props) => {
               </div>
               <div className={style["main-options-icons"]}>
                 <TrashIcon
+                  data-testid="delete icon"
                   onClick={openDeletedModal}
                   className={style["trash-icon"]}
                 />
@@ -335,16 +351,9 @@ const PlaylistWrapper = (props) => {
             }
           >
             <p className={style["title-text"]}>Playlists</p>
-            <div
-              className={
-                style[
-                  Object.keys(getAllTracks).length > 0
-                    ? "input-container"
-                    : "inactive"
-                ]
-              }
-            >
+            <div className={style["input-container"]}>
               <input
+                aria-label="search-bar"
                 onChange={handleChange}
                 value={searchText}
                 className={style["input-searchbar"]}
@@ -387,7 +396,7 @@ const PlaylistWrapper = (props) => {
               <div
                 className={
                   style[
-                    searchArr.length > 0 && searchText.length > 0
+                    searchActive.searchResults && searchText.length > 0
                       ? "inactive"
                       : "item-container"
                   ]
@@ -398,83 +407,42 @@ const PlaylistWrapper = (props) => {
                 })}
               </div>
             </div>
-            <div
-              className={
-                style[
-                  searchArr.length > 0 && searchText.length > 0
-                    ? "tracks-container"
-                    : "inactive"
-                ]
-              }
-            >
-              <div className={style["label-container"]}>
-                <div className={style["label-check-container"]}>
-                  <CheckIcon
-                    style={{
-                      fill: selectedAllIds.includes("search")
-                        ? "#1db954"
-                        : "white",
-                      display: selectedAllIds.includes("search")
-                        ? "block"
-                        : "none",
-                    }}
-                    onClick={() => {
-                      handleCheckAll(searchArr, "search", false);
-                    }}
-                    className={style["check-box"]}
-                  />
-                  <li
-                    style={{
-                      display: selectedAllIds.includes("search")
-                        ? "none"
-                        : "block",
-                    }}
-                    className={style["label-count"]}
-                  >
-                    #
-                  </li>
-                </div>
-                <li className={style["label-title"]}>title</li>
-                <li className={style["label-album"]}>album</li>
-                <li className={style["label-playlist"]}>playlist</li>{" "}
-              </div>
-              <div className={style["item-wrapper"]}>
-                {filteredSearchArr.map((track, i) => {
-                  return (
-                    <PlaylistTrack
-                      checkAll={selected.length > 0}
-                      isSelected={isSelected(track.track.uid)}
-                      searchArr={searchArr}
-                      deletedArr={deletedArr}
-                      key={track.track && track.track.uid + track.playlist.uid}
-                      handleCheckSelected={handleCheckSelected}
-                      playlistSet={track}
-                      selected={selected}
-                      index={i}
-                    ></PlaylistTrack>
-                  );
-                })}
-              </div>
-            </div>
           </div>
+          {searchActive.searchResults ? (
+            <SearchContainer
+              handleCheckAll={handleCheckAll}
+              location={location}
+              selectedAllIds={selectedAllIds}
+              searchArr={searchArr}
+              selected={selected}
+              isSelected={isSelected}
+              handleCheckSelected={handleCheckSelected}
+              currentPlaylist={currentPlaylist}
+              deletedArr={deletedArr}
+            />
+          ) : null}
         </div>
         <Switch>
           <Route path={`${path}/:id`}>
-            <SinglePlaylist
-              selectedAllIds={selectedAllIds}
-              handleCheckAll={handleCheckAll}
-              deletedArr={deletedArr}
-              searchText={searchText.length}
-              searchArr={searchArr.length}
-              findCurrentPlaylist={findCurrentPlaylist}
-              handleCheckSelected={handleCheckSelected}
-              playlist={getPlaylists}
-              selected={selected}
-              allTracks={getAllTracks}
-            />
+            {searchActive.searchResults ? null : (
+              <SinglePlaylist
+                handleFetchScroll={handleFetchScroll}
+                selectedAllIds={selectedAllIds}
+                handleCheckAll={handleCheckAll}
+                deletedArr={deletedArr}
+                searchText={searchText.length}
+                searchArr={searchArr.length}
+                findCurrentPlaylist={findCurrentPlaylist}
+                handleCheckSelected={handleCheckSelected}
+                selected={selected}
+                searchActive={searchActive.searchResults}
+                allTracks={getAllTracks}
+                scrollContainer={scrollContainerRef}
+              />
+            )}
           </Route>
         </Switch>
-      </div>{" "}
+      </div>
     </div>
   );
 };

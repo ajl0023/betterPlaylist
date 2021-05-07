@@ -5,7 +5,10 @@ import { ReactComponent as Logo } from "./images/logo.svg";
 import { generateUUID } from "./App";
 import { ReactComponent as PlaylistIcon } from "./images/playlist-icon.svg";
 import style from "./styles/Navbar.module.scss";
+import { useDispatch } from "react-redux";
+import { CLEAR_SEARCH_RESULTS } from "./spotify-redux/types/types";
 const Navbar = (props) => {
+  const dispatch = useDispatch();
   const [checkedState, setChecked] = useState(false);
   const handleClose = (check, type) => {
     let trigger = document.getElementById("trigger");
@@ -72,18 +75,18 @@ const Navbar = (props) => {
                 props.reRecreateComp();
                 generateUUID();
                 setChecked(false, "playlist");
+                dispatch({ type: CLEAR_SEARCH_RESULTS });
               }}
               to={{
                 pathname: "/playlists",
               }}
               className={style["menu-item"]}
             >
-              {" "}
               <PlaylistIcon className={style["playlist-icon"]} />
               <p>Playlists</p>
             </Link>
-          </div>{" "}
-        </div>{" "}
+          </div>
+        </div>
         <div></div>
       </div>
     </>

@@ -10,7 +10,7 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
-const store = configureStore();
+ const store = configureStore();
 ReactDOM.hydrate(
   <Router>
     <Provider store={store}>

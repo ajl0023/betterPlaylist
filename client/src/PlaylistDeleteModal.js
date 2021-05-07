@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import style from "./styles/playlistOptionsModal.module.scss";
 const PlaylistOptionsModal = (props) => {
+  const error = useSelector((state) => {
+    return state.playlists.err;
+  });
   const handleDelete = () => {
     props.handleDelete();
   };
@@ -8,7 +12,10 @@ const PlaylistOptionsModal = (props) => {
     props.closeModal();
   };
   return (
-    <div className={style[props.showModal ? "container" : "inactive"]}>
+    <div
+      data-testid="delete modal test"
+      className={style[props.showModal ? "container" : "inactive"]}
+    >
       <div onClick={props.closeModal} className={style["container-mask"]}></div>
       <div className={style["modal-container"]}>
         <div className={style["header-container"]}>
@@ -18,7 +25,7 @@ const PlaylistOptionsModal = (props) => {
           >
             <span className={style["main-trigger-icon-container"]}>
               <i className={style["main-trigger-icon"]}></i>
-            </span>{" "}
+            </span>
           </div>
         </div>
         <p>Are you sure you want to delete these tracks?</p>
@@ -26,7 +33,12 @@ const PlaylistOptionsModal = (props) => {
           <button onClick={closeModal} className={style["cancel-button"]}>
             Cancel
           </button>
-          <button onClick={handleDelete} className={style["delete-button"]}>
+          <button
+            role="button"
+            name="delete-button"
+            onClick={handleDelete}
+            className={style["delete-button"]}
+          >
             Delete
           </button>
         </div>
@@ -34,10 +46,4 @@ const PlaylistOptionsModal = (props) => {
     </div>
   );
 };
-export default React.memo(PlaylistOptionsModal, (prev, next) => {
-  if (prev.showModal === next.showModal) {
-    return true;
-  } else if (prev.checkAll !== next.checkAll) {
-    return true;
-  }
-});
+export default PlaylistOptionsModal;

@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { Map } from "immutable";
+import ObjectId from "bson-objectid";
 import {
   REQUEST_TOP_TRACKS,
   RECIEVE_TOP_TRACKS,
@@ -19,25 +20,40 @@ import {
   REQUEST_TRACKS,
   DELETE_TRACK_SUCCESS,
   GET_SINGLE_PLAYLIST,
+  RECIEVE_SEARCH_RESULTS,
+  REQUEST_SEARCH_RESULTS,
+  CLEAR_SEARCH_RESULTS,
+  SCROLL_SEARCH_RESULTS,
+  RECIEVE_ADDITIONAL_TRACKS,
+  DATABASE_SYNC_ERROR,
+  UPDATE_PLAYLIST_SUCCESS,
+  UPDATE_PLAYLIST_REQUEST,
 } from "../types/types";
 import {} from "../actions/trackActions";
 function addTracksTrack(state, action) {
+  const tracks = {};
+  for (let id in action.tracksToAdd) {
+    for (let track of action.tracksToAdd[id]) {
+      const copy = { ...track };
+      copy["playlistid"] = id;
+      tracks[track.uid] = copy;
+    }
+  }
   const stateCopy = { ...state };
   stateCopy.byIds = {
     ...stateCopy.byIds,
-    ...action.trackObjs,
+    ...tracks,
   };
   return stateCopy;
 }
 function deleteTrackFunc(state, action) {
-  return {
-    ...state,
-    byIds: {
-      ...action.filteredObj,
-    },
-  };
+  const newState = { ...state };
+  for (let id of action.trackids) {
+    delete state.byIds[id];
+  }
+  return newState;
 }
-function tracks(
+export function tracks(
   state = {
     isFetching: false,
     err: null,
@@ -48,12 +64,42 @@ function tracks(
     cursor: null,
     byIds: {},
     tracks: {},
+    offset: null,
   },
   action
 ) {
   switch (action.type) {
     case DELETE_TRACK_SUCCESS:
       return deleteTrackFunc(state, action);
+    case UPDATE_PLAYLIST_SUCCESS:
+      const { tracks, idsToRemove } = action;
+      const copy = { ...state };
+      for (let track in copy.byIds) {
+        if (idsToRemove.includes(track)) {
+          delete copy.byIds[track];
+        }
+      }
+      copy.byIds = {
+        ...copy.byIds,
+        ...tracks,
+      };
+      return copy;
+    case GET_SINGLE_PLAYLIST:
+      return Object.assign({}, state, {
+        byIds: {
+          ...state.byIds,
+          ...action.tracks,
+        },
+        allIds: [...state.allIds, ...action.trackIds],
+      });
+    case RECIEVE_ADDITIONAL_TRACKS:
+      return Object.assign({}, state, {
+        byIds: {
+          ...state.byIds,
+          ...action.tracks,
+        },
+        allIds: [...state.allIds, ...action.trackids],
+      });
     case RECIEVE_TRACKS:
       return Object.assign({}, state, {
         byIds: {
@@ -68,7 +114,7 @@ function tracks(
         allIds: [...action.trackIds],
         byIds: {
           ...state.byIds,
-          ...action.allTracksObj,
+          ...action.tracks,
         },
       });
     case REQUEST_TOP_TRACKS:
@@ -97,20 +143,24 @@ function tracks(
   }
 }
 function addTracks(state, action) {
-  const { playlists, tracksToAdd } = action;
+  const { playlists, trackids, tracksToAdd } = action;
   let obj = { ...state };
   for (let i of playlists) {
-    obj.byIds[i].tracks = [...obj.byIds[i].tracks, ...tracksToAdd];
+    const ids = tracksToAdd[i].map((track) => {
+      return track.uid;
+    });
+    obj.byIds[i].tracks = [...obj.byIds[i].tracks, ...ids];
   }
   return obj;
 }
 function deleteTrackPlaylist(state, action) {
   let obj = { ...state };
-  for (let item of action.items) {
-    obj.byIds[item.playlistid].tracks = obj.byIds[
-      item.playlistid
-    ].tracks.filter((id) => {
-      if (id !== item.trackid) {
+  for (let item in action.apiData) {
+    obj.byIds[item].tracks = obj.byIds[item].tracks.filter((id) => {
+      const find = action.apiData[item].tracks.some((track) => {
+        return track.trackid.toString() === id.toString();
+      });
+      if (!find) {
         return id;
       }
     });
@@ -118,37 +168,55 @@ function deleteTrackPlaylist(state, action) {
   return obj;
 }
 function recievePlaylistTracks(state, action) {
-  const tracksObj = action.tracks;
+  const tracks = action.tracks;
   const pageInfo = action.pageInfo;
-  for (let key in tracksObj) {
-    state = {
-      ...state,
-      byIds: {
-        ...state.byIds,
-        [key]: {
-          ...state.byIds[key],
-          tracks: [...tracksObj[key]],
-          page: {
-            ...state.byIds[key].page,
-            ...pageInfo[key],
-          },
+  state = {
+    ...state,
+    byIds: {
+      ...state.byIds,
+      [action.playlistid]: {
+        ...state.byIds[action.playlistid],
+        tracks: [...action.trackIds],
+        page: {
+          ...state.byIds[action.playlistid].page,
+          ...pageInfo,
         },
       },
-    };
-  }
+    },
+  };
   return state;
 }
-function playlists(
+export function playlists(
   state = {
     byIds: {},
     allIds: [],
     isFetching: false,
+    isUpdating: false,
     err: null,
     status: "idle",
   },
   action
 ) {
   switch (action.type) {
+    case DATABASE_SYNC_ERROR:
+      return Object.assign({}, state, {
+        err: "Click update to sync data from Spotify",
+      });
+    case UPDATE_PLAYLIST_REQUEST:
+      return Object.assign({}, state, {
+        isUpdating: true,
+      });
+    case UPDATE_PLAYLIST_SUCCESS:
+      function update() {
+        const playlists = action.playlists;
+        const copy = { ...state };
+        for (let playlist in playlists) {
+          copy.byIds[playlist] = playlists[playlist];
+        }
+        copy.isUpdating = false;
+        return copy;
+      }
+      return update();
     case DELETE_TRACK_SUCCESS:
       return deleteTrackPlaylist(state, action);
     case REQUEST_TRACKS:
@@ -160,9 +228,23 @@ function playlists(
       return Object.assign({}, state, {
         byIds: {
           ...state.byIds,
-          [action.data.id]: { ...action.data },
+          [action.data.id]: { ...action.data, offset: action.offset },
         },
         allIds: [...state.allIds, action.data.id],
+      });
+    case RECIEVE_ADDITIONAL_TRACKS:
+      return Object.assign({}, state, {
+        byIds: {
+          ...state.byIds,
+          [action.playlistid]: {
+            ...state.byIds[action.playlistid],
+            offset: action.offset,
+            tracks: [
+              ...state.byIds[action.playlistid].tracks,
+              ...action.trackids,
+            ],
+          },
+        },
       });
     case RECIEVE_TRACKS:
       return Object.assign({}, state, {
@@ -197,11 +279,14 @@ function playlists(
         isFetching: true,
       });
     case RECIEVE_PLAYLISTS:
-      return Object.assign({}, state, {
-        byIds: action.byIds,
-        allIds: action.allIds,
-        isFetching: false,
-      });
+      const copy = { ...state };
+      for (let playlist in action.byIds) {
+        copy.byIds = {
+          ...copy.byIds,
+          [playlist]: { ...action.byIds[playlist], ...state.byIds[playlist] },
+        };
+      }
+      return copy;
     default:
       return state;
   }
@@ -221,7 +306,7 @@ function navbar(
       return state;
   }
 }
-function current_user(
+export function current_user(
   state = {
     access_token: localStorage.getItem("access_token"),
     loggedIn: false,
@@ -255,10 +340,51 @@ function current_user(
       return state;
   }
 }
+function search(
+  state = {
+    fetching: false,
+    category: "all",
+    results: [],
+    prevResults: null,
+  },
+  action
+) {
+  switch (action.type) {
+    case DELETE_TRACK_SUCCESS:
+      const filtered = state.results.filter((track) => {
+        return !action.trackids.includes(track);
+      });
+      return Object.assign({}, state, {
+        results: filtered,
+      });
+    case REQUEST_SEARCH_RESULTS:
+      return Object.assign({}, state, {
+        fetching: true,
+      });
+    case RECIEVE_SEARCH_RESULTS:
+      return Object.assign({}, state, {
+        fetching: false,
+        results: [...action.results],
+        prevResults: action.results,
+      });
+    case SCROLL_SEARCH_RESULTS:
+      return Object.assign({}, state, {
+        results: [...state.results, ...action.results],
+        prevResults: action.results,
+      });
+    case CLEAR_SEARCH_RESULTS:
+      return Object.assign({}, state, {
+        results: [],
+      });
+    default:
+      return state;
+  }
+}
 const rootReducer = combineReducers({
   current_user,
   tracks,
   playlists,
   navbar,
+  search,
 });
 export default rootReducer;

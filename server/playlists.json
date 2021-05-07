@@ -1,0 +1,3211 @@
+[{
+  "_id": {
+    "$oid": "608a30355d933b44d87baa71"
+  },
+  "collaborative": false,
+  "description": "",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/2ghQtiGDsCWZrVEywFmEfl"
+  },
+  "href": "https://api.spotify.com/v1/playlists/2ghQtiGDsCWZrVEywFmEfl",
+  "id": "2ghQtiGDsCWZrVEywFmEfl",
+  "images": [
+    {
+      "height": 640,
+      "url": "https://i.scdn.co/image/ab67616d0000b2735873b13405402326a42218e1",
+      "width": 640
+    }
+  ],
+  "name": "23232323",
+  "owner": {
+    "display_name": "Austin Lee",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/1239763793"
+    },
+    "href": "https://api.spotify.com/v1/users/1239763793",
+    "id": "1239763793",
+    "type": "user",
+    "uri": "spotify:user:1239763793"
+  },
+  "primary_color": null,
+  "public": false,
+  "snapshot_id": "MTg0LGIyYjdjM2NkNGYxMGM2MGYzNGRmM2JjMTQ5OGNhYjA2OGI0ZWExOWM=",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/2ghQtiGDsCWZrVEywFmEfl/tracks",
+    "total": 49
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:2ghQtiGDsCWZrVEywFmEfl",
+  "tracksArr": [
+    {
+      "$oid": "608a302d5d933b44d87ba6d2"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6d3"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6d4"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6d5"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6d6"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6d7"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6d8"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6d9"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6da"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6db"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6dc"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6dd"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6de"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6df"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6e0"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6e1"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6e2"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6e3"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6e4"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6e5"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6e6"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6e7"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6e8"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6e9"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6ea"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6eb"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6ec"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6ed"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6ee"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6ef"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6f0"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6f1"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6f2"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6f3"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6f4"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6f5"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6f6"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6f7"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6f8"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6f9"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6fa"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6fb"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6fc"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6fd"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6fe"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba6ff"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba700"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba701"
+    },
+    {
+      "$oid": "608a302d5d933b44d87ba702"
+    },
+    {
+      "$oid": "608a3169ce67e6ba2d0bd1ae"
+    },
+    {
+      "$oid": "608a31805c063c5f0468c09e"
+    },
+    {
+      "$oid": "608a31805c063c5f0468c09f"
+    },
+    {
+      "$oid": "608a3291efcb307f40f93e72"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "608a30355d933b44d87baa72"
+  },
+  "collaborative": false,
+  "description": "",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/5SiP1oxlUAGXYc2g1fz2LO"
+  },
+  "href": "https://api.spotify.com/v1/playlists/5SiP1oxlUAGXYc2g1fz2LO",
+  "id": "5SiP1oxlUAGXYc2g1fz2LO",
+  "images": [
+    {
+      "height": 640,
+      "url": "https://mosaic.scdn.co/640/ab67616d0000b273529c6fa82d23f65076c1579bab67616d0000b2739416ed64daf84936d89e671cab67616d0000b273a343a71217a92d6db7147173ab67616d0000b273f51eac117082c8200a8a860b",
+      "width": 640
+    },
+    {
+      "height": 300,
+      "url": "https://mosaic.scdn.co/300/ab67616d0000b273529c6fa82d23f65076c1579bab67616d0000b2739416ed64daf84936d89e671cab67616d0000b273a343a71217a92d6db7147173ab67616d0000b273f51eac117082c8200a8a860b",
+      "width": 300
+    },
+    {
+      "height": 60,
+      "url": "https://mosaic.scdn.co/60/ab67616d0000b273529c6fa82d23f65076c1579bab67616d0000b2739416ed64daf84936d89e671cab67616d0000b273a343a71217a92d6db7147173ab67616d0000b273f51eac117082c8200a8a860b",
+      "width": 60
+    }
+  ],
+  "name": "My Playlist #7",
+  "owner": {
+    "display_name": "Austin Lee",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/1239763793"
+    },
+    "href": "https://api.spotify.com/v1/users/1239763793",
+    "id": "1239763793",
+    "type": "user",
+    "uri": "spotify:user:1239763793"
+  },
+  "primary_color": null,
+  "public": false,
+  "snapshot_id": "Mzk0LGFjZjAyODQxZTJjNGUwYTc4ZjYxMDU5NmMwN2E0YmQ0NDA3YzA1ZDU=",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/5SiP1oxlUAGXYc2g1fz2LO/tracks",
+    "total": 356
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:5SiP1oxlUAGXYc2g1fz2LO",
+  "tracksArr": [
+    {
+      "$oid": "608a302e5d933b44d87ba703"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba704"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba705"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba706"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba707"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba708"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba709"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba70a"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba70b"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba70c"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba70d"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba70e"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba70f"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba710"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba711"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba712"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba713"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba714"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba715"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba716"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba717"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba718"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba719"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba71a"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba71b"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba71c"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba71d"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba71e"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba71f"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba720"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba721"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba722"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba723"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba724"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba725"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba726"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba727"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba728"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba729"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba72a"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba72b"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba72c"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba72d"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba72e"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba72f"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba730"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba731"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba732"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba733"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba734"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba735"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba736"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba737"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba738"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba739"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba73a"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba73b"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba73c"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba73d"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba73e"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba73f"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba740"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba741"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba742"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba743"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba744"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba745"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba746"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba747"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba748"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba749"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba74a"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba74b"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba74c"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba74d"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba74e"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba74f"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba750"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba751"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba752"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba753"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba754"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba755"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba756"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba757"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba758"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba759"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba75a"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba75b"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba75c"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba75d"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba75e"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba75f"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba760"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba761"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba762"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba763"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba764"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba765"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba766"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7cb"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7cc"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7cd"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7ce"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7cf"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7d0"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7d1"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7d2"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7d3"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7d4"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7d5"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7d6"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7d7"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7d8"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7d9"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7da"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7db"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7dc"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7dd"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7de"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7df"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7e0"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7e1"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7e2"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7e3"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7e4"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7e5"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7e6"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7e7"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7e8"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7e9"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7ea"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7eb"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7ec"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7ed"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7ee"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7ef"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7f0"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7f1"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7f2"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7f3"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7f4"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7f5"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7f6"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7f7"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7f8"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7f9"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7fa"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7fb"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7fc"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7fd"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7fe"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba7ff"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba800"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba801"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba802"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba803"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba804"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba805"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba806"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba807"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba808"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba809"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba80a"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba80b"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba80c"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba80d"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba80e"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba80f"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba810"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba811"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba812"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba813"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba814"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba815"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba816"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba817"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba818"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba819"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba81a"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba81b"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba81c"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba81d"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba81e"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba81f"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba820"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba821"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba822"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba823"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba824"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba825"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba826"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba827"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba828"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba829"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba82a"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba82b"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba82c"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba82d"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba82e"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba838"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba839"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba83a"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba83b"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba83c"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba83d"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba83e"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba83f"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba840"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba841"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba842"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba843"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba844"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba845"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba846"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba847"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba848"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba849"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba84a"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba84b"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba84c"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba84d"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba84e"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba84f"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba850"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba851"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba852"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba853"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba854"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba855"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba856"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba857"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba858"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba859"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba85a"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba85b"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba85c"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba85d"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba85e"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba85f"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba860"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba861"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba862"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba863"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba864"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba865"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba866"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba867"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba868"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba869"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba86a"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba86b"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba86c"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba86d"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba86e"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba86f"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba870"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba871"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba872"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba873"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba874"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba875"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba876"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba877"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba878"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba879"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba87a"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba87b"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba87c"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba87d"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba87e"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba87f"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba880"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba881"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba882"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba883"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba884"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba885"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba886"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba887"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba888"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba889"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba88a"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba88b"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba88c"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba88d"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba88e"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba88f"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba890"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba891"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba892"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba893"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba894"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba895"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba896"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba897"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba898"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba899"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba913"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba914"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba915"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba916"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba917"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba918"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba919"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba91a"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba91b"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba91c"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba91d"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba91e"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba91f"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba920"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba921"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba922"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba923"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba924"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba925"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba926"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba927"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba928"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba929"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba92a"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba92b"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba92c"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba92d"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba92e"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba92f"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba930"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba931"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba932"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba933"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba934"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba935"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba936"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba937"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba938"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba939"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba93a"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba93b"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba93c"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba93d"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba93e"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba93f"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba940"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba941"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba942"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba943"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba944"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba945"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba946"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba947"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba948"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba949"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba94a"
+    },
+    {
+      "$oid": "608a3169ce67e6ba2d0bd1af"
+    },
+    {
+      "$oid": "608a31805c063c5f0468c0a0"
+    },
+    {
+      "$oid": "608a31805c063c5f0468c0a1"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "608a30355d933b44d87baa73"
+  },
+  "collaborative": false,
+  "description": "",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/2fIVdK6qAs8YNmhfpJIBPS"
+  },
+  "href": "https://api.spotify.com/v1/playlists/2fIVdK6qAs8YNmhfpJIBPS",
+  "id": "2fIVdK6qAs8YNmhfpJIBPS",
+  "images": [
+    {
+      "height": 640,
+      "url": "https://i.scdn.co/image/ab67616d0000b273f51eac117082c8200a8a860b",
+      "width": 640
+    }
+  ],
+  "name": "My playlist #6",
+  "owner": {
+    "display_name": "Austin Lee",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/1239763793"
+    },
+    "href": "https://api.spotify.com/v1/users/1239763793",
+    "id": "1239763793",
+    "type": "user",
+    "uri": "spotify:user:1239763793"
+  },
+  "primary_color": null,
+  "public": false,
+  "snapshot_id": "MjM5LDQyNTNhMmM0ODNkNzY2ZjNlYmI4ZWVjMzVlNzE3MmVkZmMxNWVhYTQ=",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/2fIVdK6qAs8YNmhfpJIBPS/tracks",
+    "total": 107
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:2fIVdK6qAs8YNmhfpJIBPS",
+  "tracksArr": [
+    {
+      "$oid": "608a302e5d933b44d87ba767"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba768"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba769"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba76a"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba76b"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba76c"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba76d"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba76e"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba76f"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba770"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba771"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba772"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba773"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba774"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba775"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba776"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba777"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba778"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba779"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba77a"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba77b"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba77c"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba77d"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba77e"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba77f"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba780"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba781"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba782"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba783"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba784"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba785"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba786"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba787"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba788"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba789"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba78a"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba78b"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba78c"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba78d"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba78e"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba78f"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba790"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba791"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba792"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba793"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba794"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba795"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba796"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba797"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba798"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba799"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba79a"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba79b"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba79c"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba79d"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba79e"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba79f"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7a0"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7a1"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7a2"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7a3"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7a4"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7a5"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7a6"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7a7"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7a8"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7a9"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7aa"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7ab"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7ac"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7ad"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7ae"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7af"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7b0"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7b1"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7b2"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7b3"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7b4"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7b5"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7b6"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7b7"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7b8"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7b9"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7ba"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7bb"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7bc"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7bd"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7be"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7bf"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7c0"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7c1"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7c2"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7c3"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7c4"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7c5"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7c6"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7c7"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7c8"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7c9"
+    },
+    {
+      "$oid": "608a302e5d933b44d87ba7ca"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba82f"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba830"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba831"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba832"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba833"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba834"
+    },
+    {
+      "$oid": "608a302f5d933b44d87ba835"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "608a30355d933b44d87baa74"
+  },
+  "collaborative": false,
+  "description": "",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/0mePRlnjYWGFKl9yutsDt0"
+  },
+  "href": "https://api.spotify.com/v1/playlists/0mePRlnjYWGFKl9yutsDt0",
+  "id": "0mePRlnjYWGFKl9yutsDt0",
+  "images": [
+    {
+      "height": 640,
+      "url": "https://i.scdn.co/image/ab67616d0000b273f51eac117082c8200a8a860b",
+      "width": 640
+    }
+  ],
+  "name": "new",
+  "owner": {
+    "display_name": "Austin Lee",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/1239763793"
+    },
+    "href": "https://api.spotify.com/v1/users/1239763793",
+    "id": "1239763793",
+    "type": "user",
+    "uri": "spotify:user:1239763793"
+  },
+  "primary_color": null,
+  "public": false,
+  "snapshot_id": "MTY1LDAyNWU0MGVlY2QxNDJjNWIxNGUzNzY2YWQ2NDY0MDI2ZTNiYTg4MzM=",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/0mePRlnjYWGFKl9yutsDt0/tracks",
+    "total": 86
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:0mePRlnjYWGFKl9yutsDt0",
+  "tracksArr": [
+    {
+      "$oid": "608a30305d933b44d87ba89a"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba89b"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba89c"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba89d"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba89e"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba89f"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8a0"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8a1"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8a2"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8a3"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8a4"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8a5"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8a6"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8a7"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8a8"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8a9"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8aa"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ab"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ac"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ad"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ae"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8af"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8b0"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8b1"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8b2"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8b3"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8b4"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8b5"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8b6"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8b7"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8b8"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8b9"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ba"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8bb"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8bc"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8bd"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8be"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8bf"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8c0"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8c1"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8c2"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8c3"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8c4"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8c5"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8c6"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8c7"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8c8"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8c9"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ca"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8cb"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8cc"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8cd"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ce"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8cf"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8d0"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8d1"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8d2"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8d3"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8d4"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8d5"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8d6"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8d7"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8d8"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8d9"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8da"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8db"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8dc"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8dd"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8de"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8df"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8e0"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8e1"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8e2"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8e3"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8e4"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8e5"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8e6"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8e7"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8e8"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8e9"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ea"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8eb"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ec"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ed"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ee"
+    },
+    {
+      "$oid": "608a30305d933b44d87ba8ef"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "608a30355d933b44d87baa75"
+  },
+  "collaborative": false,
+  "description": "",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/2ctOno09OMyL9ZGHUTY744"
+  },
+  "href": "https://api.spotify.com/v1/playlists/2ctOno09OMyL9ZGHUTY744",
+  "id": "2ctOno09OMyL9ZGHUTY744",
+  "images": [
+    {
+      "height": 640,
+      "url": "https://mosaic.scdn.co/640/ab67616d0000b273529c6fa82d23f65076c1579bab67616d0000b273bf1eceb436f720897ffc6c9dab67616d0000b273e3c038a473e01482d1e9eb07ab67616d0000b273f51eac117082c8200a8a860b",
+      "width": 640
+    },
+    {
+      "height": 300,
+      "url": "https://mosaic.scdn.co/300/ab67616d0000b273529c6fa82d23f65076c1579bab67616d0000b273bf1eceb436f720897ffc6c9dab67616d0000b273e3c038a473e01482d1e9eb07ab67616d0000b273f51eac117082c8200a8a860b",
+      "width": 300
+    },
+    {
+      "height": 60,
+      "url": "https://mosaic.scdn.co/60/ab67616d0000b273529c6fa82d23f65076c1579bab67616d0000b273bf1eceb436f720897ffc6c9dab67616d0000b273e3c038a473e01482d1e9eb07ab67616d0000b273f51eac117082c8200a8a860b",
+      "width": 60
+    }
+  ],
+  "name": "My Playlist #4",
+  "owner": {
+    "display_name": "Austin Lee",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/1239763793"
+    },
+    "href": "https://api.spotify.com/v1/users/1239763793",
+    "id": "1239763793",
+    "type": "user",
+    "uri": "spotify:user:1239763793"
+  },
+  "primary_color": null,
+  "public": false,
+  "snapshot_id": "MTAyLDUyM2I5ZmJkN2VjZDMxNWExMzI5MDUyM2Q1NjI0ZmIxNzcyN2ViODc=",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/2ctOno09OMyL9ZGHUTY744/tracks",
+    "total": 35
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:2ctOno09OMyL9ZGHUTY744",
+  "tracksArr": [
+    {
+      "$oid": "608a30315d933b44d87ba8f0"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8f1"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8f2"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8f3"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8f4"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8f5"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8f6"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8f7"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8f8"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8f9"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8fa"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8fb"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8fc"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8fd"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8fe"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba8ff"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba900"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba901"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba902"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba903"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba904"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba905"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba906"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba907"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba908"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba909"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba90a"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba90b"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba90c"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba90d"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba90e"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba90f"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba910"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba911"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba912"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "608a30355d933b44d87baa76"
+  },
+  "collaborative": false,
+  "description": "The songs you loved most this year, all wrapped up.",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/37i9dQZF1EMaePWu6tIX04"
+  },
+  "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EMaePWu6tIX04",
+  "id": "37i9dQZF1EMaePWu6tIX04",
+  "images": [
+    {
+      "height": null,
+      "url": "https://lineup-images.scdn.co/wrapped-2020-top100_LARGE-en.jpg",
+      "width": null
+    }
+  ],
+  "name": "Your Top Songs 2020",
+  "owner": {
+    "display_name": "Spotify",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/spotify"
+    },
+    "href": "https://api.spotify.com/v1/users/spotify",
+    "id": "spotify",
+    "type": "user",
+    "uri": "spotify:user:spotify"
+  },
+  "primary_color": null,
+  "public": false,
+  "snapshot_id": "MjY3NzQ2MTEsMDAwMDAwMDBiNmU2YzdkMTk3YzYzNjViMTk3ZTRiNThmZDhhMzM1Yg==",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EMaePWu6tIX04/tracks",
+    "total": 100
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:37i9dQZF1EMaePWu6tIX04",
+  "tracksArr": [
+    {
+      "$oid": "608a30315d933b44d87ba94b"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba94c"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba94d"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba94e"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba94f"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba950"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba951"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba952"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba953"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba954"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba955"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba956"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba957"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba958"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba959"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba95a"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba95b"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba95c"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba95d"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba95e"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba95f"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba960"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba961"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba962"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba963"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba964"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba965"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba966"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba967"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba968"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba969"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba96a"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba96b"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba96c"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba96d"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba96e"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba96f"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba970"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba971"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba972"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba973"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba974"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba975"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba976"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba977"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba978"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba979"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba97a"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba97b"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba97c"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba97d"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba97e"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba97f"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba980"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba981"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba982"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba983"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba984"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba985"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba986"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba987"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba988"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba989"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba98a"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba98b"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba98c"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba98d"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba98e"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba98f"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba990"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba991"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba992"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba993"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba994"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba995"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba996"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba997"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba998"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba999"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba99a"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba99b"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba99c"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba99d"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba99e"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba99f"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9a0"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9a1"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9a2"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9a3"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9a4"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9a5"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9a6"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9a7"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9a8"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9a9"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9aa"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9ab"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9ac"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9ad"
+    },
+    {
+      "$oid": "608a30315d933b44d87ba9ae"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "608a30355d933b44d87baa77"
+  },
+  "collaborative": false,
+  "description": "",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/53leIaS6WSmo2WGpyY6jcq"
+  },
+  "href": "https://api.spotify.com/v1/playlists/53leIaS6WSmo2WGpyY6jcq",
+  "id": "53leIaS6WSmo2WGpyY6jcq",
+  "images": [
+    {
+      "height": 640,
+      "url": "https://i.scdn.co/image/ab67616d0000b273bf1eceb436f720897ffc6c9d",
+      "width": 640
+    }
+  ],
+  "name": "Liked from Radio",
+  "owner": {
+    "display_name": "Austin Lee",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/1239763793"
+    },
+    "href": "https://api.spotify.com/v1/users/1239763793",
+    "id": "1239763793",
+    "type": "user",
+    "uri": "spotify:user:1239763793"
+  },
+  "primary_color": null,
+  "public": false,
+  "snapshot_id": "MTYsY2I5ZTVkMTZiN2RkNjEzNWFhZDhkMzQ1YjVhYmUxNmMzNTM1N2Q0Mw==",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/53leIaS6WSmo2WGpyY6jcq/tracks",
+    "total": 4
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:53leIaS6WSmo2WGpyY6jcq",
+  "tracksArr": [
+    {
+      "$oid": "608a30325d933b44d87ba9af"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9b0"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9b1"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9b2"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "608a30355d933b44d87baa78"
+  },
+  "collaborative": false,
+  "description": "",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/7hgOA4LoyqHQSSesN2fgT5"
+  },
+  "href": "https://api.spotify.com/v1/playlists/7hgOA4LoyqHQSSesN2fgT5",
+  "id": "7hgOA4LoyqHQSSesN2fgT5",
+  "images": [
+    {
+      "height": 640,
+      "url": "https://i.scdn.co/image/ab67616d0000b273bf1eceb436f720897ffc6c9d",
+      "width": 640
+    }
+  ],
+  "name": "One song",
+  "owner": {
+    "display_name": "Austin Lee",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/1239763793"
+    },
+    "href": "https://api.spotify.com/v1/users/1239763793",
+    "id": "1239763793",
+    "type": "user",
+    "uri": "spotify:user:1239763793"
+  },
+  "primary_color": null,
+  "public": false,
+  "snapshot_id": "MzIsZWVkYTYwZThkOTE1OWJjNmI2NDc3ODZhZTJlNGQ5ZGRhMDdjZDRjNA==",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/7hgOA4LoyqHQSSesN2fgT5/tracks",
+    "total": 2
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:7hgOA4LoyqHQSSesN2fgT5",
+  "tracksArr": [
+    {
+      "$oid": "608a30325d933b44d87ba9b3"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9b4"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "608a30355d933b44d87baa79"
+  },
+  "collaborative": false,
+  "description": "The songs you loved most this year, all wrapped up.",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/37i9dQZF1EtoVhBuHpsip9"
+  },
+  "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EtoVhBuHpsip9",
+  "id": "37i9dQZF1EtoVhBuHpsip9",
+  "images": [
+    {
+      "height": null,
+      "url": "https://lineup-images.scdn.co/your-top-songs-2019_LARGE-en.jpg",
+      "width": null
+    }
+  ],
+  "name": "Your Top Songs 2019",
+  "owner": {
+    "display_name": "Spotify",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/spotify"
+    },
+    "href": "https://api.spotify.com/v1/users/spotify",
+    "id": "spotify",
+    "type": "user",
+    "uri": "spotify:user:spotify"
+  },
+  "primary_color": null,
+  "public": false,
+  "snapshot_id": "MjYyNjk2NzYsMDAwMDAwMDA3ODA0YzAyMTQ0YWQyYWEyZjAxNTM5NmVmZjdjNDQ4Nw==",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EtoVhBuHpsip9/tracks",
+    "total": 100
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:37i9dQZF1EtoVhBuHpsip9",
+  "tracksArr": [
+    {
+      "$oid": "608a30325d933b44d87ba9b5"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9b6"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9b7"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9b8"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9b9"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9ba"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9bb"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9bc"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9bd"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9be"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9bf"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9c0"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9c1"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9c2"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9c3"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9c4"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9c5"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9c6"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9c7"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9c8"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9c9"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9ca"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9cb"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9cc"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9cd"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9ce"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9cf"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9d0"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9d1"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9d2"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9d3"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9d4"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9d5"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9d6"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9d7"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9d8"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9d9"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9da"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9db"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9dc"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9dd"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9de"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9df"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9e0"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9e1"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9e2"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9e3"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9e4"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9e5"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9e6"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9e7"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9e8"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9e9"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9ea"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9eb"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9ec"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9ed"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9ee"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9ef"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9f0"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9f1"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9f2"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9f3"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9f4"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9f5"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9f6"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9f7"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9f8"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9f9"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9fa"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9fb"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9fc"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9fd"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9fe"
+    },
+    {
+      "$oid": "608a30325d933b44d87ba9ff"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa00"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa01"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa02"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa03"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa04"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa05"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa06"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa07"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa08"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa09"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa0a"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa0b"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa0c"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa0d"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa0e"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa0f"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa10"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa11"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa12"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa13"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa14"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa15"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa16"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa17"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa18"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "608a30355d933b44d87baa7a"
+  },
+  "collaborative": false,
+  "description": "",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/1ADtuqLPTLoCzwdfBUWUue"
+  },
+  "href": "https://api.spotify.com/v1/playlists/1ADtuqLPTLoCzwdfBUWUue",
+  "id": "1ADtuqLPTLoCzwdfBUWUue",
+  "images": [],
+  "name": "KPOP",
+  "owner": {
+    "display_name": "Austin Lee",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/1239763793"
+    },
+    "href": "https://api.spotify.com/v1/users/1239763793",
+    "id": "1239763793",
+    "type": "user",
+    "uri": "spotify:user:1239763793"
+  },
+  "primary_color": null,
+  "public": false,
+  "snapshot_id": "NCw1MmI3YTU4NmE3Y2YyMjJjZThjZTAwODMxMDFhNzRlNWVkOGQwZGQ1",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/1ADtuqLPTLoCzwdfBUWUue/tracks",
+    "total": 88
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:1ADtuqLPTLoCzwdfBUWUue",
+  "tracksArr": [
+    {
+      "$oid": "608a30325d933b44d87baa19"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa1a"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa1b"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa1c"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa1d"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa1e"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa1f"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa20"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa21"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa22"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa23"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa24"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa25"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa26"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa27"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa28"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa29"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa2a"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa2b"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa2c"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa2d"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa2e"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa2f"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa30"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa31"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa32"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa33"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa34"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa35"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa36"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa37"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa38"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa39"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa3a"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa3b"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa3c"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa3d"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa3e"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa3f"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa40"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa41"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa42"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa43"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa44"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa45"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa46"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa47"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa48"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa49"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa4a"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa4b"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa4c"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa4d"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa4e"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa4f"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa50"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa51"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa52"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa53"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa54"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa55"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa56"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa57"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa58"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa59"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa5a"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa5b"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa5c"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa5d"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa5e"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa5f"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa60"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa61"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa62"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa63"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa64"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa65"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa66"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa67"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa68"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa69"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa6a"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa6b"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa6c"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa6d"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa6e"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa6f"
+    },
+    {
+      "$oid": "608a30325d933b44d87baa70"
+    }
+  ]
+}]

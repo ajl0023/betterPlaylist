@@ -37,7 +37,7 @@ const PlaylistAddModal = (props) => {
             >
               <span className={style["main-trigger-icon-container"]}>
                 <i className={style["main-trigger-icon"]}></i>
-              </span>{" "}
+              </span>
             </div>
           </div>
           <p className={style["modal-title"]}>Add to playlists</p>
@@ -70,6 +70,7 @@ const PlaylistAddModal = (props) => {
                         className={style["check-icon-place"]}
                       />
                       <CheckIcon
+                        data-testid={`addModal` + playlist.id}
                         style={{
                           display: selectedPlaylists.find((obj) => {
                             return obj.playlistid === playlist.id;
@@ -111,6 +112,4 @@ const PlaylistAddModal = (props) => {
     </div>
   );
 };
-export default React.memo(PlaylistAddModal, (prev, next) => {
-  return prev.showModal === next.showModal;
-});
+export default PlaylistAddModal;

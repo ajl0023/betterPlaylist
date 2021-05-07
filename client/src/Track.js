@@ -13,7 +13,6 @@ const Track = (props) => {
         <img className={style["album-cover"]} src={props.image[0].url} alt="" />
       </div>
       <div className={style["info-container"]}>
-        {" "}
         <p className={style["track-title"]}>{props.track.name}</p>
         <p className={style["album-title"]}>{props.track.album.name}</p>
       </div>

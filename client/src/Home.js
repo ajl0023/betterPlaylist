@@ -48,11 +48,7 @@ const Home = () => {
     });
   }
   const handleLogout = () => {
-    dispatch(logout()).then((status) => {
-      if (status === 200) {
-        window.location.reload();
-      }
-    });
+    dispatch(logout()).then((status) => {});
   };
   useEffect(() => {
     dispatch(recieveTopTracks());
@@ -86,7 +82,7 @@ const Home = () => {
                 {currentUserInfo.display_name}
               </p>
               <div className={style["arrow-container"]}>
-                <span className={style["user-arrow-trigger"]}></span>{" "}
+                <span className={style["user-arrow-trigger"]}></span>
               </div>
             </div>
             <div className={style["dropdown-container"]}>
@@ -120,7 +116,6 @@ const Home = () => {
         <div>
           <p className={style["top-tracks-title"]}>your top tracks</p>
           <div className={style["top-tracks-container"]}>
-            {" "}
             {recentTracksArr.length > 0 && topTracksArr.length > 0
               ? topTracksArr.map((track) => {
                   return (

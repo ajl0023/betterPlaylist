@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {
   useCallback,
   useEffect,
@@ -5,22 +6,35 @@ import React, {
   useRef,
   useMemo,
 } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getColor } from "./colorMatch";
 import { ReactComponent as CheckIcon } from "./images/check.svg";
 import PlaylistTracks from "./PlaylistTracks";
-import { getTracksScroll } from "./spotify-redux/actions/playlistActions";
+import { getSearchResults } from "./spotify-redux/actions/calls";
+import {
+  getTracksScroll,
+  searchPlaylists,
+  getSinglePlaylist,
+  getMoreTracksPlaylist,
+  updatePlaylist,
+} from "./spotify-redux/actions/playlistActions";
+import { SET_CURRENT_PLAYLIST } from "./spotify-redux/types/types";
 import style from "./styles/singlePlaylist.module.scss";
 const SinglePlaylist = (props) => {
   const [mainColor, setMainColor] = useState();
   const [playlist, setPlaylist] = useState();
+  const [lastUpdated, setLastUpdated] = useState(0);
   const params = useParams();
   const dispatch = useDispatch();
   const getTracksRef = useRef();
-  const currentPlayList = props.playlist[params.id];
+  const currentPlayList = useSelector((state) => {
+    return state.playlists.byIds[params.id];
+  });
+  const isUpdating = useSelector((state) => {
+    return state.playlists.isUpdating;
+  });
   useEffect(() => {
-    setPlaylist(currentPlayList);
     if (currentPlayList && currentPlayList.images[0]) {
       let myImage = new Image();
       myImage.src = currentPlayList.images[0].url;
@@ -33,38 +47,9 @@ const SinglePlaylist = (props) => {
     }
     props.findCurrentPlaylist(params.id);
   }, [currentPlayList]);
-  const handleFetchScroll = (e) => {
-    if (currentPlayList.page.next) {
-      let tracks = getTracks.map((item) => {
-        return {
-          trackid: item.track.uid,
-          playlistid: item.playlist.id,
-          index: item.track.index,
-          uri: item.track.uri,
-        };
-      });
-      const next = currentPlayList.page.next;
-      const url = new URL(next);
-      const query = new URLSearchParams(url.search);
-      const mainOffSet = query.get("offset");
-      let scrollPos = Math.round(e.target.scrollHeight - e.target.scrollTop);
-      let clientHeight = e.target.clientHeight;
-      if (
-        scrollPos === clientHeight &&
-        currentPlayList.page.offset < currentPlayList.page.total &&
-        currentPlayList.page.next
-      ) {
-        props.handleCheckAll(tracks, currentPlayList.id, true);
-        if (
-          currentPlayList &&
-          currentPlayList.page.offset < currentPlayList.page.total &&
-          currentPlayList.page.next
-        ) {
-          dispatch(getTracksScroll(currentPlayList, mainOffSet));
-        }
-      }
-    }
-  };
+  useEffect(() => {
+    dispatch(getSinglePlaylist(params.id));
+  }, []);
   const handleCheckAll = useCallback(() => {
     let tracks = getTracks.map((item) => {
       return {
@@ -76,29 +61,21 @@ const SinglePlaylist = (props) => {
     });
     props.handleCheckAll(tracks, currentPlayList.id);
   }, [currentPlayList]);
-  useEffect(() => {
-    let scrollContainer = document.getElementById("scroll-container");
-    if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleFetchScroll);
-    }
-    return () => {
-      scrollContainer.removeEventListener("scroll", handleFetchScroll);
-    };
-  }, [playlist]);
   let getTracks = [];
-  if (currentPlayList) {
-    getTracks = currentPlayList.tracks.reduce((arr, id) => {
-      let obj = {};
-      obj["playlist"] = currentPlayList;
-      obj["track"] = props.allTracks[id];
-      obj["uid"] = props.allTracks[id].uid;
-      if (obj.track.name.length > 0) {
-        arr.push(obj);
-      }
-      return arr;
-    }, []);
-  }
+  let snapshot_id = getTracks.length > 0 ? getTracks[0].snapshot_id : null;
   const tracksMem = useMemo(() => {
+    if (currentPlayList) {
+      getTracks = currentPlayList.tracks.reduce((arr, id) => {
+        let obj = {};
+        obj["playlist"] = currentPlayList;
+        obj["track"] = props.allTracks[id];
+        obj["uid"] = props.allTracks[id].uid;
+        if (obj.track.name.length > 0) {
+          arr.push(obj);
+        }
+        return arr;
+      }, []);
+    }
     getTracks.filter((track) => {
       let findDeleted = props.deletedArr.find((obj) => {
         return obj.trackid === track.track.uid;
@@ -108,17 +85,46 @@ const SinglePlaylist = (props) => {
       }
     });
     return getTracks;
-  }, [getTracks.length]);
-  if (
-    !currentPlayList ||
-    !currentPlayList.tracks.length > 0 ||
-    currentPlayList.length <= 0 ||
-    !currentPlayList.images[0] ||
-    !props.allTracks
-  ) {
+  }, [
+    currentPlayList,
+    lastUpdated,
+    currentPlayList && currentPlayList.tracks.length,
+  ]);
+  const checkScroll = useRef(true);
+  const lastPosition = useRef(true);
+  const handleFetchScroll = async (e) => {
+    let scrollPos = Math.round(e.target.scrollHeight - e.target.scrollTop);
+    let clientHeight = e.target.clientHeight;
+    if (
+      scrollPos - 100 <= clientHeight &&
+      scrollPos + 20 >= clientHeight &&
+      lastPosition.current < e.target.scrollTop &&
+      checkScroll.current &&
+      currentPlayList.offset
+    ) {
+      checkScroll.current = false;
+      const data = await dispatch(
+        getMoreTracksPlaylist(currentPlayList.id, null, true)
+      );
+      if (data.status === 200) {
+        checkScroll.current = true;
+      }
+    }
+    lastPosition.current = e.target.scrollTop;
+  };
+  useEffect(() => {
+    const scrollContainer = props.scrollContainer.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleFetchScroll);
+      return () => {
+        scrollContainer.removeEventListener("scroll", handleFetchScroll);
+      };
+    }
+  }, [currentPlayList]);
+  if (!currentPlayList) {
     return null;
   }
-  let checkAllFiltered = getTracks.filter((track) => {
+  let checkAllFiltered = tracksMem.filter((track) => {
     let findId = props.selected.find((item) => {
       return item.trackid === track.track.uid;
     });
@@ -130,7 +136,12 @@ const SinglePlaylist = (props) => {
     const findId = props.selected.some((set) => {
       return set.trackid === trackId;
     });
+    checkScroll.current = true;
     return findId;
+  };
+  const update = () => {
+    dispatch(updatePlaylist(props.selected));
+    setLastUpdated(Date.now());
   };
   return (
     <div
@@ -150,7 +161,7 @@ const SinglePlaylist = (props) => {
             className={style["album-cover"]}
             src={currentPlayList.images[0].url}
             alt=""
-          />{" "}
+          />
           <div className={style["album-mask"]}></div>
         </div>
         <div className={style["playlist-info-container"]}>
@@ -158,6 +169,17 @@ const SinglePlaylist = (props) => {
           <p className={style["playlist-creator"]}>
             Created By {currentPlayList.owner.display_name}
           </p>
+          <div className={style["update-button-container"]}>
+            <button onClick={update} className={style["update-button"]}>
+              update
+            </button>
+            <div
+              style={{ display: isUpdating ? "" : "none" }}
+              className={style["lds-ring"]}
+            >
+              <div></div> <div></div> <div></div> <div></div>
+            </div>
+          </div>
         </div>
       </div>
       <div className={style["tracks-container"]}>
@@ -173,7 +195,10 @@ const SinglePlaylist = (props) => {
             </p>
             <CheckIcon
               style={{
-                fill: checkAllFiltered.length === 0 ? "#1db954" : "white",
+                fill:
+                  checkAllFiltered.length === 0 && props.selected.length > 0
+                    ? "#1db954"
+                    : "white",
                 display: checkAllFiltered.length === 0 ? "block" : "none",
               }}
               onClick={handleCheckAll}
@@ -182,7 +207,7 @@ const SinglePlaylist = (props) => {
           </div>
           <div className={style["label-title"]}>title</div>
           <div className={style["label-album"]}>album</div>
-          <div className={style["label-playlist"]}>playlist</div>{" "}
+          <div className={style["label-playlist"]}>playlist</div>
         </div>
         <div className={style["item-wrapper"]}>
           {tracksMem.map((track, i) => {
@@ -190,20 +215,22 @@ const SinglePlaylist = (props) => {
               return (
                 <PlaylistTracks
                   changed={tracksMem}
-                  key={track.uid}
+                  key={track.track.uid}
                   index={i}
+                  lastUpdated={lastUpdated}
                   checkAll={props.selected.length > 0}
                   isSelected={isSelected(track.uid)}
                   getTracks={getTracksRef}
                   deletedArr={props.deletedArr}
                   selected={props.selected}
                   handleCheckSelected={props.handleCheckSelected}
-                  playlistSet={track}
+                  track={{ track: track.track }}
+                  playlist={currentPlayList}
                   imageSelection="album"
                 />
               );
             }
-          })}{" "}
+          })}
         </div>
       </div>
     </div>

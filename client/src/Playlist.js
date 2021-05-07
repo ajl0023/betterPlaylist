@@ -1,8 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
 import { ReactComponent as MusicIcon } from "./images/music-note.svg";
+import { getTracks } from "./spotify-redux/actions/trackActions";
+import { getSinglePlaylist } from "./spotify-redux/actions/playlistActions";
 import style from "./styles/playlist.module.scss";
 const Playlist = (props) => {
+  const dispatch = useDispatch();
   const item = props.playlist;
   let { url } = useRouteMatch();
   if (!props.playlist) {
@@ -17,6 +21,9 @@ const Playlist = (props) => {
   );
   return (
     <Link
+      // onClick={() => {
+      //   dispatch(getSinglePlaylist(props.playlist.id));
+      // }}
       key={item.uid}
       to={{
         pathname: `${url}/${item.id}`,

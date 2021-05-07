@@ -13,7 +13,6 @@
   color: white;
   font-family: "main";
 }
-
 @mixin user-option-icon($deg, $deg2) {
   background-color: white;
   inline-size: 100%;
@@ -23,14 +22,12 @@
   block-size: calc(20px / 10);
   top: calc(36% + 2px);
   background-color: transparent;
-
   &:before {
     top: 0;
     transition: all 300ms ease-in-out;
     block-size: calc(20px / 10);
     background-color: white;
     content: "";
-
     display: block;
     transform: rotate($deg);
     position: absolute;
@@ -42,7 +39,6 @@
     block-size: calc(20px / 10);
     background-color: white;
     content: "";
-
     transform: rotate($deg2);
     display: block;
     position: absolute;
@@ -68,20 +64,18 @@
     position: fixed;
     color: white;
     background-color: black;
-
     max-height: fit-content;
     top: 50%;
     left: 50%;
     border-radius: 15px;
     width: fit-content;
-
     padding: 18px;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     z-index: 16;
-
     margin: 0 auto;
+    gap: 20px;
   }
   .header-container {
     display: flex;
@@ -98,10 +92,8 @@
       }
     }
   }
-
   .button-container {
     display: flex;
-
     bottom: 0;
     right: 0;
     width: 100%;
@@ -120,5 +112,4 @@
   .modal-container {
     width: 100vw !important;
   }
- 
 }

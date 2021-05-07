@@ -1,0 +1,1 @@
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");const app = require("express")();const bodyParser = require("body-parser");app.listen(4242, () => 

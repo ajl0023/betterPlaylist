@@ -1,10 +1,11 @@
 import {
+  RECIEVE_PLAYLIST_TRACKS,
   RECIEVE_RECENT_TRACKS,
   RECIEVE_TOP_TRACKS,
   REQUEST_RECENT_TRACKS,
   REQUEST_TOP_TRACKS,
 } from "../types/types";
-import { getRecentTracks, getTopTracks } from "./calls";
+import { getPlayListTracks, getRecentTracks, getTopTracks } from "./calls";
 
 function requestTopTracks() {
   return {
@@ -72,5 +73,25 @@ export function recieveRecentTracks() {
         });
       }
     });
+  };
+}
+export function getTracks(playlistid) {
+  return async (dispatch) => {
+    const obj = {};
+    const tracks = await getPlayListTracks(playlistid);
+    tracks.data.items.forEach((track) => {
+      obj[track.uid] = track;
+    });
+    if (tracks.status === 200) {
+      dispatch({
+        trackIds: tracks.data.items.map((tracks) => {
+          return tracks.uid;
+        }),
+        type: RECIEVE_PLAYLIST_TRACKS,
+        tracks: obj,
+        pageInfo: tracks.data.page,
+        playlistid,
+      });
+    }
   };
 }
