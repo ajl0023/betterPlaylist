@@ -35,14 +35,23 @@ bower_components
 .lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
+<<<<<<< HEAD
 Release
+=======
+build/Release
+>>>>>>> 2e6723daad33bde1547b3ad1a39f33b1db63e525
 
 # Dependency directories
 node_modules/
 jspm_packages/
 
+<<<<<<< HEAD
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
+=======
+# TypeScript v1 declaration files
+typings/
+>>>>>>> 2e6723daad33bde1547b3ad1a39f33b1db63e525
 
 # TypeScript cache
 *.tsbuildinfo
@@ -59,8 +68,11 @@ web_modules/
 .rts2_cache_es/
 .rts2_cache_umd/
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2e6723daad33bde1547b3ad1a39f33b1db63e525
 # Optional REPL history
 .node_repl_history
 
@@ -76,11 +88,17 @@ web_modules/
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
+<<<<<<< HEAD
 .parcel-cache
 
 # Next.js build output
 .next
 out
+=======
+
+# Next.js build output
+.next
+>>>>>>> 2e6723daad33bde1547b3ad1a39f33b1db63e525
 
 # Nuxt.js build / generate output
 .nuxt
@@ -88,7 +106,11 @@ dist
 
 # Gatsby files
 .cache/
+<<<<<<< HEAD
 # Comment in the public line in if your project uses Gatsby and not Next.js
+=======
+# Comment in the public line in if your project uses Gatsby and *not* Next.js
+>>>>>>> 2e6723daad33bde1547b3ad1a39f33b1db63e525
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
@@ -106,6 +128,7 @@ dist
 
 # TernJS port file
 .tern-port
+<<<<<<< HEAD
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
@@ -116,3 +139,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+=======
+>>>>>>> 2e6723daad33bde1547b3ad1a39f33b1db63e525
