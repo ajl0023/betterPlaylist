@@ -1,4 +1,4 @@
 git add .
-git commit -m "adding vercel"
+git commit -m "error connecting to mongo on vercel"
 git push origin main
 
