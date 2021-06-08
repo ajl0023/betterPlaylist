@@ -1,5 +1,4 @@
 git add .
-git commit -m "added tests and mongodb db"
+git commit -m "uploading to git"
 git push origin master
-git push heroku master
-heroku logs --tail
+
