@@ -12,7 +12,7 @@ const playlistdb = require("./mongoUtil").getPlaylistdb();
 const tracksdb = require("./mongoUtil").getTracksdb();
 module.exports = function (app) {
   app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+    res.sendFile(path.join(__dirname, "./client", "index.html"));
   });
   app.post("/api/logout", async (req, res) => {
     res.clearCookie("refresh_token");
@@ -620,6 +620,6 @@ module.exports = function (app) {
     getTotalTrackCount(authtoken, tracksdb);
   });
   app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+    res.sendFile(path.join(__dirname, "./client", "index.html"));
   });
 };

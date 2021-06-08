@@ -1,4 +1,4 @@
 git add .
-git commit -m "inital commit"
+git commit -m "adding vercel"
 git push origin main
 
