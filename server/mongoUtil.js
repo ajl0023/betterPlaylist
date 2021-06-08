@@ -16,7 +16,6 @@ module.exports = {
     return tracksdb;
   },
   getPlaylistdb: function () {
-    console.log(connection);
     playlistdb = connection.db("spotify-playlists").collection("playlists");
     return playlistdb;
   },

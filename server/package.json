@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon start.js",
+    "start": "nodemon index.js",
     "test": "jest --watchAll --detectOpenHandles"
   },
   "author": "",
