@@ -1,4 +1,4 @@
 git add .
-git commit -m "changed start command"
+git commit -m "whitelisted url"
 git push origin main
 
