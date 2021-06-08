@@ -1,4 +1,4 @@
 git add .
-git commit -m "uploading to git"
+git commit -m "inital commit"
 git push origin main
 
