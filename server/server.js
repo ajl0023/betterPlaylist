@@ -6,7 +6,6 @@ const { MongoClient } = require("mongodb");
 const { ObjectId } = require("mongodb");
 app.use(cookieParser());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "./client")));
 let db;
 require("./routes")(app);
 module.exports = app;

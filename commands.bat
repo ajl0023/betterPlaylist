@@ -1,4 +1,4 @@
 git add .
-git commit -m "whitelisted url"
+git commit -m "edited express static folder"
 git push origin main
 
