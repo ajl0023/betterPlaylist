@@ -1,4 +1,4 @@
 git add .
-git commit -m "fixing server rendering"
+git commit -m "updated .env"
 git push origin main
 
