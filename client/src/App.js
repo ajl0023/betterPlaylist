@@ -46,7 +46,7 @@ function App() {
           window.location.href = `https://accounts.spotify.com/authorize?client_id=da42a01c50ef409f802caf63a98de4d4&response_type=code&redirect_uri=${
             window.location.origin === "http://localhost:3000"
               ? "http://localhost:3000"
-              : "https://spotify-playlists-lake.vercel.app"
+              : "better-playlist.vercel.app"
           }&scope=${encodeURIComponent(scopes)}&show_dialog=true`;
         }
       });

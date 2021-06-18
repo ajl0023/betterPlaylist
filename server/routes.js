@@ -33,7 +33,7 @@ module.exports = function (app) {
         redirect_uri:
           req.headers["x-forwarded-host"] === "localhost:3000"
             ? "http://localhost:3000"
-            : "https://spotify-playlists-lake.vercel.app",
+            : "better-playlist.vercel.app",
       },
     })
       .then((data) => {
