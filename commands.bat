@@ -1,4 +1,4 @@
 git add .
-git commit -m "edited readme"
+git commit -m "fixing server rendering"
 git push origin main
 

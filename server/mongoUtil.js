@@ -4,8 +4,9 @@ let client;
 let tracksdb;
 let playlistdb;
 let db;
-const url =
-  "mongodb+srv://a:a@cluster0.2e6a1.mongodb.net/spotify-playlists?retryWrites=true&w=majority";
+require("dotenv").config();
+const url = process.env.MONGO_URI;
+
 module.exports = {
   connect: async () => {
     connection = await MongoClient.connect(url, { useUnifiedTopology: true });
